@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import svgLoader from 'vite-svg-loader'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
@@ -12,12 +11,11 @@ import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 export default defineConfig({
   plugins: [
     vue(),
-    svgLoader(),
     Components({
-      dts: './src/components.d.ts',
+      // dirs: [],
       resolvers: [
         IconsResolver({
-          customCollections: ['regular', 'brands'],
+          customCollections: ['regular', 'solid', 'brands'],
         }),
       ],
     }),
@@ -25,23 +23,18 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
+        '@vueuse/core',
         {
-          'axios': [
-            ['default', 'axios'],
-          ],
-          'gsap': [
-            ['default', 'tween'],
-          ],
           'marked': ['marked'],
           'lodash-es': ['throttle', 'debounce'],
         },
       ],
-      dts: './src/auto-import.d.ts',
     }),
     Icons({
       compiler: 'vue3',
       customCollections: {
         regular: FileSystemIconLoader('./src/icons/regular'),
+        solid: FileSystemIconLoader('./src/icons/solid'),
         brands: FileSystemIconLoader('./src/icons/brands'),
       },
     }),
@@ -60,4 +53,6 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
   },
+  envDir: './src/env',
+  envPrefix: 'BHS_',
 })

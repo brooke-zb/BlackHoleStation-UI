@@ -16,6 +16,15 @@ module.exports = {
         danger: colors.rose,
         warning: colors.amber,
         dark: colors.slate,
+      },
+      spacing: {
+        0.25: '0.0625rem',
+      },
+      transitionProperty: {
+        bg: 'background-color, border-color',
+      },
+      cursor: {
+        grab: 'grab'
       }
     },
     container: {

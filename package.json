@@ -8,17 +8,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vueuse/core": "^7.6.2",
     "axios": "^0.26.0",
     "gsap": "^3.9.1",
+    "js-cookie": "^3.0.1",
     "lodash-es": "^4.17.21",
     "marked": "^4.0.12",
+    "prismjs": "^1.27.0",
     "vue": "^3.2.31",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.1",
     "@types/lodash-es": "^4.17.6",
     "@types/marked": "^4.0.2",
     "@types/node": "^17.0.18",
+    "@types/prismjs": "^1.26.0",
     "@vitejs/plugin-vue": "^2.2.0",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.6",
@@ -28,7 +33,6 @@
     "unplugin-icons": "^0.13.1",
     "unplugin-vue-components": "^0.17.18",
     "vite": "^2.8.3",
-    "vite-svg-loader": "^3.1.2",
     "vue-tsc": "^0.31.4"
   }
 }
