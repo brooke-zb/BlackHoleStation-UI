@@ -5,6 +5,7 @@ const Index = () => import('@/pages/Index.vue')
 // const NotFound = () => import('@/components/page/error/404.vue')
 // const Article = () => import('@/pages/Article.vue')
 const About = () => import('@/pages/About.vue')
+const Btn = () => import('@/pages/Btn.vue')
 
 const routes: RouteRecordRaw[] = [
   // 主页
@@ -16,6 +17,13 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'index',
     component: Index,
+  },
+
+  // 按钮测试页面
+  {
+    path: '/btn',
+    name: 'btn',
+    component: Btn,
   },
 
   // // 文章页面
