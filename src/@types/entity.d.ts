@@ -44,8 +44,15 @@ declare interface AjaxError {
 // type definitions of background
 declare interface BackgroundSetting {
   parallax: [number, number],
-  background: string,
-
+  bgColor: {
+    dark: string,
+    light: string
+  }
+  scale: {
+    x: number,
+    y: number
+  },
+  imageSize: number
 }
 
 declare interface Light {
@@ -56,6 +63,12 @@ declare interface Light {
 declare interface BackgroundHolder {
   element: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
-  light: [Light[], Light[]],
+  light: Light[],
   mousePos: [number, number],
+  parallax: [number, number],
+  bgColor: string,
+  image: {
+    dark: HTMLCanvasElement | null,
+    light: HTMLCanvasElement | null
+  },
 }
