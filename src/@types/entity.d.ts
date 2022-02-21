@@ -57,7 +57,10 @@ declare interface BackgroundSetting {
 
 declare interface Light {
   pos: [number, number],
-  color: string,
+  color: {
+    dark: string,
+    light: string
+  }
 }
 
 declare interface BackgroundHolder {
@@ -66,7 +69,6 @@ declare interface BackgroundHolder {
   light: Light[],
   mousePos: [number, number],
   parallax: [number, number],
-  bgColor: string,
   image: {
     dark: HTMLCanvasElement | null,
     light: HTMLCanvasElement | null

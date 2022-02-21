@@ -24,7 +24,7 @@ const setting: BackgroundSetting = {
   },
   scale: {
     x: 1,
-    y: 1.5,
+    y: 1.3,
   },
   imageSize: 256,
 }
@@ -35,21 +35,11 @@ const holder: BackgroundHolder = {
   light: [],
   mousePos: [0, 0],
   parallax: [0, 0],
-  bgColor: isCurrentDarkMode.value ? setting.bgColor.dark : setting.bgColor.light,
   image: {
     dark: null,
     light: null,
   },
 }
-
-// 监听器
-watch(isCurrentDarkMode, (isDark) => {
-  if (isDark) {
-    holder.bgColor = setting.bgColor.dark
-  } else {
-    holder.bgColor = setting.bgColor.light
-  }
-})
 
 addEventListener('resize', initSize)
 
@@ -79,20 +69,29 @@ function initLight() {
   let x = Math.random()
   holder.light.push({
     pos: [x / setting.scale.x, 0.2 / setting.scale.y],
-    color: 'rgba(255,0,0,0.15)',
+    color: {
+      dark: 'rgba(255,0,0,0.15)',
+      light: 'rgba(255,194,127,0.2)',
+    },
   })
   holder.light.push({
     pos: [(x + 0.5) % 1 / setting.scale.x, 0.5 / setting.scale.y],
-    color: 'rgba(108,0,255,0.15)',
+    color: {
+      dark: 'rgba(108,0,255,0.15)',
+      light: 'rgba(204,255,128,0.2)',
+    },
   })
   holder.light.push({
     pos: [(x + 0.2) % 1 / setting.scale.x, 0.8 / setting.scale.y],
-    color: 'rgba(0,186,255,0.15)',
+    color: {
+      dark: 'rgba(0,186,255,0.15)',
+      light: 'rgba(128,210,255,0.2)',
+    },
   })
 }
 
 function initImage() {
-  // dark
+  // dark image
   let darkCanvas = document.createElement('canvas')
   darkCanvas.width = setting.imageSize
   darkCanvas.height = setting.imageSize
@@ -104,7 +103,7 @@ function initImage() {
   }
   darkImg.src = darkImage
 
-  // light
+  // light image
   // let lightCanvas = document.createElement('canvas')
   // lightCanvas.width = setting.imageSize
   // lightCanvas.height = setting.imageSize
@@ -120,9 +119,10 @@ function initImage() {
 // render
 function render() {
   holder.ctx.save()
+  let bgColor = isCurrentDarkMode.value ? setting.bgColor.dark : setting.bgColor.light
 
   // background
-  holder.ctx.fillStyle = holder.bgColor
+  holder.ctx.fillStyle = bgColor
   holder.ctx.fillRect(0, 0, holder.element.width, holder.element.height)
 
   // light
@@ -133,8 +133,8 @@ function render() {
     let x = holder.element.width * light.pos[0] < radius ? holder.element.width * light.pos[0] : radius
     let y = holder.element.height * light.pos[1] < radius ? holder.element.height * light.pos[1] : radius
     let grd = holder.ctx.createRadialGradient(x, y, 50, x, y, radius)
-    grd.addColorStop(0, light.color)
-    grd.addColorStop(1, `${ holder.bgColor }01`)
+    grd.addColorStop(0, isCurrentDarkMode.value ? light.color['dark'] : light.color['light'])
+    grd.addColorStop(1, `${ bgColor }01`)
     holder.ctx.fillStyle = grd
     holder.ctx.fillRect(
         x - radius,

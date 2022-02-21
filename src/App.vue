@@ -96,7 +96,12 @@ function leaveLoading(el: Element, done: () => void) {
 // 暗黑模式
 const isPreferredDark = usePreferredDark()
 
-function applyDarkMode() {
+function applyDarkMode(theme?: 'dark' | 'light' | 'system') {
+  // set theme
+  if (theme) {
+    currentTheme.value = theme
+  }
+
   switch (currentTheme.value) {
     case 'system':
       if (isPreferredDark.value) {
