@@ -8,7 +8,7 @@
       <Button type="secondary">click me to article</Button>
     </router-link>
 
-    <Button @click="changeDark" v-text="'try me'"/>
+    <Button @click="changeDark">try me</Button>
   </div>
 </template>
 
