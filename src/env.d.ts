@@ -10,4 +10,9 @@ declare module '*.vue' {
 // 环境变量
 interface ImportMetaEnv {
   readonly BHS_BASE_URL: string
+  readonly BHS_SITE_NAME: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
 }

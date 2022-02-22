@@ -19,6 +19,7 @@ declare module 'vue' {
     IRegularsun: typeof import('~icons/regular/sun')['default']
     IRegularUser: typeof import('~icons/regular/user')['default']
     ISolidAlien: typeof import('~icons/solid/alien')['default']
+    ISolidBars: typeof import('~icons/solid/bars')['default']
     ISolidFile: typeof import('~icons/solid/file')['default']
     ISolidLinkSimple: typeof import('~icons/solid/link-simple')['default']
     ISolidMoon: typeof import('~icons/solid/moon')['default']
