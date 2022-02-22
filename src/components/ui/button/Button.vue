@@ -85,8 +85,8 @@ const classAppend = computed(() => {
     // padding
     'px-2 py-1': props.size === 'sm' && slots.default,
     'px-3.5 py-1.5': props.size === 'md' && slots.default,
-    'px-5 py-2': props.size === 'lg' && slots.default,
-    'px-8 py-3': props.size === 'xl' && slots.default,
+    'px-4 py-2': props.size === 'lg' && slots.default,
+    'px-5 py-3': props.size === 'xl' && slots.default,
 
     // only icon padding
     'p-2': slots.icon && !slots.default,

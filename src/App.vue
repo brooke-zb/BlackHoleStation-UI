@@ -1,7 +1,7 @@
 <template>
   <Background/>
   <!--  <SideMenu/>-->
-  <!--  <NavBar/>-->
+    <NavBar/>
   <div class="overflow-hidden mt-14">
     <div class="container overflow-visible flex justify-center">
       <router-view v-slot="{ Component }">
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-// import NavBar from '@/components/page/NavBar.vue'
+import NavBar from '@/components/page/NavBar.vue'
 import Background from '@/components/page/Background.vue'
 import Loading from '@/components/page/Loading.vue'
 // import Footer from '@/components/page/Footer.vue'
@@ -93,10 +93,10 @@ function leaveLoading(el: Element, done: () => void) {
   })
 }
 
-// 暗黑模式
+// 颜色主题
 const isPreferredDark = usePreferredDark()
 
-function applyDarkMode(theme?: 'dark' | 'light' | 'system') {
+function applyTheme(theme?: 'dark' | 'light' | 'system') {
   // set theme
   if (theme) {
     currentTheme.value = theme
@@ -125,14 +125,14 @@ function applyDarkMode(theme?: 'dark' | 'light' | 'system') {
 
     default:
       currentTheme.value = 'system'
-      applyDarkMode()
+      applyTheme()
       break
   }
 }
 
-provide('applyDarkMode', applyDarkMode)
+provide('applyTheme', applyTheme)
 
 watch(isPreferredDark, () => {
-  applyDarkMode()
+  applyTheme()
 }, { immediate: true })
 </script>

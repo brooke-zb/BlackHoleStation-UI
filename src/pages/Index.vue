@@ -19,12 +19,12 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import Button from '@/components/ui/Button.vue'
+import Button from '@/components/ui/button/Button.vue'
 import { setTitle, currentTheme } from '@/utils/global'
 
 setTitle('主页', true)
 
-const apply = inject('applyDarkMode', Function)
+const applyTheme = inject('applyTheme', Function)
 
 function changeDark() {
   if (currentTheme.value === 'system' || currentTheme.value === 'light') {
@@ -32,6 +32,6 @@ function changeDark() {
   } else {
     currentTheme.value = 'light'
   }
-  apply()
+  applyTheme()
 }
 </script>
