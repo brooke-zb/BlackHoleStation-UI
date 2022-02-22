@@ -29,6 +29,7 @@ declare module 'vue' {
     ISolidSun: typeof import('~icons/solid/sun')['default']
     ISolidUser: typeof import('~icons/solid/user')['default']
     Loading: typeof import('./src/components/page/Loading.vue')['default']
+    Menu: typeof import('./src/components/ui/menu/Menu.vue')['default']
     MenuButton: typeof import('./src/components/ui/button/MenuButton.vue')['default']
     NavBar: typeof import('./src/components/page/NavBar.vue')['default']
     SideMenu: typeof import('./src/components/page/SideMenu.vue')['default']

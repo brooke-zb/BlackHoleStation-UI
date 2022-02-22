@@ -2,7 +2,7 @@
   <Background/>
   <!--  <SideMenu/>-->
     <NavBar/>
-  <div class="overflow-hidden mt-14">
+  <div class="overflow-hidden mt-4">
     <div class="container overflow-visible flex justify-center">
       <router-view v-slot="{ Component }">
         <transition
