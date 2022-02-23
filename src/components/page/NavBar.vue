@@ -8,6 +8,7 @@
       </template>
     </MenuButton>
     <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
+    <div class="hidden sm:block ml-2">{{ title }}</div>
     <div class="grow"/>
     <MenuButton ref="themeBtn" @click="toggleThemeMenu" :type="isCurrentDarkMode ? 'primary' : 'secondary'"
                 :highlight="currentTheme !== 'system'">
@@ -27,10 +28,12 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import { siteName, isCurrentDarkMode, currentTheme } from '@/utils/global'
+import { title, isCurrentDarkMode, currentTheme } from '@/utils/global'
 import MenuButton from '@/components/ui/button/MenuButton.vue'
 import Menu from '@/components/ui/menu/Menu.vue'
 import gsap from 'gsap'
+
+const siteName = import.meta.env.BHS_SITE_NAME
 
 // theme switcher
 const applyTheme = inject('applyTheme', Function, true)

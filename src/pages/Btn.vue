@@ -1,7 +1,12 @@
 <template>
   <div class="flex flex-col items-center">
     <div>
-      <Button size="sm"><template #icon><ISolidAlien/></template>Primary</Button>
+      <Button size="sm">
+        <template #icon>
+          <ISolidAlien/>
+        </template>
+        Primary
+      </Button>
       <Button size="sm" type="secondary">Secondary</Button>
       <Button size="sm" type="danger">Danger</Button>
       <Button size="sm" type="info">Info</Button>
@@ -11,7 +16,12 @@
       <Button size="sm" type="light">Light</Button>
     </div>
     <div>
-      <Button><template #icon><ISolidAlien/></template>Primary</Button>
+      <Button>
+        <template #icon>
+          <ISolidAlien/>
+        </template>
+        Primary
+      </Button>
       <Button type="secondary">Secondary</Button>
       <Button type="danger">Danger</Button>
       <Button type="info">Info</Button>
@@ -21,7 +31,12 @@
       <Button type="light">Light</Button>
     </div>
     <div>
-      <Button size="lg"><template #icon><ISolidAlien/></template>Primary</Button>
+      <Button size="lg">
+        <template #icon>
+          <ISolidAlien/>
+        </template>
+        Primary
+      </Button>
       <Button size="lg" type="secondary">Secondary</Button>
       <Button size="lg" type="danger">Danger</Button>
       <Button size="lg" type="info">Info</Button>
@@ -31,7 +46,12 @@
       <Button size="lg" type="light">Light</Button>
     </div>
     <div>
-      <Button size="xl"><template #icon><ISolidAlien/></template>Primary</Button>
+      <Button size="xl">
+        <template #icon>
+          <ISolidAlien/>
+        </template>
+        Primary
+      </Button>
       <Button size="xl" type="secondary">Secondary</Button>
       <Button size="xl" type="danger">Danger</Button>
       <Button size="xl" type="info">Info</Button>
@@ -41,7 +61,12 @@
       <Button size="xl" type="light">Light</Button>
     </div>
     <div>
-      <Button outline><template #icon><ISolidAlien/></template>Primary</Button>
+      <Button outline>
+        <template #icon>
+          <ISolidAlien/>
+        </template>
+        Primary
+      </Button>
       <Button outline type="secondary">Secondary</Button>
       <Button outline type="danger">Danger</Button>
       <Button outline type="info">Info</Button>
@@ -51,12 +76,36 @@
       <Button outline type="light">Light</Button>
     </div>
     <div>
-      <Button circle size="sm"><template #icon><IRegularPlus/></template></Button>
-      <Button circle size="xl"><template #icon><IRegularPlus/></template></Button>
-      <Button type="dark" circle outline size="sm"><template #icon><IRegularPlus/></template></Button>
-      <Button type="dark" circle outline size="xl"><template #icon><IRegularPlus/></template></Button>
-      <Button type="light" circle outline size="sm"><template #icon><IRegularBars/></template></Button>
-      <Button type="light" circle outline size="xl"><template #icon><IRegularBars/></template></Button>
+      <Button circle size="sm">
+        <template #icon>
+          <IRegularPlus/>
+        </template>
+      </Button>
+      <Button circle size="xl">
+        <template #icon>
+          <IRegularPlus/>
+        </template>
+      </Button>
+      <Button type="dark" circle outline size="sm">
+        <template #icon>
+          <IRegularPlus/>
+        </template>
+      </Button>
+      <Button type="dark" circle outline size="xl">
+        <template #icon>
+          <IRegularPlus/>
+        </template>
+      </Button>
+      <Button type="light" circle outline size="sm">
+        <template #icon>
+          <IRegularBars/>
+        </template>
+      </Button>
+      <Button type="light" circle outline size="xl">
+        <template #icon>
+          <IRegularBars/>
+        </template>
+      </Button>
     </div>
   </div>
 </template>
@@ -69,5 +118,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
+import { title } from '@/utils/global'
 
+title.value = '按钮测试页面'
 </script>

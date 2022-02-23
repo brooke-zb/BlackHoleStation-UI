@@ -12,7 +12,8 @@ interface ImportMetaEnv {
   readonly BHS_BASE_URL: string
   readonly BHS_SITE_NAME: string
   readonly BHS_START_YEAR: string
-  readonly BHS_ADMIN_NAME: string
+  readonly BHS_OWNER_NAME: string
+  readonly BHS_BEIAN_NUMBER: string
 }
 
 interface ImportMeta {

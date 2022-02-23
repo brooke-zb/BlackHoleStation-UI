@@ -18,7 +18,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
-import { setTitle, currentTheme } from '@/utils/global'
+import { title, currentTheme } from '@/utils/global'
 
-setTitle('主页', true)
+title.value = '主页'
 </script>

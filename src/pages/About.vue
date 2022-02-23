@@ -9,7 +9,5 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import { setTitle } from '@/utils/global'
 
-setTitle('关于')
 </script>

@@ -19,7 +19,7 @@ body {
 }
 
 *::selection {
-    @apply bg-primary-600 bg-opacity-30 dark:bg-teal-600 dark:bg-opacity-60;
+    @apply bg-secondary-500/30 dark:bg-primary-500/50;
 }
 
 a.link {
