@@ -74,3 +74,13 @@ declare interface BackgroundHolder {
     light: HTMLCanvasElement | null
   },
 }
+
+// menu
+declare interface MenuItemProps {
+  type: 'link' | 'action',
+  to?: string,
+  onClick?: () => void,
+  icon?: () => Promise<any>,
+  text?: string,
+  highlight?: any,
+}

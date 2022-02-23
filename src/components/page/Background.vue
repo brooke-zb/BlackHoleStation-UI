@@ -41,8 +41,6 @@ const holder: BackgroundHolder = {
   },
 }
 
-addEventListener('resize', initSize)
-
 let mousemoveHandler = throttle(e => {
   holder.mousePos[0] = e.clientX
   holder.mousePos[1] = e.clientY
@@ -60,10 +58,11 @@ onMounted(() => {
   gsap.ticker.add(render)
 })
 
-function initSize() {
+const initSize = throttle(() => {
   holder.element.height = window.innerHeight
   holder.element.width = window.innerWidth
-}
+}, 50)
+addEventListener('resize', initSize)
 
 function initLight() {
   let x = Math.random()

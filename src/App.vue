@@ -1,7 +1,7 @@
 <template>
   <Background/>
   <!--  <SideMenu/>-->
-    <NavBar/>
+  <NavBar/>
   <div class="overflow-hidden mt-4">
     <div class="container overflow-visible flex justify-center">
       <router-view v-slot="{ Component }">
@@ -25,9 +25,7 @@
       @leave="leaveLoading"
       :css="false"
   >
-    <keep-alive>
-      <Loading v-show="isLoading"/>
-    </keep-alive>
+    <Loading v-show="isLoading"/>
   </transition>
   <!--  <Footer/>-->
 </template>
