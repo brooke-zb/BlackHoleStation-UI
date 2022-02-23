@@ -27,14 +27,14 @@
   >
     <Loading v-show="isLoading"/>
   </transition>
-  <!--  <Footer/>-->
+  <Footer/>
 </template>
 
 <script setup lang="ts">
 import NavBar from '@/components/page/NavBar.vue'
 import Background from '@/components/page/Background.vue'
 import Loading from '@/components/page/Loading.vue'
-// import Footer from '@/components/page/Footer.vue'
+import Footer from '@/components/page/Footer.vue'
 // import SideMenu from '@/components/page/SideMenu.vue'
 import { isLoading, currentTheme, isCurrentDarkMode } from '@/utils/global'
 import gsap from 'gsap'

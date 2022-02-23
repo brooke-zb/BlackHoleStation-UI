@@ -70,21 +70,21 @@ function initLight() {
     pos: [x / setting.scale.x, 0.2 / setting.scale.y],
     color: {
       dark: 'rgba(255,0,0,0.15)',
-      light: 'rgba(193,127,255,0.15)',
+      light: 'rgba(184,108,255,0.15)',
     },
   })
   holder.light.push({
     pos: [(x + 0.5) % 1 / setting.scale.x, 0.5 / setting.scale.y],
     color: {
       dark: 'rgba(108,0,255,0.15)',
-      light: 'rgba(128,139,255,0.15)',
+      light: 'rgba(110,122,255,0.15)',
     },
   })
   holder.light.push({
     pos: [(x + 0.2) % 1 / setting.scale.x, 0.8 / setting.scale.y],
     color: {
       dark: 'rgba(0,186,255,0.15)',
-      light: 'rgba(128,255,236,0.15)',
+      light: 'rgba(114,255,234,0.15)',
     },
   })
 }
