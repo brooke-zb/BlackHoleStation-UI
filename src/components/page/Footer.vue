@@ -1,5 +1,15 @@
 <template>
-  <div class="absolute bottom-0 h-20 w-full">
+  <div class="absolute bottom-0 h-20 w-full bg-neutral-50/50 dark:bg-dark-900/50 flex justify-center">
+    <div class="max-w-5xl grow flex">
+      <div class="w-1/3 hidden sm:block p-2"></div>
+      <div class="w-1/2 sm:w-1/3 text-left sm:text-center p-2">
+        <div>© {{ startYear === currentYear ? currentYear : `${startYear} - ${currentYear}` }} by brooke_zb</div>
+        <div class="mt-2"><img class="inline align-text-bottom" :src="beianImg">{{ beian }}</div>
+      </div>
+      <div class="w-1/2 sm:w-1/3 text-right p-2">
+        <div>Power by <a class="link" href="https://github.com/brooke-zb/BlackHoleStation">BHS</a></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,5 +20,10 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
+import beianImg from '@/assets/img/beian.png?url'
+import { beian } from '@/utils/global'
 
+const adminName = import.meta.env.BHS_ADMIN_NAME
+const startYear = import.meta.env.BHS_START_YEAR
+const currentYear = new Date().getFullYear().toString()
 </script>

@@ -11,6 +11,8 @@ declare module '*.vue' {
 interface ImportMetaEnv {
   readonly BHS_BASE_URL: string
   readonly BHS_SITE_NAME: string
+  readonly BHS_START_YEAR: string
+  readonly BHS_ADMIN_NAME: string
 }
 
 interface ImportMeta {

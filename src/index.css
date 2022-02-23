@@ -21,3 +21,7 @@ body {
 *::selection {
     @apply bg-primary-600 bg-opacity-30 dark:bg-teal-600 dark:bg-opacity-60;
 }
+
+a.link {
+    @apply relative text-secondary-600 dark:text-primary-300 after:absolute after:h-0.5 after:-bottom-1 after:left-0 after:w-full after:scale-x-0 hover:after:scale-x-100 after:bg-secondary-500 dark:after:bg-primary-400 after:transition-transform after:origin-bottom-right hover:after:origin-bottom-left;
+}
