@@ -11,8 +11,8 @@ export default defineComponent({
 <script lang="ts" setup>
 import gsap from 'gsap'
 import darkImage from '@/assets/img/blackhole.png?url'
-import lightImage from '@/assets/img/moon.png?url'
-import { isCurrentDarkMode } from '@/utils/global'
+import lightImage from '@/assets/img/planet.png'
+import { isCurrentDarkMode, isShowImage } from '@/utils/global'
 
 const bg = ref()
 
@@ -48,7 +48,7 @@ let mousemoveHandler = throttle(e => {
 }, 20)
 addEventListener('mousemove', mousemoveHandler)
 
-// 渲染函数
+// 初始化
 onMounted(() => {
   holder.element = bg.value
   holder.ctx = holder.element.getContext('2d', { alpha: false }) as CanvasRenderingContext2D
@@ -103,19 +103,19 @@ function initImage() {
   darkImg.src = darkImage
 
   // light image
-  // let lightCanvas = document.createElement('canvas')
-  // lightCanvas.width = setting.imageSize
-  // lightCanvas.height = setting.imageSize
-  // let lightCtx = lightCanvas.getContext('2d') as CanvasRenderingContext2D
-  // let lightImg = new Image()
-  // lightImg.onload = () => {
-  //   lightCtx.drawImage(lightImg, 0, 0, setting.imageSize, setting.imageSize)
-  //   holder.image.light = lightCanvas
-  // }
-  // lightImg.src = lightImage
+  let lightCanvas = document.createElement('canvas')
+  lightCanvas.width = setting.imageSize
+  lightCanvas.height = setting.imageSize
+  let lightCtx = lightCanvas.getContext('2d') as CanvasRenderingContext2D
+  let lightImg = new Image()
+  lightImg.onload = () => {
+    lightCtx.drawImage(lightImg, 0, 0, setting.imageSize, setting.imageSize)
+    holder.image.light = lightCanvas
+  }
+  lightImg.src = lightImage
 }
 
-// render
+// 渲染
 function render() {
   holder.ctx.save()
   let bgColor = isCurrentDarkMode.value ? setting.bgColor.dark : setting.bgColor.light
@@ -146,7 +146,7 @@ function render() {
 
   // image
   let img = isCurrentDarkMode.value ? holder.image.dark : holder.image.light
-  if (img) {
+  if (isShowImage.value && img) {
     holder.ctx.drawImage(
         img,
         holder.element.width / 2 - setting.imageSize / 2 + holder.parallax[0],
