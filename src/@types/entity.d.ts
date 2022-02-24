@@ -84,3 +84,14 @@ declare interface MenuItemProps {
   text?: string,
   highlight?: any,
 }
+
+//toast
+declare interface ToastMessage {
+  id?: number,
+  config: ToastProps,
+}
+
+declare interface ToastProps {
+  type: 'info' | 'success' | 'danger' | 'warning',
+  message: string,
+}

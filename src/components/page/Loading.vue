@@ -1,6 +1,6 @@
 <template>
   <div
-      class="fixed w-full h-full top-0 left-0 bg-black/80 flex justify-center items-center z-50"
+      class="fixed w-full h-full top-0 left-0 bg-black/80 flex justify-center items-center z-[60]"
   >
     <div class="bg-gray-50 dark:bg-dark-700 p-3 rounded-sm text-black dark:text-white shadow-xl">
       <div class="pb-2 text-center">{{ text }}</div>
