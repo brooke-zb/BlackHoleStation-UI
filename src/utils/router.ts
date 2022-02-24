@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { isLoading, isSideMenuOpen } from '@/utils/global'
 
 const Index = () => import('@/pages/Index.vue')
-// const NotFound = () => import('@/components/page/error/404.vue')
+const NotFound = () => import('@/pages/error/404.vue')
 // const Article = () => import('@/pages/Article.vue')
 const About = () => import('@/pages/About.vue')
 const Btn = () => import('@/pages/Btn.vue')
@@ -42,11 +42,11 @@ const routes: RouteRecordRaw[] = [
   },
 
   // 404页面
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   name: '404',
-  //   component: NotFound,
-  // },
+  {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component: NotFound,
+  },
 ]
 
 export const routerHistory = createWebHistory()
