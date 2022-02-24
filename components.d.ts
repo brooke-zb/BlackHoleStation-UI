@@ -39,6 +39,8 @@ declare module 'vue' {
     NavBar: typeof import('./src/components/page/NavBar.vue')['default']
     SideMenu: typeof import('./src/components/page/SideMenu.vue')['default']
     SideMenuItem: typeof import('./src/components/page/SideMenuItem.vue')['default']
+    Toast: typeof import('./src/components/ui/toast/Toast.vue')['default']
+    ToastContainer: typeof import('./src/components/ui/toast/ToastContainer.vue')['default']
   }
 }
 

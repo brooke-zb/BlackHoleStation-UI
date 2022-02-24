@@ -33,6 +33,10 @@ import MenuButton from '@/components/ui/button/MenuButton.vue'
 import Menu from '@/components/ui/menu/Menu.vue'
 import gsap from 'gsap'
 
+import IRegularSunBright from '~icons/regular/sun-bright.vue'
+import IRegularMoonStars from '~icons/regular/moon-stars.vue'
+import IRegularDisplay from '~icons/regular/display.vue'
+
 const siteName = import.meta.env.BHS_SITE_NAME
 
 // theme switcher
@@ -44,21 +48,21 @@ const menuItem: MenuItemProps[] = [
   {
     type: 'action',
     onClick: () => applyTheme('light'),
-    icon: () => import('~icons/regular/sun-bright.vue'),
+    icon: IRegularSunBright,
     text: '亮色',
     highlight: computed(() => currentTheme.value === 'light'),
   },
   {
     type: 'action',
     onClick: () => applyTheme('dark'),
-    icon: () => import('~icons/regular/moon-stars.vue'),
+    icon: IRegularMoonStars,
     text: '暗色',
     highlight: computed(() => currentTheme.value === 'dark'),
   },
   {
     type: 'action',
     onClick: () => applyTheme('system'),
-    icon: () => import('~icons/regular/display.vue'),
+    icon: IRegularDisplay,
     text: '跟随系统',
     highlight: computed(() => currentTheme.value === 'system'),
   },

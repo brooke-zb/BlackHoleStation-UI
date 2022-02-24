@@ -80,7 +80,7 @@ declare interface MenuItemProps {
   type: 'link' | 'action',
   to?: string,
   onClick?: () => void,
-  icon?: () => Promise<any>,
+  icon?: any,
   text?: string,
   highlight?: any,
 }
