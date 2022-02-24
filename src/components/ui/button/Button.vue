@@ -54,7 +54,7 @@ const classAppend = computed(() => {
       'hover:bg-warning-500 focus:bg-warning-500 active:bg-warning-600 to-warning-400': props.type === 'warning',
       'hover:bg-success-500 focus:bg-success-500 active:bg-success-600 to-success-400': props.type === 'success',
       'hover:bg-dark-700 focus:bg-dark-700 active:bg-dark-800 to-dark-600': props.type === 'dark',
-      'hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-300 to-gray-50': props.type === 'light',
+      'hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200 to-gray-50': props.type === 'light',
 
       'hover:text-white focus:text-white hover:fill-white focus:fill-white': isDarker.value,
       'hover:text-gray-900 focus:text-gray-900 hover:fill-gray-900 focus:fill-gray-900': !isDarker.value,
@@ -66,7 +66,7 @@ const classAppend = computed(() => {
       'bg-danger-600 active:bg-danger-700 to-danger-500': props.type === 'danger',
       'bg-info-500 active:bg-info-600 to-info-400': props.type === 'info',
       'bg-warning-500 active:bg-warning-600 to-warning-400': props.type === 'warning',
-      'bg-success-500 active:bg-success-600 to-success-400': props.type === 'success',
+      'bg-success-600 active:bg-success-700 to-success-500': props.type === 'success',
       'bg-dark-700 active:bg-dark-800 to-dark-600': props.type === 'dark',
       'bg-gray-100 active:bg-gray-300 to-gray-50': props.type === 'light',
 
@@ -100,12 +100,15 @@ const classAppend = computed(() => {
 </script>
 
 <style scoped>
-button {
+/* relief shadow */
+button:not(.btn-outline),
+button.btn-outline:hover,
+button.btn-outline:focus {
   box-shadow: inset 2px 2px 3px 2px rgba(255, 255, 255, 0.08),
   inset -2px -2px 3px 2px rgba(0, 0, 0, 0.08);
 }
-
-button:active {
+button:active,
+button.btn-outline:active {
   box-shadow: inset 2px 2px 3px 2px rgba(0, 0, 0, 0.08),
   inset -2px -2px 3px 2px rgba(255, 255, 255, 0.08);
 }

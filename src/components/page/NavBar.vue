@@ -1,14 +1,14 @@
 <template>
   <nav ref="nav" class="sticky w-full h-14 top-0 z-40
   flex items-center justify-between shadow-neutral-600/20 dark:shadow-neutral-300/20
-  backdrop-blur-sm transition-all" :class="classAppend">
+  backdrop-blur transition-all" :class="classAppend">
     <MenuButton :type="isCurrentDarkMode ? 'primary' : 'secondary'">
       <template #icon>
         <ISolidBars/>
       </template>
     </MenuButton>
-    <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
-    <div class="hidden sm:block ml-2">{{ title }}</div>
+    <router-link to="/" class="select-none text-lg hidden sm:block ">{{ siteName }}</router-link>
+    <div class="ml-2">{{ title }}</div>
     <div class="grow"/>
     <MenuButton ref="themeBtn" @click="toggleThemeMenu" :type="isCurrentDarkMode ? 'primary' : 'secondary'"
                 :highlight="currentTheme !== 'system'">
@@ -71,7 +71,7 @@ const toggleThemeMenu = (event: Event) => {
 const classAppend = computed(() => {
   return {
     'shadow-sm': !isScrollDown.value,
-    'shadow bg-dark-50/50 dark:bg-neutral-900/30': isScrollDown.value,
+    'shadow bg-dark-50/50 dark:bg-dark-900/50': isScrollDown.value,
   }
 })
 

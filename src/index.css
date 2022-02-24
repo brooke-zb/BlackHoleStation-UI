@@ -10,7 +10,7 @@ body {
 }
 body {
     @apply absolute pb-20;
-    @apply bg-zinc-50 dark:bg-dark-900;
+    @apply bg-neutral-50 dark:bg-dark-900;
     @apply text-neutral-800 fill-neutral-600 dark:text-neutral-100 dark:fill-neutral-200;
 }
 
@@ -19,9 +19,11 @@ body {
 }
 
 *::selection {
-    @apply bg-secondary-500/30 dark:bg-primary-500/50;
+    @apply bg-secondary-500/30 dark:bg-info-400/50;
 }
 
 a.link {
-    @apply relative text-secondary-600 dark:text-primary-300 after:absolute after:h-0.5 after:-bottom-1 after:left-0 after:w-full after:scale-x-0 hover:after:scale-x-100 after:bg-secondary-500 dark:after:bg-primary-400 after:transition-transform after:origin-bottom-right hover:after:origin-bottom-left;
+    @apply relative after:absolute after:h-0.5 after:-bottom-1 after:left-0 after:w-full after:scale-x-0 hover:after:scale-x-100;
+    @apply text-secondary-600 dark:text-info-300 after:bg-secondary-500 dark:after:bg-info-400;
+    @apply after:transition-transform after:origin-bottom-right hover:after:origin-bottom-left;
 }

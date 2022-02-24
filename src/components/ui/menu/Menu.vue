@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <transition @enter="onEnter" @leave="onLeave" :css="false">
-      <ul ref="menu" v-if="isOpen" class="fixed z-50 bg-zinc-50 dark:bg-dark-700 py-1 rounded">
+      <ul ref="menu" v-if="isOpen" class="fixed z-50 bg-neutral-50 dark:bg-dark-700 py-1 rounded">
         <MenuItem v-for="item in props.items" :item="item" @click="toggle"/>
       </ul>
     </transition>

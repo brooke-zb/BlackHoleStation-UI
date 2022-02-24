@@ -1,7 +1,7 @@
 <template>
   <div class="h-[1145px]">
     <router-link to="/btn">
-      <Button>click me to jump</Button>
+      <Button>click me to btn</Button>
     </router-link>
 
     <router-link to="/articles/1">
@@ -18,7 +18,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
-import { title, currentTheme } from '@/utils/global'
+import { title } from '@/utils/global'
 
 title.value = '主页'
 </script>

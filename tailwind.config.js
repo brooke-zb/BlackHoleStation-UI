@@ -2,8 +2,8 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   content: [
-      './index.html',
-      './src/**/*.{vue,js,ts,jsx,tsx}',
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
   darkMode: 'class',
   theme: {
@@ -11,8 +11,8 @@ module.exports = {
       colors: {
         primary: colors.violet,
         secondary: colors.blue,
-        info: colors.cyan,
-        success: colors.emerald,
+        info: colors.teal,
+        success: colors.green,
         danger: colors.rose,
         warning: colors.amber,
         dark: colors.slate,
@@ -24,11 +24,11 @@ module.exports = {
         bg: 'background-color, border-color',
       },
       cursor: {
-        grab: 'grab'
-      }
+        grab: 'grab',
+      },
     },
     container: {
-        center: true,
+      center: true,
     },
   },
   plugins: [],
