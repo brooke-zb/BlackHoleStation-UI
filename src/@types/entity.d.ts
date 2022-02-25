@@ -85,7 +85,7 @@ declare interface MenuItemProps {
   highlight?: any,
 }
 
-//toast
+// toast
 declare interface ToastMessage {
   id?: number,
   config: ToastProps,
@@ -96,4 +96,13 @@ declare interface ToastProps {
   message: string,
   icon?: any,
   duration?: number,
+}
+
+// paginator
+declare interface PageInfo {
+  pages: number[],
+  currentPage: number,
+  hasPrevious: boolean,
+  hasNext: boolean,
+  displaySize: number,
 }

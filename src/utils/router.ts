@@ -15,18 +15,30 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/Index.vue'),
   },
 
-  // 按钮测试页面
   {
-    path: '/btn',
-    name: 'btn',
-    component: () => import('@/pages/Btn.vue'),
-  },
-
-  // 通知测试页面
-  {
-    path: '/toast',
-    name: 'toast',
-    component: () => import('@/pages/ToastTest.vue'),
+    path: '/test',
+    name: 'test',
+    component: () => import('@/pages/test/Test.vue'),
+    children: [
+      // 按钮测试页面
+      {
+        path: 'btn',
+        name: 'btn',
+        component: () => import('@/pages/test/BtnTest.vue'),
+      },
+      // 通知测试页面
+      {
+        path: 'toast',
+        name: 'toast',
+        component: () => import('@/pages/test/ToastTest.vue'),
+      },
+      // 分页测试页面
+      {
+        path: 'page',
+        name: 'page',
+        component: () => import('@/pages/test/PageTest.vue'),
+      },
+    ]
   },
 
   // // 文章页面
