@@ -37,6 +37,7 @@ function addToast() {
     config: {
       type: 'success',
       message: 'hello world',
+      duration: 3000,
     },
   })
 }

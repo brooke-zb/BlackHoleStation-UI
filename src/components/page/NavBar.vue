@@ -1,6 +1,6 @@
 <template>
   <nav ref="nav" class="sticky w-full h-14 top-0 z-40
-  flex items-center justify-between shadow-neutral-600/20 dark:shadow-neutral-300/20
+  flex items-center justify-between shadow-light-600/20 dark:shadow-light-300/20
   backdrop-blur transition-all" :class="classAppend">
     <MenuButton :type="isCurrentDarkMode ? 'primary' : 'secondary'">
       <template #icon>

@@ -47,11 +47,11 @@ const classAppend = computed(() => {
     'hover:bg-warning-500 active:bg-warning-600': props.type === 'warning',
     'hover:bg-success-500 active:bg-success-600': props.type === 'success',
     'hover:bg-dark-700 active:bg-dark-800': props.type === 'dark',
-    'hover:bg-gray-100 active:bg-gray-300': props.type === 'light',
+    'hover:bg-light-100 active:bg-light-300': props.type === 'light',
 
     'text-secondary-400 fill-secondary-400': props.highlight,
     'hover:text-white hover:fill-white': isDarker.value,
-    'hover:text-gray-900 hover:fill-gray-900': !isDarker.value,
+    'hover:text-light-900 hover:fill-light-900': !isDarker.value,
 
     // only icon padding
     'p-3': slots.icon && !slots.default,

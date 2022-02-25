@@ -16,6 +16,7 @@ module.exports = {
         danger: colors.rose,
         warning: colors.amber,
         dark: colors.slate,
+        light: colors.neutral,
       },
       spacing: {
         0.25: '0.0625rem',

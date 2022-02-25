@@ -2,10 +2,10 @@
   <div
       class="fixed w-full h-full top-0 left-0 bg-black/80 flex justify-center items-center z-[60]"
   >
-    <div class="bg-gray-50 dark:bg-dark-700 p-3 rounded-sm text-black dark:text-white shadow-xl">
+    <div class="bg-light-50 dark:bg-dark-700 p-3 rounded-sm text-black dark:text-white shadow-xl">
       <div class="pb-2 text-center">{{ text }}</div>
       <div
-          class="relative w-64 h-1 bg-gray-200 dark:bg-dark-600 before:absolute before:h-1 before:bg-primary-500 dark:before:bg-dark-400 progress-bar"
+          class="relative w-64 h-1 bg-light-200 dark:bg-dark-600 before:absolute before:h-1 before:bg-primary-500 dark:before:bg-dark-400 progress-bar"
       ></div>
     </div>
   </div>

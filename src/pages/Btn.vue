@@ -107,6 +107,36 @@
         </template>
       </Button>
     </div>
+    <div>
+      <Button disabled>
+        <template #icon>
+          <ISolidAlien/>
+        </template>
+        Primary
+      </Button>
+      <Button disabled type="secondary">Secondary</Button>
+      <Button disabled type="danger">Danger</Button>
+      <Button disabled type="info">Info</Button>
+      <Button disabled type="warning">Warning</Button>
+      <Button disabled type="success">Success</Button>
+      <Button disabled type="dark">Dark</Button>
+      <Button disabled type="light">Light</Button>
+    </div>
+    <div>
+      <Button disabled outline>
+        <template #icon>
+          <ISolidAlien/>
+        </template>
+        Primary
+      </Button>
+      <Button disabled outline type="secondary">Secondary</Button>
+      <Button disabled outline type="danger">Danger</Button>
+      <Button disabled outline type="info">Info</Button>
+      <Button disabled outline type="warning">Warning</Button>
+      <Button disabled outline type="success">Success</Button>
+      <Button disabled outline type="dark">Dark</Button>
+      <Button disabled outline type="light">Light</Button>
+    </div>
   </div>
 </template>
 

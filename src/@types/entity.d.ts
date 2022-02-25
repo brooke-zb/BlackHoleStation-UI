@@ -94,4 +94,5 @@ declare interface ToastMessage {
 declare interface ToastProps {
   type: 'info' | 'success' | 'danger' | 'warning',
   message: string,
+  duration?: number,
 }
