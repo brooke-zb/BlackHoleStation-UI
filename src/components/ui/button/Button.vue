@@ -47,31 +47,32 @@ const classAppend = computed(() => {
   if (props.outline) {
     theme = {
       'btn-outline disabled:bg-transparent': true,
-      'hover:bg-primary-600 focus:bg-primary-600 active:bg-primary-700 to-primary-500 disabled:to-primary-400': props.type === 'primary',
-      'hover:bg-secondary-500 focus:bg-secondary-500 active:bg-secondary-600 to-secondary-400 disabled:to-secondary-300': props.type === 'secondary',
-      'hover:bg-danger-600 focus:bg-danger-600 active:bg-danger-700 to-danger-500 disabled:to-danger-400': props.type === 'danger',
-      'hover:bg-info-500 focus:bg-info-500 active:bg-info-600 to-info-400 disabled:to-info-300': props.type === 'info',
-      'hover:bg-warning-500 focus:bg-warning-500 active:bg-warning-600 to-warning-400 disabled:to-warning-300': props.type === 'warning',
-      'hover:bg-success-500 focus:bg-success-500 active:bg-success-600 to-success-400 disabled:to-success-400': props.type === 'success',
-      'hover:bg-dark-700 focus:bg-dark-700 active:bg-dark-800 to-dark-600 disabled:to-dark-500': props.type === 'dark',
-      'hover:bg-light-100 focus:bg-light-100 active:bg-light-200 to-light-50 disabled:to-light-200': props.type === 'light',
+      'hover:bg-primary-600 focus:bg-primary-600 active:bg-primary-700 to-primary-500 disabled:to-primary-400/80': props.type === 'primary',
+      'hover:bg-secondary-500 focus:bg-secondary-500 active:bg-secondary-600 to-secondary-400 disabled:to-secondary-300/80': props.type === 'secondary',
+      'hover:bg-danger-600 focus:bg-danger-600 active:bg-danger-700 to-danger-500 disabled:to-danger-400/80': props.type === 'danger',
+      'hover:bg-info-500 focus:bg-info-500 active:bg-info-600 to-info-400 disabled:to-info-300/80': props.type === 'info',
+      'hover:bg-warning-500 focus:bg-warning-500 active:bg-warning-600 to-warning-400 disabled:to-warning-300/80': props.type === 'warning',
+      'hover:bg-success-500 focus:bg-success-500 active:bg-success-600 to-success-400 disabled:to-success-300/80': props.type === 'success',
+      'hover:bg-dark-700 focus:bg-dark-700 active:bg-dark-800 to-dark-600 disabled:to-dark-500/80': props.type === 'dark',
+      'hover:bg-light-100 focus:bg-light-100 active:bg-light-200 to-light-50 disabled:to-light-100/80': props.type === 'light',
 
       'hover:text-white focus:text-white hover:fill-white focus:fill-white disabled:text-light-500 disabled:fill-light-500 dark:disabled:text-light-200 dark:disabled:fill-light-200': isDarker.value,
       'hover:text-light-900 focus:text-light-900 hover:fill-light-900 focus:fill-light-900 disabled:text-light-500 disabled:fill-light-500 dark:disabled:text-light-300 dark:disabled:fill-light-300': !isDarker.value,
     }
   } else {
     theme = {
+      'disabled:bg-opacity-80': true,
       'bg-primary-600 active:bg-primary-700 to-primary-500 disabled:bg-primary-400': props.type === 'primary',
       'bg-secondary-500 active:bg-secondary-600 to-secondary-400 disabled:bg-secondary-300': props.type === 'secondary',
       'bg-danger-600 active:bg-danger-700 to-danger-500 disabled:bg-danger-400': props.type === 'danger',
       'bg-info-500 active:bg-info-600 to-info-400 disabled:bg-info-300': props.type === 'info',
       'bg-warning-500 active:bg-warning-600 to-warning-400 disabled:bg-warning-300': props.type === 'warning',
-      'bg-success-600 active:bg-success-700 to-success-400 disabled:bg-success-400': props.type === 'success',
+      'bg-success-600 active:bg-success-700 to-success-400 disabled:bg-success-300': props.type === 'success',
       'bg-dark-700 active:bg-dark-800 to-dark-600 disabled:bg-dark-500': props.type === 'dark',
-      'bg-light-100 active:bg-light-300 to-light-50 disabled:bg-light-200': props.type === 'light',
+      'bg-light-100 active:bg-light-300 to-light-50': props.type === 'light',
 
-      'text-white fill-white disabled:text-light-200 disabled:fill-light-200': isDarker.value,
-      'text-light-900 fill-light-900 disabled:text-light-500 disabled:fill-light-500': !isDarker.value,
+      'text-white fill-white disabled:text-light-100 disabled:fill-light-100': isDarker.value,
+      'text-light-900 fill-light-900 disabled:text-light-500/80 disabled:fill-light-500/80': !isDarker.value,
     }
   }
 
