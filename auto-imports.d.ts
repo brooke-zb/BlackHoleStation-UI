@@ -189,6 +189,7 @@ declare global {
   const useTimeoutFn: typeof import('@vueuse/core')['useTimeoutFn']
   const useTimestamp: typeof import('@vueuse/core')['useTimestamp']
   const useTitle: typeof import('@vueuse/core')['useTitle']
+  const useToast: typeof import('@/utils/toast')['useToast']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']

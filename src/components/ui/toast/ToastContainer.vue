@@ -32,11 +32,11 @@ let nextToastId = 0
 function onEnter(el: HTMLElement, done: () => void) {
   gsap.set(el, {
     opacity: 0,
-    translateY: '-100%',
+    translateY: -50,
     transformOrigin: 'top',
     onComplete: () => {
       gsap.to(el, {
-        duration: 0.2,
+        duration: 0.3,
         opacity: 1,
         translateY: 0,
         onComplete: done,
@@ -46,11 +46,17 @@ function onEnter(el: HTMLElement, done: () => void) {
 }
 
 function onLeave(el: HTMLElement, done: () => void) {
-  gsap.to(el, {
-    duration: 0.2,
-    opacity: 0,
-    translateY: '-100%',
-    onComplete: done,
+  gsap.set(el, {
+    height: el.offsetHeight,
+    onComplete: () => {
+      gsap.to(el, {
+        duration: 0.3,
+        opacity: 0,
+        height: 0,
+        translateY: -50,
+        onComplete: done,
+      })
+    }
   })
 }
 
@@ -70,40 +76,28 @@ function remove(id: number) {
 }
 
 function clear() {
-  console.log('clear')
   toastQueue.value = []
 }
 
-// TEST
-onMounted(() => {
-  add({
-    id: 1,
-    config: {
-      type: 'success',
-      message: '成功修改账户信息',
-    },
-  })
-  add({
-    id: 1,
-    config: {
-      type: 'info',
-      message: '您有一条新消息',
-    },
-  })
-  add({
-    id: 1,
-    config: {
-      type: 'danger',
-      message: '我将以高达形态出击',
-    },
-  })
-  add({
-    id: 1,
-    config: {
-      type: 'warning',
-      message: '这是一段长文本，非常长长长长长长长长长长长长长长长',
-    },
-  })
-})
-
 </script>
+
+<style scoped>
+.test-enter-from {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.test-enter-active,
+.test-leave-active {
+  transition: all 0.3s;
+}
+
+.test-leave-from {
+  max-height: 200px;
+}
+.test-leave-to {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+</style>

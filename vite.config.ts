@@ -27,6 +27,7 @@ export default defineConfig({
         {
           'marked': ['marked'],
           'lodash-es': ['throttle', 'debounce'],
+          '@/utils/toast': ['useToast'],
         },
       ],
     }),

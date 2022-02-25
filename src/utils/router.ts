@@ -1,11 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { isLoading, isSideMenuOpen } from '@/utils/global'
 
-const Index = () => import('@/pages/Index.vue')
-const NotFound = () => import('@/pages/error/404.vue')
 // const Article = () => import('@/pages/Article.vue')
-const About = () => import('@/pages/About.vue')
-const Btn = () => import('@/pages/Btn.vue')
 
 const routes: RouteRecordRaw[] = [
   // 主页
@@ -16,14 +12,21 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'index',
-    component: Index,
+    component: () => import('@/pages/Index.vue'),
   },
 
   // 按钮测试页面
   {
     path: '/btn',
     name: 'btn',
-    component: Btn,
+    component: () => import('@/pages/Btn.vue'),
+  },
+
+  // 通知测试页面
+  {
+    path: '/toast',
+    name: 'toast',
+    component: () => import('@/pages/ToastTest.vue'),
   },
 
   // // 文章页面
@@ -37,7 +40,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/about',
     name: 'about',
-    component: About,
+    component: () => import('@/pages/About.vue'),
     props: true,
   },
 
@@ -45,7 +48,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/:pathMatch(.*)*',
     name: '404',
-    component: NotFound,
+    component: () => import('@/pages/error/404.vue'),
   },
 ]
 

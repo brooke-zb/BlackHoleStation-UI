@@ -1,11 +1,14 @@
 <template>
-  <div class="rounded-md cursor-pointer select-none pointer-events-auto p-4 border-l-4 shadow-md flex items-start gap-2"
-       :class="classAppend"
-       @click="emits('close')">
-    <div class="flex items-center text-xl">
-      <Component :is="icons[props.config.type]"/>
+  <div
+      class="rounded-md cursor-pointer select-none pointer-events-auto border-l-4 shadow-md overflow-hidden"
+      :class="classAppend"
+      @click="emits('close')">
+    <div class="p-4 flex items-start gap-2">
+      <div class="flex items-center text-xl">
+        <Component :is="props.config.icon ? props.config.icon : defaultIcons[props.config.type]"/>
+      </div>
+      <div>{{ props.config.message }}</div>
     </div>
-    <div>{{ props.config.message }}</div>
   </div>
 </template>
 
@@ -21,7 +24,7 @@ import DangerIcon from '~icons/regular/triangle-exclamation.vue'
 import SuccessIcon from '~icons/regular/circle-check.vue'
 import WarningIcon from '~icons/regular/circle-exclamation.vue'
 
-const icons = {
+const defaultIcons = {
   info: InfoIcon,
   danger: DangerIcon,
   success: SuccessIcon,

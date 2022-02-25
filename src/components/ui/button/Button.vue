@@ -66,7 +66,7 @@ const classAppend = computed(() => {
       'bg-danger-600 active:bg-danger-700 to-danger-500 disabled:bg-danger-400': props.type === 'danger',
       'bg-info-500 active:bg-info-600 to-info-400 disabled:bg-info-300': props.type === 'info',
       'bg-warning-500 active:bg-warning-600 to-warning-400 disabled:bg-warning-300': props.type === 'warning',
-      'bg-success-600 active:bg-success-700 to-success-500 disabled:bg-success-400': props.type === 'success',
+      'bg-success-600 active:bg-success-700 to-success-400 disabled:bg-success-400': props.type === 'success',
       'bg-dark-700 active:bg-dark-800 to-dark-600 disabled:bg-dark-500': props.type === 'dark',
       'bg-light-100 active:bg-light-300 to-light-50 disabled:bg-light-200': props.type === 'light',
 
