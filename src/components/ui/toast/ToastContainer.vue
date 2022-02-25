@@ -29,7 +29,7 @@ _toastImpl.clear = clear
 const toastQueue = ref<ToastMessage[]>([])
 let nextToastId = 0
 
-function onEnter(el: HTMLElement, done: () => void) {
+function onEnter(el: Element, done: () => void) {
   gsap.set(el, {
     opacity: 0,
     translateY: -50,
@@ -45,9 +45,9 @@ function onEnter(el: HTMLElement, done: () => void) {
   })
 }
 
-function onLeave(el: HTMLElement, done: () => void) {
+function onLeave(el: Element, done: () => void) {
   gsap.set(el, {
-    height: el.offsetHeight,
+    height: el.clientHeight,
     onComplete: () => {
       gsap.to(el, {
         duration: 0.3,
@@ -61,12 +61,14 @@ function onLeave(el: HTMLElement, done: () => void) {
 }
 
 // toast actions
-function add(toast: ToastMessage) {
-  toast.id = nextToastId++
-  toastQueue.value.push(toast)
+function add(toast: ToastProps) {
+  toastQueue.value.push({
+    id: nextToastId++,
+    config: toast,
+  })
 }
 
-function remove(id: number) {
+function remove(id?: number) {
   for (let i = 0; i < toastQueue.value.length; i++) {
     if (toastQueue.value[i].id === id) {
       toastQueue.value.splice(i, 1)

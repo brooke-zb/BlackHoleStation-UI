@@ -55,7 +55,7 @@ function computePos() {
   return pos
 }
 
-function onEnter(el: HTMLElement, done: () => void) {
+function onEnter(el: Element, done: () => void) {
   gsap.set(el, Object.assign(computePos(), {
     onComplete: () => {
       gsap.to(el, {
@@ -71,7 +71,7 @@ function onEnter(el: HTMLElement, done: () => void) {
   window.addEventListener('scroll', scrollListener)
 }
 
-function onLeave(el: HTMLElement, done: () => void) {
+function onLeave(el: Element, done: () => void) {
   gsap.to(el, {
     duration: 0.15,
     opacity: 0,

@@ -1,14 +1,14 @@
 export const _toastImpl = {
-  add: (message: ToastMessage) => {},
+  add: (message: ToastProps) => {},
   remove: (id: number) => {},
   clear: () => {},
 }
 
 export const useToast = () => {
   return {
-    add: (message: ToastMessage) => {
-      if (message.config.icon) {
-        message.config.icon = shallowRef(message.config.icon)
+    add: (message: ToastProps) => {
+      if (message.icon) {
+        message.icon = shallowRef(message.icon)
       }
       _toastImpl.add(message)
     },
