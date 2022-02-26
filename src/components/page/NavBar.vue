@@ -7,8 +7,8 @@
         <ISolidBars/>
       </template>
     </MenuButton>
-    <router-link to="/" class="select-none text-lg hidden sm:block ">{{ siteName }}</router-link>
-    <div class="ml-2">{{ title }}</div>
+    <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
+    <div class="ml-2 hidden sm:block">{{ title }}</div>
     <div class="grow"/>
     <MenuButton ref="themeBtn" @click="toggleThemeMenu" :type="isCurrentDarkMode ? 'primary' : 'secondary'"
                 :highlight="currentTheme !== 'system'">

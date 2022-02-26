@@ -6,39 +6,33 @@ import { isLoading, isSideMenuOpen } from '@/utils/global'
 const routes: RouteRecordRaw[] = [
   // 主页
   {
-    path: '/index.html',
-    redirect: '/',
+    path: '/index.html', redirect: '/',
   },
   {
-    path: '/',
-    name: 'index',
+    path: '/', name: 'index',
     component: () => import('@/pages/Index.vue'),
   },
 
   {
-    path: '/test',
-    name: 'test',
+    path: '/test', name: 'test',
     component: () => import('@/pages/test/Test.vue'),
     children: [
       // 按钮测试页面
       {
-        path: 'btn',
-        name: 'btn',
+        path: 'btn', name: 'btn',
         component: () => import('@/pages/test/BtnTest.vue'),
       },
       // 通知测试页面
       {
-        path: 'toast',
-        name: 'toast',
+        path: 'toast', name: 'toast',
         component: () => import('@/pages/test/ToastTest.vue'),
       },
       // 分页测试页面
       {
-        path: 'page',
-        name: 'page',
+        path: 'page', name: 'page',
         component: () => import('@/pages/test/PageTest.vue'),
       },
-    ]
+    ],
   },
 
   // // 文章页面
@@ -50,8 +44,7 @@ const routes: RouteRecordRaw[] = [
 
   // 关于页面
   {
-    path: '/about',
-    name: 'about',
+    path: '/about', name: 'about',
     component: () => import('@/pages/About.vue'),
     props: true,
   },
@@ -79,7 +72,17 @@ router.beforeEach(async (to, from) => {
   isLoading.value = true
   // }
   isSideMenuOpen.value = false
+  // await sleep(500)
 })
 router.beforeResolve((to, from) => {
   isLoading.value = false
 })
+
+// DEBUG
+function sleep(ms: number) {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, ms)
+  })
+}
