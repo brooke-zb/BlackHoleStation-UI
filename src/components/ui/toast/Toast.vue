@@ -19,10 +19,10 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import InfoIcon from '~icons/regular/circle-info.vue'
-import DangerIcon from '~icons/regular/triangle-exclamation.vue'
-import SuccessIcon from '~icons/regular/circle-check.vue'
-import WarningIcon from '~icons/regular/circle-exclamation.vue'
+import InfoIcon from '~icons/regular/circle-info'
+import DangerIcon from '~icons/regular/triangle-exclamation'
+import SuccessIcon from '~icons/regular/circle-check'
+import WarningIcon from '~icons/regular/circle-exclamation'
 
 const defaultIcons = {
   info: InfoIcon,
