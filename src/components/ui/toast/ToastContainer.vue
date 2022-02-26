@@ -48,6 +48,7 @@ function onEnter(el: Element, done: () => void) {
 function onLeave(el: Element, done: () => void) {
   gsap.set(el, {
     height: el.clientHeight,
+    zIndex: -1,
     onComplete: () => {
       gsap.to(el, {
         duration: 0.3,

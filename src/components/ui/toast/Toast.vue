@@ -1,6 +1,6 @@
 <template>
   <div
-      class="rounded-md cursor-pointer select-none pointer-events-auto border-l-4 shadow-md overflow-hidden mb-2"
+      class="rounded-md cursor-pointer select-none pointer-events-auto border-l-4 shadow-md overflow-hidden mb-2 relative"
       :class="classAppend"
       @click="emits('close')">
     <div class="p-4 flex items-start gap-2">
