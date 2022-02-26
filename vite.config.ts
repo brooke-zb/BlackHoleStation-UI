@@ -7,6 +7,16 @@ import IconsResolver from 'unplugin-icons/resolver'
 import path from 'path'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 
+// define cdn
+let alias: Record<string, string> = {
+  '@/': `${ path.resolve(__dirname, 'src') }/`,
+}
+if (process.env.NODE_ENV === 'production') {
+  alias['vue'] = 'https://cdn.jsdelivr.net/npm/vue@3.2.31/+esm'
+  alias['marked'] = 'https://cdn.jsdelivr.net/npm/marked@4.0.12/+esm'
+  alias['gsap'] = 'https://cdn.jsdelivr.net/npm/gsap@3.9.1/+esm'
+}
+
 export default defineConfig({
   plugins: [
     vue(),
@@ -41,14 +51,7 @@ export default defineConfig({
   ],
   base: '/',
   resolve: {
-    alias: {
-      '@/': `${ path.resolve(__dirname, 'src') }/`,
-      // 'vue': 'https://cdn.jsdelivr.net/npm/vue@3.2.29/+esm',
-      // 'vue-router': 'https://cdn.jsdelivr.net/npm/vue-router@4.0.12/+esm',
-      // 'marked': 'https://cdn.jsdelivr.net/npm/marked@4.0.12/+esm',
-      // 'gsap': 'https://cdn.jsdelivr.net/npm/gsap@3.9.1/+esm',
-      // 'axios': 'https://cdn.jsdelivr.net/npm/axios@0.25.0/+esm',
-    },
+    alias,
   },
   server: {
     host: '0.0.0.0',

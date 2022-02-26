@@ -12,7 +12,6 @@ declare module 'vue' {
     IRegularChevronRight: typeof import('~icons/regular/chevron-right')['default']
     IRegularChevronsLeft: typeof import('~icons/regular/chevrons-left')['default']
     IRegularChevronsRight: typeof import('~icons/regular/chevrons-right')['default']
-    IRegularEllipsis: typeof import('~icons/regular/ellipsis')['default']
     IRegularPlus: typeof import('~icons/regular/plus')['default']
     ISolidAlien: typeof import('~icons/solid/alien')['default']
     ISolidBars: typeof import('~icons/solid/bars')['default']
