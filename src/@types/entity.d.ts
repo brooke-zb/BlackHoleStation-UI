@@ -104,5 +104,6 @@ declare interface PageInfo {
   currentPage: number,
   hasPrevious: boolean,
   hasNext: boolean,
-  displaySize: number,
+  hasPreviousMore: boolean,
+  hasNextMore: boolean,
 }

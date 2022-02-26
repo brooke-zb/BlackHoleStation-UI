@@ -1,5 +1,5 @@
 <template>
-  <button class="relative select-none p-2 bg-white/30 w-10 h-10 rounded-lg" :disabled="props.disabled" :class="classAppend">
+  <button class="relative select-none inline-flex justify-center items-center text-sm w-9 h-9 sm:text-base sm:w-10 sm:h-10 rounded-lg align-text-bottom" :disabled="props.disabled" :class="classAppend">
     <slot></slot>
   </button>
 </template>
@@ -18,8 +18,9 @@ const props = defineProps<{
 
 const classAppend = computed(() => {
   return {
-    'bg-blue-500': props.isCurrentPage,
-    'fill-light-400 cursor-not-allowed': props.disabled,
+    'bg-secondary-500 text-white dark:bg-primary-500': props.isCurrentPage,
+    'bg-light-100 dark:bg-dark-700': !props.isCurrentPage,
+    'text-light-300 fill-light-300 dark:text-light-500 dark:fill-light-500 cursor-not-allowed': props.disabled,
   }
 })
 </script>
