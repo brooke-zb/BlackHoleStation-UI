@@ -11,11 +11,11 @@ import { FileSystemIconLoader } from 'unplugin-icons/loaders'
 let alias: Record<string, string> = {
   '@/': `${ path.resolve(__dirname, 'src') }/`,
 }
-if (process.env.NODE_ENV === 'production') {
-  alias['vue'] = 'https://cdn.jsdelivr.net/npm/vue@3.2.31/+esm'
-  alias['marked'] = 'https://cdn.jsdelivr.net/npm/marked@4.0.12/+esm'
-  alias['gsap'] = 'https://cdn.jsdelivr.net/npm/gsap@3.9.1/+esm'
-}
+// if (process.env.NODE_ENV === 'production') {
+//   alias['vue'] = 'https://cdn.jsdelivr.net/npm/vue@3.2.31/+esm'
+//   alias['marked'] = 'https://cdn.jsdelivr.net/npm/marked@4.0.12/+esm'
+//   alias['gsap'] = 'https://cdn.jsdelivr.net/npm/gsap@3.9.1/+esm'
+// }
 
 export default defineConfig({
   plugins: [

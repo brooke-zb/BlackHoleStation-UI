@@ -16,14 +16,18 @@ export default defineComponent({
 
 <style>
 .paginator-group > button {
-  @apply rounded-none;
+  @apply rounded-none border-0 after:rounded-none;
+}
+
+.paginator-group > button:not(:last-child) {
+  @apply border-l border-y after:rounded-none;
 }
 
 .paginator-group > button:first-child {
-  @apply rounded-l-lg;
+  @apply rounded-l-lg after:rounded-none after:rounded-l-[0.625rem];
 }
 
 .paginator-group > button:last-child {
-  @apply rounded-r-lg;
+  @apply rounded-r-lg border after:rounded-none after:rounded-r-[0.625rem];
 }
 </style>

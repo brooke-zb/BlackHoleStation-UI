@@ -95,6 +95,9 @@ function toPage(page: number) {
   } else if (page > props.totalPages) {
     page = props.totalPages
   }
+  if (page === props.currentPage) {
+    return
+  }
   pageInfo.currentPage = page
   getPages(page)
   emits('currentChange', page)

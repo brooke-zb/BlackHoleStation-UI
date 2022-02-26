@@ -2,7 +2,7 @@
   <nav ref="nav" class="sticky w-full h-14 top-0 z-40
   flex items-center justify-between shadow-light-600/20 dark:shadow-light-300/20
   backdrop-blur transition-all" :class="classAppend">
-    <MenuButton :type="isCurrentDarkMode ? 'primary' : 'secondary'">
+    <MenuButton :type="isCurrentDarkMode ? 'info' : 'secondary'">
       <template #icon>
         <ISolidBars/>
       </template>
@@ -10,7 +10,7 @@
     <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
     <div class="ml-2 hidden sm:block">{{ title }}</div>
     <div class="grow"/>
-    <MenuButton ref="themeBtn" @click="toggleThemeMenu" :type="isCurrentDarkMode ? 'primary' : 'secondary'"
+    <MenuButton ref="themeBtn" @click="toggleThemeMenu" :type="isCurrentDarkMode ? 'info' : 'secondary'"
                 :highlight="currentTheme !== 'system'">
       <template #icon>
         <IRegularMoonStars v-if="currentTheme === 'dark' || (currentTheme === 'system' && isCurrentDarkMode)"/>
