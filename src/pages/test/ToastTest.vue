@@ -15,7 +15,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
-import Icon from '~icons/regular/alien.vue'
+import Icon from '~icons/regular/alien'
 import { title } from '@/utils/global'
 
 title.value = '通知测试页面'

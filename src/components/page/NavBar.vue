@@ -33,9 +33,9 @@ import MenuButton from '@/components/ui/button/MenuButton.vue'
 import Menu from '@/components/ui/menu/Menu.vue'
 import gsap from 'gsap'
 
-import IRegularSunBright from '~icons/regular/sun-bright.vue'
-import IRegularMoonStars from '~icons/regular/moon-stars.vue'
-import IRegularDisplay from '~icons/regular/display.vue'
+import IRegularSunBright from '~icons/regular/sun-bright'
+import IRegularMoonStars from '~icons/regular/moon-stars'
+import IRegularDisplay from '~icons/regular/display'
 
 const siteName = import.meta.env.BHS_SITE_NAME
 
