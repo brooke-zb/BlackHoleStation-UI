@@ -3,7 +3,7 @@
     <div ref="container"
          class="fixed z-50 top-0 left-0 right-0 mx-auto max-w-sm
          sm:left-auto sm:w-96 pointer-events-none
-         flex flex-col gap-2 p-2">
+         flex flex-col p-2">
       <transition-group @enter="onEnter" @leave="onLeave" :css="false">
         <Toast v-for="toast in toastQueue" :key="toast.id" :config="toast.config" @close="remove(toast.id)"/>
       </transition-group>
@@ -53,6 +53,7 @@ function onLeave(el: Element, done: () => void) {
         duration: 0.3,
         opacity: 0,
         height: 0,
+        marginBottom: 0,
         translateY: -50,
         onComplete: done,
       })
