@@ -37,6 +37,9 @@ export default defineConfig({
           'marked': ['marked'],
           'lodash-es': ['throttle', 'debounce'],
           '@/utils/toast': ['useToast'],
+          '@/api/article': [
+            ['default', 'article']
+          ]
         },
       ],
     }),
@@ -55,6 +58,13 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    proxy: {
+      '/api': {
+        target: 'http://api.blog.brookezb.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/, ''),
+      },
+    },
   },
   envDir: './src/env',
   envPrefix: 'BHS_',
