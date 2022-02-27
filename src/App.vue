@@ -12,9 +12,7 @@
             @leave="leave"
             :css="false"
         >
-          <!-- <keep-alive> -->
           <component :key="$route.path" :is="Component"/>
-          <!-- </keep-alive> -->
         </transition>
       </router-view>
     </div>

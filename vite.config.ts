@@ -21,7 +21,7 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      // dirs: [],
+      dirs: [],
       resolvers: [
         IconsResolver({
           customCollections: ['regular', 'solid', 'brands'],

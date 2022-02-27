@@ -37,24 +37,22 @@ const isDarker = computed(() =>
     props.type === 'dark',
 )
 
-const classAppend = computed(() => {
-  return {
-    'btn-outline rounded-full': true,
-    'hover:bg-primary-600 active:bg-primary-700': props.type === 'primary',
-    'hover:bg-secondary-500 active:bg-secondary-600': props.type === 'secondary',
-    'hover:bg-danger-600 active:bg-danger-700': props.type === 'danger',
-    'hover:bg-info-500 active:bg-info-600': props.type === 'info',
-    'hover:bg-warning-500 active:bg-warning-600': props.type === 'warning',
-    'hover:bg-success-500 active:bg-success-600': props.type === 'success',
-    'hover:bg-dark-700 active:bg-dark-800': props.type === 'dark',
-    'hover:bg-light-100 active:bg-light-300': props.type === 'light',
+const classAppend = computed(() => ({
+  'btn-outline rounded-full': true,
+  'hover:bg-primary-600 active:bg-primary-700': props.type === 'primary',
+  'hover:bg-secondary-500 active:bg-secondary-600': props.type === 'secondary',
+  'hover:bg-danger-600 active:bg-danger-700': props.type === 'danger',
+  'hover:bg-info-500 active:bg-info-600': props.type === 'info',
+  'hover:bg-warning-500 active:bg-warning-600': props.type === 'warning',
+  'hover:bg-success-500 active:bg-success-600': props.type === 'success',
+  'hover:bg-dark-700 active:bg-dark-800': props.type === 'dark',
+  'hover:bg-light-100 active:bg-light-300': props.type === 'light',
 
-    'text-secondary-400 fill-secondary-400': props.highlight,
-    'hover:text-white hover:fill-white': isDarker.value,
-    'hover:text-light-900 hover:fill-light-900': !isDarker.value,
+  'text-secondary-400 fill-secondary-400': props.highlight,
+  'hover:text-white hover:fill-white': isDarker.value,
+  'hover:text-light-900 hover:fill-light-900': !isDarker.value,
 
-    // only icon padding
-    'p-3': slots.icon && !slots.default,
-  }
-})
+  // only icon padding
+  'p-3': slots.icon && !slots.default,
+}))
 </script>

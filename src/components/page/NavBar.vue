@@ -72,12 +72,10 @@ const toggleThemeMenu = (event: Event) => {
   themeMenu.value.toggle(event)
 }
 
-const classAppend = computed(() => {
-  return {
-    'shadow-sm': !isScrollDown.value,
-    'shadow bg-dark-50/50 dark:bg-dark-900/50': isScrollDown.value,
-  }
-})
+const classAppend = computed(() => ({
+  'shadow-sm': !isScrollDown.value,
+  'shadow bg-dark-50/50 dark:bg-dark-900/50': isScrollDown.value,
+}))
 
 //  scroll event
 const nav = ref()

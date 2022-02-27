@@ -26,12 +26,10 @@ const emits = defineEmits<{
   (e: 'click', event: MouseEvent): void
 }>()
 
-const classAppend = computed(() => {
-  return {
-    'flex items-center gap-2 px-4 py-2 cursor-pointer select-none fill-light-400': true,
-    'text-secondary-400 !fill-secondary-400': props.item.highlight?.value,
-  }
-})
+const classAppend = computed(() => ({
+  'flex items-center gap-2 px-4 py-2 cursor-pointer select-none fill-light-400': true,
+  'text-secondary-400 !fill-secondary-400': props.item.highlight?.value,
+}))
 
 function onClick(e: MouseEvent) {
   emits('click', e)

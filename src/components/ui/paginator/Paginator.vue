@@ -13,7 +13,7 @@
 
     <!--展示页-->
     <PaginatorButtonGroup>
-      <PaginatorButton v-for="num in pageInfo.pages" @click="toPage(num)"
+      <PaginatorButton v-for="num in pageInfo.pages" :key="num" @click="toPage(num)"
                        :is-current-page="pageInfo.currentPage === num" v-text="num"/>
     </PaginatorButtonGroup>
 
@@ -37,6 +37,7 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
+import PaginatorButtonGroup from '@/components/ui/paginator/PaginatorButtonGroup.vue'
 import PaginatorButton from '@/components/ui/paginator/PaginatorButton.vue'
 
 const displaySize = 5

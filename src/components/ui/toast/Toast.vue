@@ -39,14 +39,12 @@ const emits = defineEmits<{
   (e: 'close'): void
 }>()
 
-const classAppend = computed(() => {
-  return {
-    'border-secondary-600 bg-secondary-100 text-secondary-900 fill-secondary-700': props.config.type === 'info',
-    'border-danger-600 bg-danger-100 text-danger-900 fill-danger-700': props.config.type === 'danger',
-    'border-success-600 bg-success-100 text-success-900 fill-success-700': props.config.type === 'success',
-    'border-warning-600 bg-warning-100 text-warning-900 fill-warning-700': props.config.type === 'warning',
-  }
-})
+const classAppend = computed(() => ({
+  'border-secondary-600 bg-secondary-100 text-secondary-900 fill-secondary-700': props.config.type === 'info',
+  'border-danger-600 bg-danger-100 text-danger-900 fill-danger-700': props.config.type === 'danger',
+  'border-success-600 bg-success-100 text-success-900 fill-success-700': props.config.type === 'success',
+  'border-warning-600 bg-warning-100 text-warning-900 fill-warning-700': props.config.type === 'warning',
+}))
 
 onMounted(() => {
   if (props.config.duration) {
