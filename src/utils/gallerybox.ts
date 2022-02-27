@@ -3,9 +3,10 @@
  * @author brooke_zb
  * @license MIT <https://opensource.org/licenses/MIT>
  */
-import IMaximize from '@/icons/regular/maximize.svg'
-import ICircleQuestion from '@/icons/regular/circle-question.svg'
-import ICircleXmark from '@/icons/regular/circle-xmark.svg'
+import gsap from 'gsap'
+import IMaximize from '@/icons/regular/maximize.svg?raw'
+import ICircleQuestion from '@/icons/regular/circle-question.svg?raw'
+import ICircleXmark from '@/icons/regular/circle-xmark.svg?raw'
 
 let alreadyInitEventListener = false
 let overlay: HTMLDivElement
@@ -62,7 +63,7 @@ export default {
 
     // tips alert
     let tips = document.createElement('div')
-    tips.innerHTML = `${ IMaximize }&nbsp;鼠标滑轮/手指双击<br>${ ICircleXmark }&nbsp;单击/垂直拖动`
+    tips.innerHTML = `${ IMaximize.replace('svg xmlns', 'svg class="h-5 w-5" xmlns') }&nbsp;鼠标滑轮/手指双击<br>${ ICircleXmark.replace('svg xmlns', 'svg class="h-5 w-5" xmlns') }&nbsp;单击/垂直拖动`
     tips.classList.add('fixed', 'left-0', 'right-0', 'top-0', 'bottom-0', 'm-auto', 'z-50', 'bg-black', 'bg-opacity-60', 'dark:bg-opacity-60', 'px-4', 'py-2.5', 'h-16', 'w-48', 'text-white', 'rounded-md', 'hidden')
     gsap.set(tips, {
       opacity: 0,
@@ -72,7 +73,7 @@ export default {
     // help button
     let closeBtn = document.createElement('div')
     closeBtn.setAttribute('title', '使用帮助')
-    closeBtn.innerHTML = ICircleQuestion
+    closeBtn.innerHTML = ICircleQuestion.replace('svg xmlns', 'svg class="h-5 w-5" xmlns')
     closeBtn.classList.add('fixed', 'right-1', 'top-1', 'text-white', 'bg-black', 'bg-opacity-60', 'dark:bg-opacity-80', 'rounded-full', 'flex', 'justify-center', 'items-center', 'cursor-pointer', 'z-50')
     closeBtn.addEventListener('mousedown', eve => {
       eve.stopPropagation()

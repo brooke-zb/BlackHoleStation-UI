@@ -1,0 +1,40 @@
+<template>
+  <div class="relative flex flex-col gap-4 items-center fill-light-500/50 dark:fill-light-200/50" v-if="props.type === 'article'">
+    <div class="skeleton p-5 w-2/3 sm:w-1/2 md:w-1/3 mb-1"></div>
+    <div class="skeleton p-2 w-1/2 sm:w-1/3 md:w-1/4"></div>
+    <div class="skeleton p-2 w-1/3 sm:w-1/4 md:w-1/5"></div>
+    <div class="skeleton p-2 w-1/2 sm:w-1/3 md:w-1/4 mb-2"></div>
+    <div class="w-full flex flex-col gap-4">
+      <div class="skeleton p-3 w-2/3 sm:w-1/2"></div>
+      <div class="skeleton p-3 w-full"></div>
+      <div class="skeleton p-3 w-full"></div>
+      <div class="skeleton p-3 w-3/4"></div>
+    </div>
+    <div class="skeleton p-4 w-80 md:w-96 h-64 flex justify-center items-center">
+      <IRegularImage class="h-10 w-10"/>
+    </div>
+    <div class="w-full flex flex-col gap-4">
+      <div class="skeleton p-3 w-full"></div>
+      <div class="skeleton p-3 w-full"></div>
+      <div class="skeleton p-3 w-3/4"></div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+export default defineComponent({
+  name: 'Skeleton',
+})
+</script>
+
+<script lang="ts" setup>
+const props = defineProps<{
+  type: 'article'
+}>()
+</script>
+
+<style scoped>
+.skeleton {
+  @apply bg-light-400/50 rounded-lg animate-pulse;
+}
+</style>

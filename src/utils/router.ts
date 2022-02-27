@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { isLoading, isSideMenuOpen } from '@/utils/global'
 
-// const Article = () => import('@/pages/Article.vue')
-
 const routes: RouteRecordRaw[] = [
   // 主页
   {
@@ -35,12 +33,14 @@ const routes: RouteRecordRaw[] = [
     ],
   },
 
-  // // 文章页面
-  // {
-  //   path: '/articles/:aid(\\d+)',
-  //   name: 'article',
-  //   component: Article,
-  // },
+  // 文章页面
+  {
+    path: '/articles/:aid(\\d+)', name: 'article',
+    component: () => import('@/pages/Article.vue'),
+    props: (route) => ({
+      aid: Number(route.params.aid),
+    }),
+  },
 
   // 关于页面
   {
@@ -51,8 +51,7 @@ const routes: RouteRecordRaw[] = [
 
   // 404页面
   {
-    path: '/:pathMatch(.*)*',
-    name: '404',
+    path: '/:pathMatch(.*)*', name: '404',
     component: () => import('@/pages/error/404.vue'),
   },
 ]

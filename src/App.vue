@@ -2,20 +2,18 @@
   <Background/>
   <!--  <SideMenu/>-->
   <NavBar/>
-  <div class="overflow-hidden mt-4">
-    <div class="container overflow-visible flex justify-center">
-      <router-view v-slot="{ Component }">
-        <transition
-            mode="out-in"
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @leave="leave"
-            :css="false"
-        >
-          <component :key="$route.path" :is="Component"/>
-        </transition>
-      </router-view>
-    </div>
+  <div class="my-2 container overflow-visible">
+    <router-view v-slot="{ Component }">
+      <transition
+          mode="out-in"
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @leave="leave"
+          :css="false"
+      >
+        <component :key="$route.path" :is="Component"/>
+      </transition>
+    </router-view>
   </div>
   <transition
       @before-enter="beforeLoading"

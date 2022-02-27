@@ -8,6 +8,7 @@ body {
     @apply min-h-full w-full relative;
     @apply bg-clip-text;
 }
+
 body {
     @apply absolute pb-20;
     @apply bg-light-50 dark:bg-dark-900;
@@ -24,6 +25,225 @@ body {
 
 a.link {
     @apply relative after:absolute after:h-0.5 after:-bottom-1 after:left-0 after:w-full after:scale-x-0 hover:after:scale-x-100;
-    @apply text-secondary-600 dark:text-info-300 after:bg-secondary-500 dark:after:bg-info-400;
+    @apply text-secondary-600 fill-secondary-600 dark:text-info-300 dark:fill-info-300 after:bg-secondary-500 dark:after:bg-info-400;
     @apply after:transition-transform after:origin-bottom-right hover:after:origin-bottom-left;
+}
+
+/* marked content */
+.heading {
+    @apply text-secondary-700 dark:text-info-200;
+}
+
+h1.heading {
+    @apply text-4xl pt-8 pb-4;
+}
+
+h2.heading {
+    @apply text-3xl pt-6 pb-3;
+}
+
+h3.heading {
+    @apply text-2xl pt-4 pb-2;
+}
+
+h4.heading {
+    @apply text-xl pt-3 pb-1.5;
+}
+
+h5.heading {
+    @apply text-lg py-1.5;
+}
+
+h6.heading {
+    @apply text-base py-1;
+}
+
+ol.list {
+    @apply list-decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 2.5rem;
+}
+
+ul.list {
+    @apply list-disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 2.5rem;
+}
+
+ul.checklist {
+    margin-block-start: 0.25em;
+    margin-block-end: 0.25em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 1.5rem;
+}
+
+table.table {
+    @apply table-auto border border-secondary-400 bg-light-100 dark:border-dark-500 dark:bg-dark-800 transition-bg;
+}
+
+table.table td {
+    @apply border border-secondary-400 dark:border-dark-500 px-4 py-2;
+}
+
+table.table th {
+    @apply border bg-secondary-200 dark:bg-dark-700 border-secondary-400 dark:border-dark-500 px-4 py-2;
+}
+
+table.table tbody tr:nth-child(2n) {
+    @apply border bg-secondary-200 dark:bg-dark-700;
+    transition-property: background-color !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+p.p {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+a.link {
+    @apply relative text-secondary-700 dark:text-teal-300 after:absolute after:h-0.5 after:-bottom-1 after:left-0 after:w-full after:scale-x-0 hover:after:scale-x-100 after:bg-secondary-500 dark:after:bg-teal-300 after:transition-transform after:origin-bottom-right hover:after:origin-bottom-left;
+}
+
+hr.hr {
+    @apply my-2 h-1 bg-secondary-600 dark:bg-light-500 border-0 transition-bg;
+}
+
+blockquote.blockquote {
+    @apply px-8 py-1 rounded-md bg-secondary-200 dark:bg-dark-800 bg-opacity-40 dark:bg-opacity-50 border-l-[6px] border-secondary-400 dark:border-teal-400 transition-bg;
+}
+
+input[type='checkbox'] {
+    @apply relative appearance-none mr-2 h-4 w-4 border rounded border-secondary-400 checked:bg-secondary-700 disabled:opacity-80 disabled:cursor-not-allowed to-secondary-500 dark:to-secondary-400 dark:checked:bg-secondary-400 dark:border-secondary-400 transition-bg outline-none;
+}
+
+input[type='checkbox']:checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+
+input[type='checkbox']::after {
+    content: '';
+    height: calc(100% + 4px);
+    width: calc(100% + 4px);
+    @apply absolute left-[-2px] top-[-2px] transition-all rounded;
+}
+
+input[type='checkbox']:hover::after,
+input[type='checkbox']:focus::after {
+    box-shadow: 0 0 0 2px var(--tw-gradient-to);
+}
+
+input[type='checkbox']:disabled::after {
+    @apply hidden;
+}
+
+/* prismjs */
+code[class*='language-'],
+pre[class*='language-'] {
+    @apply text-light-50 bg-none font-mono text-base text-left whitespace-pre break-normal leading-6 rounded-md;
+    word-spacing: normal;
+    word-wrap: normal;
+    tab-size: 4;
+    hyphens: none;
+}
+
+/* Code blocks */
+.code-block {
+    @apply relative my-2 p-0 bg-light-100 dark:bg-dark-800 transition-bg rounded-md;
+}
+
+.code-lang {
+    @apply absolute z-10 top-0 right-0 p-1.5 rounded-md bg-light-100 dark:bg-dark-800 transition-bg text-xs text-light-500 dark:text-light-300 select-none;
+}
+
+pre[class*='language-'] {
+    @apply p-2 pt-0 max-h-96 overflow-auto select-text;
+}
+
+code[class*='language-'] {
+    @apply text-light-700 dark:text-light-100;
+}
+
+/* Inline code */
+:not(pre) > code {
+    @apply py-0.5 px-1.5 mx-0.5;
+    @apply bg-secondary-100 dark:bg-dark-600 text-secondary-800 dark:text-white transition-bg rounded-md;
+    white-space: normal;
+}
+
+/* prismjs code style */
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    @apply text-light-600 dark:text-light-400;
+}
+
+.token.punctuation {
+    @apply text-light-500 dark:text-light-300;
+}
+
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+    @apply text-danger-700 dark:text-warning-300;
+}
+
+.token.function-name .token.boolean,
+.token.number,
+.token.function {
+    @apply text-red-600 dark:text-sky-300;
+}
+
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol {
+    @apply text-pink-700 dark:text-yellow-200;
+}
+
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin {
+    @apply text-secondary-600 dark:text-fuchsia-400;
+}
+
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+    @apply text-lime-600 dark:text-lime-400;
+}
+
+.token.operator,
+.token.entity,
+.token.url {
+    @apply text-warning-700 dark:text-info-300;
+}
+
+.token.important,
+.token.bold {
+    @apply font-bold;
+}
+
+.token.entity {
+    @apply cursor-help;
+}
+
+.token.inserted {
+    @apply text-green-700 dark:text-green-300;
 }
