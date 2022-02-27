@@ -1,8 +1,7 @@
 import request from '@/utils/request'
 
-const getByAid = (aid: string) => {
-  return request.get(`/api/article/${aid}`, {
-  })
+const getByAid = (aid: string | number) => {
+  return request.get<BhsArticle>(`/article/${aid}`)
 }
 
 export default {

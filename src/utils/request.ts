@@ -1,11 +1,29 @@
 import Cookies from 'js-cookie'
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 
 const instance = axios.create({
   baseURL: import.meta.env.BHS_BASE_URL,
   timeout: 10000,
   withCredentials: true,
 })
+
+const request = {
+  get: <D>(url: string, config?: AxiosRequestConfig) => {
+    return instance.get(url, config) as Promise<BhsResponse<D>>
+  },
+  post: <D>(url: string, config: AxiosRequestConfig) => {
+    return instance.post(url, config.data, config) as Promise<BhsResponse<D>>
+  },
+  put: <D>(url: string, config: AxiosRequestConfig) => {
+    return instance.put(url, config.data, config) as Promise<BhsResponse<D>>
+  },
+  patch: <D>(url: string, config: AxiosRequestConfig) => {
+    return instance.patch(url, config.data, config) as Promise<BhsResponse<D>>
+  },
+  delete: <D>(url: string, config: AxiosRequestConfig) => {
+    return instance.delete(url, config) as Promise<BhsResponse<D>>
+  },
+}
 
 // 请求拦截器
 instance.interceptors.request.use(
@@ -26,8 +44,8 @@ instance.interceptors.response.use(
     return response.data
   },
   (error) => {
-    return Promise.reject(error.response.data)
+    return Promise.resolve(error.response.data)
   },
 )
 
-export default instance
+export default request

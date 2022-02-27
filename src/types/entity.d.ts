@@ -1,44 +1,54 @@
-declare interface Role {
+declare type BhsRole = {
   rid: number,
   name: string,
   permission: string[]
 }
 
-declare interface User {
+declare type BhsUser = {
   uid: number,
-  role: Role,
+  role: BhsRole,
   name: string,
   link: string | null
 }
 
-declare interface Comment {
+declare type BhsComment = {
   coid: number,
-  author: User,
+  author: BhsUser,
   text: string,
-  children: Comment[]
+  children: BhsComment[]
 }
 
-declare interface Category {
+declare type BhsCategory = {
   cid: number,
   name: string
 }
 
-declare interface Article {
-  aid: number,
-  category: Category,
-  tags: string[],
-  title: string,
-  subtitle: string | null,
-  text: string,
-  created: string,
-  modified: string,
-  visit: number,
-  comments: Comment[]
+declare type BhsTag = {
+  tid: number,
+  name: string
 }
 
-declare interface AjaxError {
-  response: boolean,
-  status: number,
+declare type BhsArticle = {
+  aid: number,
+  category: BhsCategory,
+  tags: BhsTag[],
+  title: string,
+  description: string | null,
+  content: string,
+  created: string,
+  modified: string,
+  views: number,
+  comments: BhsComment[]
+}
+
+declare type BhsResponse<D> = {
+  success: true,
+  data: D,
+  msg: string
+} | {
+  success: false,
+  data: null,
+  msg: string
 }
 
 // type definitions of background
