@@ -57,7 +57,7 @@ const renderer = {
   image: (href: string, title: string, text: string) => {
     let _title = title ? `title="${ title }"` : ''
     let _text = text ? `alt="${ text }"` : ''
-    return `<div class="bhs-gallery flex justify-center"><img class="cursor-pointer max-w-4xl min-w-0" src="${ href }" ${ _title } ${ _text }></div>`
+    return `<div class="flex justify-center"><img class="cursor-pointer max-w-4xl min-w-0" data-gallery data-src="${ href }" ${ _title } ${ _text }></div>`
   },
   // text: (text: string) => text,
 }
