@@ -119,11 +119,13 @@ hr.hr {
 }
 
 blockquote.blockquote {
-    @apply px-8 py-1 rounded-md bg-secondary-200 dark:bg-dark-800 bg-opacity-40 dark:bg-opacity-50 border-l-[6px] border-secondary-400 dark:border-teal-400 transition-bg;
+    @apply px-8 py-1 rounded bg-secondary-200/40 dark:bg-dark-700/60 border-l-4 border-secondary-400 dark:border-teal-400 transition-bg;
 }
 
 input[type='checkbox'] {
-    @apply relative appearance-none mr-2 h-4 w-4 border rounded border-secondary-400 checked:bg-secondary-700 disabled:opacity-80 disabled:cursor-not-allowed to-secondary-500 dark:to-secondary-400 dark:checked:bg-secondary-400 dark:border-secondary-400 transition-bg outline-none;
+    @apply relative appearance-none mr-2 h-4 w-4 border rounded disabled:opacity-80 disabled:cursor-not-allowed transition-bg outline-none;
+    @apply border-secondary-400 checked:bg-secondary-700 to-secondary-500;
+    @apply dark:border-info-500 dark:checked:bg-info-600 dark:to-info-400;
 }
 
 input[type='checkbox']:checked {
