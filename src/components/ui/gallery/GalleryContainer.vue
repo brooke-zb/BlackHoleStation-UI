@@ -51,8 +51,8 @@ let InOutTranslateY = 0
 let refImage = ref<HTMLImageElement>()
 
 function onBeforeEnter(el: Element) {
-  document.addEventListener('keyup', onNothing)
-  document.addEventListener('keydown', onNothing)
+  document.addEventListener('keyup', preventKeyListener)
+  document.addEventListener('keydown', preventKeyListener)
   gsap.set(el, {
     '--tw-bg-opacity': 0,
   })
@@ -61,7 +61,11 @@ function onBeforeEnter(el: Element) {
 const canZoom = ref(false)
 const isZooming = ref(false)
 let currentZoomRatios = ref(1)
-let maxZoomRatios = 1
+let maxZoomRatios = ref(1)
+let maxTranslateDistance = reactive({
+  x: 0,
+  y: 0,
+})
 
 function onEnter(el: Element, done: () => void) {
   resetData()
@@ -87,8 +91,8 @@ function onEnter(el: Element, done: () => void) {
 
 function onLeave(el: Element, done: () => void) {
   resetData()
-  document.removeEventListener('keyup', onNothing)
-  document.removeEventListener('keydown', onNothing)
+  document.removeEventListener('keyup', preventKeyListener)
+  document.removeEventListener('keydown', preventKeyListener)
   gsap.to(image.value, {
     scale: InOutRatios,
     translateX: InOutTranslateX,
@@ -143,9 +147,10 @@ function onClose() {
 
 function onWheel(e: WheelEvent) {
   currentZoomRatios.value -= e.deltaY * currentZoomRatios.value / 1000
+  computeMaxTranslate()
   if (canZoom.value) {
     // 放大
-    if (currentZoomRatios.value > 1 && currentZoomRatios.value <= maxZoomRatios) {
+    if (currentZoomRatios.value > 1 && currentZoomRatios.value <= maxZoomRatios.value) {
       isZooming.value = true
       gsap.to(image.value, {
         scale: currentZoomRatios.value,
@@ -153,15 +158,15 @@ function onWheel(e: WheelEvent) {
       })
     }
     // 放大超过最大值
-    else if (currentZoomRatios.value > maxZoomRatios) {
+    else if (currentZoomRatios.value > maxZoomRatios.value) {
       isZooming.value = true
       gsap.to(image.value, {
         scale: currentZoomRatios.value,
         duration: 0.2,
         onComplete: () => {
-          currentZoomRatios.value = maxZoomRatios
+          currentZoomRatios.value = maxZoomRatios.value
           gsap.to(image.value, {
-            scale: maxZoomRatios,
+            scale: currentZoomRatios.value,
             duration: 0.2,
           })
         },
@@ -175,10 +180,10 @@ function onWheel(e: WheelEvent) {
         duration: 0.2,
         onComplete: () => {
           currentZoomRatios.value = 1
-          distance[0] = 0
-          distance[1] = 0
+          distance.x = 0
+          distance.y = 0
           gsap.to(image.value, {
-            scale: 1,
+            scale: currentZoomRatios.value,
             translateX: 0,
             translateY: 0,
             duration: 0.2,
@@ -191,9 +196,9 @@ function onWheel(e: WheelEvent) {
       scale: currentZoomRatios.value,
       duration: 0.2,
       onComplete: () => {
-        currentZoomRatios.value = maxZoomRatios
+        currentZoomRatios.value = maxZoomRatios.value
         gsap.to(image.value, {
-          scale: maxZoomRatios,
+          scale: maxZoomRatios.value,
           duration: 0.2,
         })
       },
@@ -202,14 +207,24 @@ function onWheel(e: WheelEvent) {
 }
 
 const isDragging = ref(false)
-const startPos = [0, 0]
-const distance = [0, 0]
+const startPos = reactive({
+  x: 0,
+  y: 0,
+})
+let lastPos = reactive({
+  x: 0,
+  y: 0,
+})
+const distance = reactive({
+  x: 0,
+  y: 0,
+})
 
 function onMouseDown(e: MouseEvent) {
   if (e.button === 0) {
     isDragging.value = true
-    startPos[0] = e.clientX
-    startPos[1] = e.clientY
+    startPos.x = e.clientX
+    startPos.y = e.clientY
   }
 }
 
@@ -217,9 +232,11 @@ function onMouseMove(e: MouseEvent) {
   if (isDragging.value) {
     // 缩放情况
     if (isZooming.value) {
+      lastPos.x = e.clientX
+      lastPos.y = e.clientY
       gsap.set(image.value, {
-        translateX: distance[0] + e.clientX - startPos[0],
-        translateY: distance[1] + e.clientY - startPos[1],
+        translateX: currentTranslate.value.x,
+        translateY: currentTranslate.value.y,
       })
     }
   }
@@ -233,8 +250,10 @@ function onMouseUp(e: MouseEvent) {
       if ((e.target as Element)?.tagName === 'IMG') {
         if (canZoom.value) {
           isZooming.value = true
+          currentZoomRatios.value = maxZoomRatios.value
+          computeMaxTranslate()
           gsap.to(image.value, {
-            scale: maxZoomRatios,
+            scale: currentZoomRatios.value,
             duration: 0.2,
           })
         }
@@ -245,10 +264,10 @@ function onMouseUp(e: MouseEvent) {
     // 缩放情况
     else {
       // 移动距离小，取消缩放
-      if (Math.abs(e.clientX - startPos[0]) + Math.abs(e.clientY - startPos[1]) < 10) {
+      if (Math.abs(e.clientX - startPos.x) + Math.abs(e.clientY - startPos.y) < 10) {
         isZooming.value = false
-        distance[0] = 0
-        distance[1] = 0
+        distance.x = 0
+        distance.y = 0
         gsap.to(image.value, {
           scale: 1,
           translateX: 0,
@@ -256,36 +275,42 @@ function onMouseUp(e: MouseEvent) {
           duration: 0.2,
         })
       }
-      // 叠加移动距离
+      // 计算移动距离
       else {
-        distance[0] += e.clientX - startPos[0]
-        distance[1] += e.clientY - startPos[1]
+        lastPos.x = e.clientX
+        lastPos.y = e.clientY
+
+        computeDistance()
+        gsap.to(image.value, {
+          translateX: distance.x,
+          translateY: distance.y,
+          duration: 0.2,
+        })
       }
     }
   }
 }
 
 let isPressing = false
-let lastClientPos = [0, 0]
 
 function onTouchStart(e: TouchEvent) {
   if (e.touches.length === 1) {
     isPressing = true
-    startPos[0] = e.touches[0].clientX
-    startPos[1] = e.touches[0].clientY
-    lastClientPos[0] = e.touches[0].clientX
-    lastClientPos[1] = e.touches[0].clientY
+    startPos.x = e.touches[0].clientX
+    startPos.y = e.touches[0].clientY
+    lastPos.x = e.touches[0].clientX
+    lastPos.y = e.touches[0].clientY
   }
 }
 
 function onTouchMove(e: TouchEvent) {
   if (isPressing) {
-    lastClientPos[0] = e.touches[0].clientX
-    lastClientPos[1] = e.touches[0].clientY
+    lastPos.x = e.touches[0].clientX
+    lastPos.y = e.touches[0].clientY
 
     gsap.set(image.value, {
-      translateX: distance[0] + lastClientPos[0] - startPos[0],
-      translateY: distance[1] + lastClientPos[1] - startPos[1],
+      translateX: currentTranslate.value.x,
+      translateY: currentTranslate.value.y,
     })
   }
 }
@@ -296,12 +321,14 @@ function onTouchEnd(e: TouchEvent) {
     // 非缩放情况
     if (!isZooming.value) {
       // 点击
-      if (Math.abs(lastClientPos[0] - startPos[0]) + Math.abs(lastClientPos[1] - startPos[1]) < 10) {
+      if (Math.abs(lastPos.x - startPos.x) + Math.abs(lastPos.y - startPos.y) < 10) {
         if ((e.target as Element)?.tagName === 'IMG') {
           if (canZoom.value) {
             isZooming.value = true
+            currentZoomRatios.value = maxZoomRatios.value
+            computeMaxTranslate()
             gsap.to(image.value, {
-              scale: maxZoomRatios,
+              scale: currentZoomRatios.value,
               duration: 0.2,
             })
           }
@@ -310,11 +337,10 @@ function onTouchEnd(e: TouchEvent) {
         }
       }
       // 拖动
-      else if (Math.abs(lastClientPos[1] - startPos[1]) > 100) {
+      else if (Math.abs(lastPos.y - startPos.y) > 100) {
         onClose()
       } else {
         gsap.to(image.value, {
-          scale: 1,
           translateX: 0,
           translateY: 0,
           duration: 0.2,
@@ -324,29 +350,41 @@ function onTouchEnd(e: TouchEvent) {
     // 缩放情况
     else {
       // 点击，取消缩放
-      if (Math.abs(lastClientPos[0] - startPos[0]) + Math.abs(lastClientPos[1] - startPos[1]) < 10) {
+      if (Math.abs(lastPos.x - startPos.x) + Math.abs(lastPos.y - startPos.y) < 10) {
         isZooming.value = false
-        distance[0] = 0
-        distance[1] = 0
+        currentZoomRatios.value = 1
+        distance.x = 0
+        distance.y = 0
         gsap.to(image.value, {
-          scale: 1,
+          scale: currentZoomRatios.value,
           translateX: 0,
           translateY: 0,
           duration: 0.2,
         })
       }
-      // 拖动，叠加移动距离
+      // 拖动，计算移动距离
       else {
-        distance[0] += lastClientPos[0] - startPos[0]
-        distance[1] += lastClientPos[1] - startPos[1]
+        computeDistance()
+        gsap.to(image.value, {
+          translateX: distance.x,
+          translateY: distance.y,
+          duration: 0.2,
+        })
       }
     }
   }
 }
 
 // 杂项
-function onNothing(e: Event) {
-  e.preventDefault()
+const closeKeys = new Set(['Escape', 'Backspace', 'Delete'])
+const preventKeys = new Set(['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '])
+function preventKeyListener(e: KeyboardEvent) {
+  if (closeKeys.has(e.key)) {
+    onClose()
+  }
+  if (preventKeys.has(e.key)) {
+    e.preventDefault()
+  }
 }
 
 function resetData() {
@@ -364,12 +402,51 @@ function resetData() {
 
   // zoom data
   isZooming.value = false
-  maxZoomRatios = image.value.naturalWidth / image.value.width
-  canZoom.value = maxZoomRatios > 1
+  maxZoomRatios.value = image.value.naturalWidth / image.value.width
+  canZoom.value = maxZoomRatios.value > 1
 
   // distance data
-  distance[0] = 0
-  distance[1] = 0
+  distance.x = 0
+  distance.y = 0
+}
+
+const currentTranslate = computed(() => {
+  let x = distance.x + lastPos.x - startPos.x
+  let y = distance.y + lastPos.y - startPos.y
+  if (x > maxTranslateDistance.x) {
+    x = maxTranslateDistance.x + (x - maxTranslateDistance.x) * 0.1
+  } else if (x < -maxTranslateDistance.x) {
+    x = -maxTranslateDistance.x + (x + maxTranslateDistance.x) * 0.1
+  }
+  if (y > maxTranslateDistance.y) {
+    y = maxTranslateDistance.y + (y - maxTranslateDistance.y) * 0.1
+  } else if (y < -maxTranslateDistance.y) {
+    y = -maxTranslateDistance.y + (y + maxTranslateDistance.y) * 0.1
+  }
+  return {
+    x,
+    y,
+  }
+})
+
+function computeMaxTranslate() {
+  maxTranslateDistance.x = (image.value.naturalWidth - image.value.width) / 2
+  maxTranslateDistance.y = (image.value.naturalHeight - image.value.height) / 2
+}
+
+function computeDistance() {
+  distance.x = currentTranslate.value.x
+  distance.y = currentTranslate.value.y
+  if (currentTranslate.value.x > maxTranslateDistance.x) {
+    distance.x = maxTranslateDistance.x
+  } else if (currentTranslate.value.x < -maxTranslateDistance.x) {
+    distance.x = -maxTranslateDistance.x
+  }
+  if (currentTranslate.value.y > maxTranslateDistance.y) {
+    distance.y = maxTranslateDistance.y
+  } else if (currentTranslate.value.y < -maxTranslateDistance.y) {
+    distance.y = -maxTranslateDistance.y
+  }
 }
 
 // 图片灯箱功能
