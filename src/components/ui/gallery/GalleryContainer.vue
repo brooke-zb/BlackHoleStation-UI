@@ -1,8 +1,7 @@
 <template>
   <Teleport to="body">
     <transition @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave">
-      <div v-show="isShow" ref="container"
-           @wheel.stop.prevent="onWheel"
+      <div v-show="isShow" ref="container" @wheel.stop.prevent="onWheel"
            class="fixed top-0 left-0 w-full h-full overflow-hidden
            bg-light-900 z-50 select-none flex flex-col justify-between">
         <!--提示栏-->
@@ -347,7 +346,7 @@ function movePointerHandler() {
     })
   } else {
     gsap.set(image.value, {
-      translateX: (lastPos.x - startPos.x) * 0.2,
+      translateX: (lastPos.x - startPos.x) * 0.1,
       translateY: lastPos.y - startPos.y,
     })
   }

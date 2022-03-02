@@ -1,7 +1,7 @@
 <template>
   <nav ref="nav" class="sticky w-full h-14 top-0 z-40
-  flex items-center justify-between shadow-light-600/20 dark:shadow-light-300/20
-  backdrop-blur transition-all" :class="classAppend">
+  flex items-center justify-between transition-bg
+  shadow-light-600/20 dark:shadow-light-300/20" :class="classAppend">
     <MenuButton :type="isCurrentDarkMode ? 'info' : 'secondary'">
       <template #icon>
         <ISolidBars/>
@@ -74,7 +74,7 @@ const toggleThemeMenu = (event: Event) => {
 
 const classAppend = computed(() => ({
   'shadow-sm': !isScrollDown.value,
-  'shadow bg-dark-50/60 dark:bg-dark-900/60': isScrollDown.value,
+  'shadow nav-scrolldown': isScrollDown.value,
 }))
 
 //  scroll event
@@ -90,3 +90,17 @@ onMounted(() => {
   gsap.ticker.add(scrollEvent)
 })
 </script>
+
+<style scoped>
+@supports (backdrop-filter: blur(8px)) {
+  .nav-scrolldown {
+    @apply backdrop-blur bg-dark-50/60 dark:bg-dark-900/60;
+  }
+}
+
+@supports not (backdrop-filter: blur(8px)) {
+  .nav-scrolldown {
+    @apply bg-dark-50/95 dark:bg-dark-900/95;
+  }
+}
+</style>
