@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/', name: 'index',
-    component: () => import('@/pages/Index.vue'),
+    component: () => import('@/pages/index/Index.vue'),
   },
 
   {
@@ -36,7 +36,7 @@ const routes: RouteRecordRaw[] = [
   // 文章页面
   {
     path: '/articles/:aid(\\d+)', name: 'article',
-    component: () => import('@/pages/Article.vue'),
+    component: () => import('@/pages/article/Article.vue'),
     props: (route) => ({
       aid: Number(route.params.aid),
     }),
@@ -45,7 +45,7 @@ const routes: RouteRecordRaw[] = [
   // 关于页面
   {
     path: '/about', name: 'about',
-    component: () => import('@/pages/About.vue'),
+    component: () => import('@/pages/about/About.vue'),
     props: true,
   },
 
