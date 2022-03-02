@@ -1,54 +1,84 @@
 declare type BhsRole = {
   rid: number,
   name: string,
-  permission: string[]
+  permissions: string[],
 }
 
 declare type BhsUser = {
   uid: number,
   role: BhsRole,
   name: string,
-  link: string | null
+  mail: string,
+  avatar: string | undefined,
+  link: string | null,
+  enabled: boolean,
 }
 
 declare type BhsComment = {
   coid: number,
-  author: BhsUser,
-  text: string,
-  children: BhsComment[]
+  aid: number,
+  nickname: string,
+  email: string | null,
+  avatar: string | null,
+  site: string | null,
+  ip: string | null,
+  content: string,
+  created: string,
+  parent: number,
+  status: 'PUBLISHED' | 'PENDING' | 'INVISIBLE'
+  reply: number,
+  children: BhsComment[],
 }
 
 declare type BhsCategory = {
   cid: number,
-  name: string
+  name: string,
+  parent: number,
+  children: BhsCategory[] | undefined,
 }
 
 declare type BhsTag = {
   tid: number,
-  name: string
+  name: string,
+  heat: number | undefined,
 }
 
 declare type BhsArticle = {
   aid: number,
+  user: BhsUser,
   category: BhsCategory,
   tags: BhsTag[],
   title: string,
   description: string | null,
+  picture: string | null,
   content: string,
+  commentabled: boolean,
+  appreciatabled: boolean,
   created: string,
   modified: string,
+  status: 'PUBLISHED' | 'DRAFT' | 'INVISIBLE',
   views: number,
-  comments: BhsComment[]
 }
 
 declare type BhsResponse<D> = {
   success: true,
   data: D,
-  msg: string
+  msg: string,
 } | {
   success: false,
   data: null,
-  msg: string
+  msg: string,
+}
+
+declare type BhsPageInfo<D> = {
+  hasNextPage: boolean,
+  hasPreviousPage: boolean,
+  startRow: number,
+  endRow: number,
+  list: D[],
+  pageNum: number,
+  pageSize: number,
+  total: number,
 }
 
 // type definitions of background
@@ -56,20 +86,20 @@ declare interface BackgroundSetting {
   parallax: [number, number],
   bgColor: {
     dark: string,
-    light: string
+    light: string,
   }
   scale: {
     x: number,
-    y: number
+    y: number,
   },
-  imageSize: number
+  imageSize: number,
 }
 
 declare interface Light {
   pos: [number, number],
   color: {
     dark: string,
-    light: string
+    light: string,
   }
 }
 
@@ -81,7 +111,7 @@ declare interface BackgroundHolder {
   parallax: [number, number],
   image: {
     dark: HTMLCanvasElement | null,
-    light: HTMLCanvasElement | null
+    light: HTMLCanvasElement | null,
   },
 }
 

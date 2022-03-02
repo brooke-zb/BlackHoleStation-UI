@@ -35,8 +35,9 @@
         </router-link>
       </div>
       <div class="bhs-content" v-html="data.content"></div>
+      <CommentContainer v-if="isShowComment" :aid="props.aid"/>
     </template>
-    <GalleryContainer ref="gallery" />
+    <GalleryContainer ref="gallery"/>
   </div>
 </template>
 
@@ -50,6 +51,7 @@ export default defineComponent({
 import { isShowImage, title } from '@/utils/global'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
+import CommentContainer from '@/pages/article/CommentContainer.vue'
 
 // code highlight
 import Prism from 'prismjs'
@@ -67,6 +69,8 @@ const props = defineProps<{
 }>()
 const toast = useToast()
 
+const isShowComment = ref(false)
+
 const loading = ref(true)
 const data = ref<BhsArticle>()
 const gallery = ref()
@@ -82,6 +86,7 @@ onMounted(async () => {
     data.value = res.data
     data.value.content = marked(data.value.content)
     title.value = data.value.title
+    isShowComment.value = true
   } else {
     toast.add({
       type: 'danger',
