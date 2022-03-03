@@ -24,10 +24,14 @@ export default defineComponent({
 }
 
 .paginator-group > button:first-child {
-  @apply rounded-l-lg after:rounded-none after:rounded-l-[0.625rem];
+  @apply rounded-l-lg after:rounded-l-[0.625rem];
 }
 
 .paginator-group > button:last-child {
   @apply rounded-r-lg border after:rounded-none after:rounded-r-[0.625rem];
+}
+
+.paginator-group > button:first-child:last-child {
+  @apply after:rounded-[0.625rem];
 }
 </style>

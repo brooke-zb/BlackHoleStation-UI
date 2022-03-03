@@ -72,7 +72,7 @@ declare type BhsResponse<D> = {
   msg: string,
 }
 
-declare type BhsPageInfo<D> = {
+declare type Page<D> = {
   hasNextPage: boolean,
   hasPreviousPage: boolean,
   startRow: number,
@@ -80,7 +80,7 @@ declare type BhsPageInfo<D> = {
   list: D[],
   pageNum: number,
   pageSize: number,
-  total: number,
+  pages: number,
 }
 
 // type definitions of background

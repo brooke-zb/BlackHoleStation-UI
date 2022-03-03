@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 const getByAid = (aid: string | number, page?: number) => {
-  return request.get<BhsPageInfo<BhsComment>>(`/comment`, {
+  return request.get<Page<BhsComment>>(`/comment`, {
     params: {
       aid,
       page: page || 1

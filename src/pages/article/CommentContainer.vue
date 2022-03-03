@@ -1,5 +1,5 @@
 <template>
-  <div id="bhs-comment" ref="obs" class="mt-4 p-2 rounded-md bg-white/50 dark:bg-dark-700/50">
+  <div id="bhs-comment" ref="obs" class="my-4 p-2 rounded-md bg-white/50 dark:bg-dark-700/50 shadow-lg">
     <div class="flex justify-center text-xl text-secondary-600 dark:text-light-100">
       <Button v-if="!isLoad" @click="loadComments" :type="isCurrentDarkMode ? 'info' : 'secondary'">加载评论</Button>
       <template v-else-if="comments">
@@ -9,14 +9,17 @@
         加载中...
       </template>
     </div>
-    <div>
-      <!--TODO 评论框 with Teleport-->
-    </div>
+    <div id="bhs-comment-sender"></div>
     <template v-if="comments?.list" v-for="(item, index) in comments.list">
       <div v-if="index !== 0" class="border-light-300 dark:border-light-600 border-t border-dashed"></div>
       <Comment :item="item" :article-uid="props.articleUid"/>
     </template>
+    <div v-if="comments" class="flex justify-center">
+      <Paginator :current-page="comments.pageNum" :total-pages="comments.pages"
+                 :page-size="10" @current-change="getComments"/>
+    </div>
   </div>
+  <CommentSender :coid="coid"/>
 </template>
 
 <script lang="ts">
@@ -27,9 +30,17 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Comment from '@/pages/article/Comment.vue'
+import CommentSender from '@/pages/article/CommentSender.vue'
 import Button from '@/components/ui/button/Button.vue'
+import Paginator from '@/components/ui/paginator/Paginator.vue'
 import comment from '@/api/comment'
 import { isCurrentDarkMode } from '@/utils/global'
+
+// 更改回复框位置
+const coid = ref<number>()
+provide('changeReplyComment', (id?: number) => {
+  coid.value = id
+})
 
 const props = defineProps<{
   aid: number,
@@ -48,13 +59,17 @@ const observer = new IntersectionObserver((entries) => {
   })
 })
 
-const comments = ref<BhsPageInfo<BhsComment>>()
+const comments = ref<Page<BhsComment>>()
 
-async function loadComments() {
+function loadComments() {
   isLoad.value = true
   observer.disconnect()
 
-  let result = await comment.getByAid(props.aid)
+  getComments()
+}
+
+async function getComments(page?: number) {
+  let result = await comment.getByAid(props.aid, page)
   if (result.success) {
     comments.value = result.data
   } else {
