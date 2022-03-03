@@ -35,7 +35,7 @@
         </router-link>
       </div>
       <div class="bhs-content" v-html="data.content"></div>
-      <CommentContainer v-if="isShowComment" :aid="props.aid"/>
+      <CommentContainer v-if="isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
     </template>
     <GalleryContainer ref="gallery"/>
   </div>

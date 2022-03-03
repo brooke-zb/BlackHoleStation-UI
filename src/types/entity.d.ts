@@ -17,6 +17,7 @@ declare type BhsUser = {
 declare type BhsComment = {
   coid: number,
   aid: number,
+  uid: number | null,
   nickname: string,
   email: string | null,
   avatar: string | null,
@@ -24,9 +25,10 @@ declare type BhsComment = {
   ip: string | null,
   content: string,
   created: string,
-  parent: number,
+  parent: number | null,
   status: 'PUBLISHED' | 'PENDING' | 'INVISIBLE'
-  reply: number,
+  reply: number | null,
+  replyname: string | null,
   children: BhsComment[],
 }
 

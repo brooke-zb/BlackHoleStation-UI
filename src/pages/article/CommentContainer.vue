@@ -12,11 +12,9 @@
     <div>
       <!--TODO 评论框 with Teleport-->
     </div>
-    <template v-if="comments?.list">
-      <template v-for="(item, index) in comments.list">
-        <div v-if="index !== 0" class="border-light-300 dark:border-light-600 border-t border-dashed"></div>
-        <Comment :item="item"/>
-      </template>
+    <template v-if="comments?.list" v-for="(item, index) in comments.list">
+      <div v-if="index !== 0" class="border-light-300 dark:border-light-600 border-t border-dashed"></div>
+      <Comment :item="item" :article-uid="props.articleUid"/>
     </template>
   </div>
 </template>
@@ -34,7 +32,8 @@ import comment from '@/api/comment'
 import { isCurrentDarkMode } from '@/utils/global'
 
 const props = defineProps<{
-  aid: number
+  aid: number,
+  articleUid: number,
 }>()
 const toast = useToast()
 

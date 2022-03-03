@@ -15,6 +15,7 @@ declare module 'vue' {
     IRegularFolder: typeof import('~icons/regular/folder')['default']
     IRegularImage: typeof import('~icons/regular/image')['default']
     IRegularPlus: typeof import('~icons/regular/plus')['default']
+    IRegularShieldCheck: typeof import('~icons/regular/shield-check')['default']
     IRegularTag: typeof import('~icons/regular/tag')['default']
     ISolidAlien: typeof import('~icons/solid/alien')['default']
     ISolidBars: typeof import('~icons/solid/bars')['default']

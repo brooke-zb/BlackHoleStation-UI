@@ -60,9 +60,6 @@ export const routerHistory = createWebHistory()
 export const router = createRouter({
   history: routerHistory,
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    return { top: 0 }
-  },
 })
 
 router.beforeEach(async (to, from) => {
