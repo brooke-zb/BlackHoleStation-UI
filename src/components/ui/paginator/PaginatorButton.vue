@@ -1,6 +1,9 @@
 <template>
   <button
-      class="relative select-none inline-flex justify-center items-center text-sm w-9 h-9 sm:text-base sm:w-10 sm:h-10 rounded-lg align-text-bottom border border-secondary-200 dark:border-info-900 shadow dark:shadow-light-100/10 to-secondary-400 dark:to-info-400 hover:z-10"
+      class="relative select-none inline-flex justify-center items-center
+      text-sm w-9 h-9 sm:text-base sm:w-10 sm:h-10 rounded-lg
+      align-text-bottom border border-secondary-200 dark:border-info-900
+      shadow dark:shadow-light-100/10 to-secondary-400 dark:to-info-400"
       :disabled="props.disabled" :class="classAppend">
     <slot></slot>
   </button>
@@ -30,7 +33,7 @@ button::after {
   content: '';
   height: calc(100% + 6px);
   width: calc(100% + 6px);
-  @apply absolute -left-[3px] -top-[3px] rounded-[0.625rem];
+  @apply absolute -left-[3px] -top-[3px] rounded-[0.625rem] transition-shadow z-10;
 }
 
 button:not([disabled]):hover::after {

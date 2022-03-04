@@ -13,7 +13,7 @@
 
     <!--展示页-->
     <PaginatorButtonGroup>
-      <PaginatorButton v-for="num in pageInfo.pages" :key="num" @click="toPage(num)"
+      <PaginatorButton v-for="num in pageInfo.pages" @click="toPage(num)"
                        :is-current-page="pageInfo.currentPage === num" v-text="num"/>
     </PaginatorButtonGroup>
 
