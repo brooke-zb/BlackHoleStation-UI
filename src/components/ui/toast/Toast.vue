@@ -7,7 +7,7 @@
       <div class="flex items-center text-xl">
         <Component :is="props.config.icon ? props.config.icon : defaultIcons[props.config.type]"/>
       </div>
-      <div>{{ props.config.message }}</div>
+      <div class="whitespace-pre-wrap">{{ props.config.message }}</div>
     </div>
   </div>
 </template>

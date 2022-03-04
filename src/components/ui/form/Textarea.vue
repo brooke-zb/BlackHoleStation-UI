@@ -2,7 +2,7 @@
   <div class="w-full p-1 relative">
     <textarea ref="el" class="p-2 rounded-md outline-0 bg-transparent border-2 block w-full resize-none
               border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500"
-              @input="onInput" :rows="rows" :class="classAppend" :value="content" :placeholder="props.placeholder" @resize="onInput"/>
+              @input="onInput" :rows="props.minRows" :class="classAppend" :value="props.modelValue" :placeholder="props.placeholder" @resize="onInput"/>
   </div>
 </template>
 
@@ -26,17 +26,13 @@ const props = withDefaults(defineProps<{
 const emits = defineEmits<{
   (e: 'update:modelValue', event: string): void,
 }>()
-watch(() => props.modelValue, () => {
-  content.value = props.modelValue
-})
 
 const classAppend = computed(() => ({
-  'border-danger-300 focus:border-danger-500 dark:border-danger-800 dark:focus:border-danger-500': props.invalid,
-  'placeholder:text-danger-300': props.invalid,
+  'border-danger-300/60 focus:border-danger-500 dark:border-danger-500/40 dark:focus:border-danger-700': props.invalid,
+  'placeholder:text-danger-300 dark:placeholder:text-danger-400': props.invalid,
 }))
 
 const el = ref()
-const content = ref('')
 const minHeight = ref(0)
 
 const observer = new ResizeObserver(() => {
@@ -50,14 +46,9 @@ onUnmounted(() => {
   observer.disconnect()
 })
 
-const rows = computed(() => {
-  let rows = content.value.split('\n').length
-  return rows > props.minRows ? rows : props.minRows
-})
-
-function onInput() {
+function onInput(e: InputEvent) {
   onResize()
-  emits('update:modelValue', content.value)
+  emits('update:modelValue', (e.target as HTMLInputElement).value)
 }
 
 function onResize() {

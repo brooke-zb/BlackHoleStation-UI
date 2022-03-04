@@ -39,12 +39,12 @@ const slots = useSlots()
 const classAppend = computed(() => ({
   'pl-8': slots.left,
   'pr-8': slots.right,
-  'border-danger-300 focus:border-danger-500 dark:border-danger-800 dark:focus:border-danger-500': props.invalid,
-  'placeholder:text-danger-300': props.invalid,
+  'border-danger-300/60 focus:border-danger-500 dark:border-danger-500/40 dark:focus:border-danger-700': props.invalid,
+  'placeholder:text-danger-300 dark:placeholder:text-danger-400': props.invalid,
 }))
 const slotClassAppend = computed(() => ({
   'fill-light-400 dark:fill-dark-500': !props.invalid,
-  'fill-danger-300 dark:fill-danger-500': props.invalid,
+  'fill-danger-300 dark:fill-danger-500/70': props.invalid,
 }))
 
 function onInput(e: InputEvent) {

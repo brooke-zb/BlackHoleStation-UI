@@ -149,3 +149,11 @@ declare interface PageInfo {
   hasPreviousMore: boolean,
   hasNextMore: boolean,
 }
+
+// validator
+declare type ValidationData = {
+  value: string,
+  invalid?: boolean,
+  rule?: (value: string) => boolean
+  message?: string,
+}
