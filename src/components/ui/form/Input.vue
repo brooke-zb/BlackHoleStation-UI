@@ -1,12 +1,12 @@
 <template>
   <div class="flex p-1 relative w-full">
-    <div v-if="$slots.left" class="input-left absolute w-5 h-5 left-3 top-0 bottom-0 m-auto" :class="slotClassAppend">
+    <div v-if="$slots.left" class="absolute w-5 h-5 left-3 top-0 bottom-0 m-auto" :class="slotClassAppend">
       <slot name="left"></slot>
     </div>
-    <input class="rounded-md outline-0 bg-transparent px-2 py-1 w-full border-2 placeholder:text-sm
+    <input class="rounded-md outline-0 bg-transparent px-2 py-1.5 w-full border-2 placeholder:text-sm
            border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500"
-           :class="classAppend" :type="props.type" :placeholder="props.placeholder"/>
-    <div v-if="$slots.right" class="input-left absolute w-5 h-5 right-3 top-0 bottom-0 m-auto
+           :class="classAppend" :type="props.type" :placeholder="props.placeholder" v-model="content" @input="onInput"/>
+    <div v-if="$slots.right" class="absolute w-5 h-5 right-3 top-0 bottom-0 m-auto
     fill-light-400 dark:fill-dark-500" :class="slotClassAppend">
       <slot name="right"></slot>
     </div>
@@ -29,7 +29,12 @@ const props = withDefaults(defineProps<{
   placeholder: '',
 })
 
+const emits = defineEmits<{
+  (e: 'update:modelValue', event: string): void,
+}>()
+
 const slots = useSlots()
+const content = ref('')
 
 const classAppend = computed(() => ({
   'pl-8': slots.left,
@@ -41,10 +46,8 @@ const slotClassAppend = computed(() => ({
   'fill-light-400 dark:fill-dark-500': !props.invalid,
   'fill-danger-300 dark:fill-danger-500': props.invalid
 }))
-</script>
 
-<style scoped>
-.input-left svg {
-  @apply w-5 h-5;
+function onInput() {
+  emits('update:modelValue', content.value)
 }
-</style>
+</script>

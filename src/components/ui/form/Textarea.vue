@@ -1,8 +1,8 @@
 <template>
   <div class="w-full p-1 relative">
-    <textarea ref="el" class="p-2 rounded-md outline-0 bg-transparent border-2 block w-full
-              border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500 resize-none"
-              @input="onChange" :rows="rows" :class="classAppend" v-model="content"/>
+    <textarea ref="el" class="p-2 rounded-md outline-0 bg-transparent border-2 block w-full resize-none
+              border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500"
+              @input="onInput" :rows="rows" :class="classAppend" v-model="content" :placeholder="props.placeholder"/>
   </div>
 </template>
 
@@ -22,6 +22,10 @@ const props = withDefaults(defineProps<{
   minRows: 3,
 })
 
+const emits = defineEmits<{
+  (e: 'update:modelValue', event: string): void,
+}>()
+
 const classAppend = computed(() => ({
   'border-danger-300 focus:border-danger-500 dark:border-danger-800 dark:focus:border-danger-500': props.invalid,
   'placeholder:text-danger-300': props.invalid,
@@ -40,10 +44,11 @@ const rows = computed(() => {
   return rows > props.minRows ? rows : props.minRows
 })
 
-function onChange() {
+function onInput() {
   el.value.style.height = 'auto'
   if (el.value.scrollHeight > minHeight.value) {
     el.value.style.height = `${el.value.scrollHeight + 4}px`
   }
+  emits('update:modelValue', content.value)
 }
 </script>
