@@ -1,5 +1,5 @@
 <template>
-  <div :id="'co' + props.item.coid" class="my-4 bg-secondary-300 dark:bg-info-300 bg-opacity-0 dark:bg-opacity-0">
+  <div :id="'co' + props.item.coid" class="my-4 bg-secondary-300 dark:bg-dark-400 bg-opacity-0 dark:bg-opacity-0">
     <div class="flex items-start" :class="{ 'gap-2': props.sub, 'gap-4': !props.sub }">
       <img :alt="props.item.nickname" class="rounded-full cursor-pointer hover:opacity-70"
            :src="`${baseAvatarUrl}${props.item.avatar}%3Fs%3D48`" title="点击回复"
@@ -90,12 +90,13 @@ function toAnchor(id: number | string) {
     gsap.fromTo(anchor, {
       '--tw-bg-opacity': 0,
     }, {
-      '--tw-bg-opacity': 0.5,
-      duration: 0.5,
+      '--tw-bg-opacity': 0.4,
+      duration: 0.2,
       onComplete: () => {
         gsap.to(anchor, {
           '--tw-bg-opacity': 0,
-          duration: 0.5,
+          delay: 1.5,
+          duration: 0.2,
         })
       },
     })
