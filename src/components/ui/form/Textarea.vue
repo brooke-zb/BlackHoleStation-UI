@@ -2,7 +2,7 @@
   <div class="w-full p-1 relative">
     <textarea ref="el" class="p-2 rounded-md outline-0 bg-transparent border-2 block w-full resize-none
               border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500"
-              @input="onInput" :rows="rows" :class="classAppend" v-model="content" :placeholder="props.placeholder"/>
+              @input="onInput" :rows="rows" :class="classAppend" :value="content" :placeholder="props.placeholder" @resize="onInput"/>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ const props = withDefaults(defineProps<{
   placeholder?: string,
   invalid?: boolean,
   minRows?: number,
+  modelValue: string,
 }>(), {
   placeholder: '',
   minRows: 3,
@@ -25,6 +26,9 @@ const props = withDefaults(defineProps<{
 const emits = defineEmits<{
   (e: 'update:modelValue', event: string): void,
 }>()
+watch(() => props.modelValue, () => {
+  content.value = props.modelValue
+})
 
 const classAppend = computed(() => ({
   'border-danger-300 focus:border-danger-500 dark:border-danger-800 dark:focus:border-danger-500': props.invalid,
@@ -35,8 +39,15 @@ const el = ref()
 const content = ref('')
 const minHeight = ref(0)
 
+const observer = new ResizeObserver(() => {
+  onResize()
+})
 onMounted(() => {
   minHeight.value = el.value.offsetHeight
+  observer.observe(el.value)
+})
+onUnmounted(() => {
+  observer.disconnect()
 })
 
 const rows = computed(() => {
@@ -45,10 +56,14 @@ const rows = computed(() => {
 })
 
 function onInput() {
+  onResize()
+  emits('update:modelValue', content.value)
+}
+
+function onResize() {
   el.value.style.height = 'auto'
   if (el.value.scrollHeight > minHeight.value) {
     el.value.style.height = `${el.value.scrollHeight + 4}px`
   }
-  emits('update:modelValue', content.value)
 }
 </script>
