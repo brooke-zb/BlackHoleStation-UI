@@ -51,12 +51,10 @@ const toast = useToast()
 const isLoad = ref(false)
 const obs = ref()
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      loadComments()
-    }
-  })
+const observer = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    loadComments()
+  }
 })
 
 const comments = ref<Page<BhsComment>>()
