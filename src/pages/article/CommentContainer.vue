@@ -19,7 +19,7 @@
                  :page-size="10" @current-change="getComments"/>
     </div>
   </div>
-  <CommentSender :coid="coid"/>
+  <CommentSender :coid="coid" @cancel="coid = undefined"/>
 </template>
 
 <script lang="ts">

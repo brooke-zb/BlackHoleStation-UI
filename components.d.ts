@@ -23,6 +23,7 @@ declare module 'vue' {
     IRegularReply: typeof import('~icons/regular/reply')['default']
     IRegularShield: typeof import('~icons/regular/shield')['default']
     IRegularShieldCheck: typeof import('~icons/regular/shield-check')['default']
+    IRegularSpinner: typeof import('~icons/regular/spinner')['default']
     IRegularTag: typeof import('~icons/regular/tag')['default']
     IRegularUser: typeof import('~icons/regular/user')['default']
     IRegularUserGear: typeof import('~icons/regular/user-gear')['default']
