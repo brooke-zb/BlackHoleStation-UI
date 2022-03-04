@@ -37,6 +37,7 @@ function validate(data: Record<string, ValidationData>, callback?: (valid: boole
   let message = ''
   for (let key in data) {
     if (data[key].rule && data[key].invalid !== undefined) {
+      // @ts-ignore
       data[key].invalid = !data[key].rule(data[key].value)
       if (data[key].invalid) {
         isValid = false

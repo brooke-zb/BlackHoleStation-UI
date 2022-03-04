@@ -3,7 +3,7 @@
     <div class="flex justify-center text-xl text-secondary-600 dark:text-light-100">
       <Button v-if="!isLoad" @click="loadComments" :type="isCurrentDarkMode ? 'info' : 'secondary'">加载评论</Button>
       <template v-else-if="comments">
-        {{ comments.list.length > 0 ? `${ comments.total }条评论` : '空空如也~' }}
+        {{ comments.list.length > 0 ? `${ comments.pages }条评论` : '空空如也~' }}
       </template>
       <template v-else>
         加载中...

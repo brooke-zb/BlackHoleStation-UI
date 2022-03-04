@@ -80,7 +80,10 @@ function showAllSubComment() {
   subComment.value.canShowMore = false
 }
 
-function toAnchor(id: number | string) {
+function toAnchor(id: number | string | null) {
+  if (!id) {
+    return
+  }
   const anchor = document.getElementById('co' + id)
   if (anchor) {
     window.scrollTo({

@@ -47,7 +47,7 @@ const slotClassAppend = computed(() => ({
   'fill-danger-300 dark:fill-danger-500/70': props.invalid,
 }))
 
-function onInput(e: InputEvent) {
+function onInput(e: Event) {
   emits('update:modelValue', (e.target as HTMLInputElement).value)
 }
 </script>

@@ -46,7 +46,7 @@ onUnmounted(() => {
   observer.disconnect()
 })
 
-function onInput(e: InputEvent) {
+function onInput(e: Event) {
   onResize()
   emits('update:modelValue', (e.target as HTMLInputElement).value)
 }
