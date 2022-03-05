@@ -3,7 +3,7 @@
     <div class="flex justify-center text-xl text-secondary-600 dark:text-light-100">
       <Button v-if="!isLoad" @click="loadComments" :type="isCurrentDarkMode ? 'info' : 'secondary'">加载评论</Button>
       <template v-else-if="comments">
-        {{ comments.list.length > 0 ? `${ comments.pages }条评论` : '空空如也~' }}
+        {{ comments.list.length > 0 ? `${ comments.list.length }条评论` : '空空如也~' }}
       </template>
       <template v-else>
         加载中...
@@ -19,7 +19,7 @@
                  :page-size="10" @current-change="getComments"/>
     </div>
   </div>
-  <CommentSender :coid="coid" @cancel="coid = undefined"/>
+  <CommentSender :aid="props.aid" :coid="coid" @refresh="loadComments" @cancel="coid = undefined"/>
 </template>
 
 <script lang="ts">
@@ -33,7 +33,6 @@ import Comment from '@/pages/article/Comment.vue'
 import CommentSender from '@/pages/article/CommentSender.vue'
 import Button from '@/components/ui/button/Button.vue'
 import Paginator from '@/components/ui/paginator/Paginator.vue'
-import comment from '@/api/comment'
 import { isCurrentDarkMode } from '@/utils/global'
 
 // 更改回复框位置
@@ -51,10 +50,12 @@ const toast = useToast()
 const isLoad = ref(false)
 const obs = ref()
 
-const observer = new IntersectionObserver(([entry]) => {
-  if (entry.isIntersecting) {
-    loadComments()
-  }
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      loadComments()
+    }
+  })
 })
 
 const comments = ref<Page<BhsComment>>()
@@ -67,7 +68,7 @@ function loadComments() {
 }
 
 async function getComments(page?: number) {
-  let result = await comment.getByAid(props.aid, page)
+  let result = await commentApi.getByAid(props.aid, page)
   if (result.success) {
     comments.value = result.data
   } else {

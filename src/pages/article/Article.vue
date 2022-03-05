@@ -81,7 +81,7 @@ onMounted(async () => {
   isShowImage.value = false
 
   // 获取文章内容
-  let res = await article.getByAid(props.aid)
+  let res = await articleApi.getByAid(props.aid)
   if (res.success) {
     data.value = res.data
     data.value.content = marked(data.value.content)

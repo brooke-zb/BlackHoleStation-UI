@@ -82,3 +82,13 @@ declare type Page<D> = {
   pageSize: number, // 每页数量
   pages: number, // 总页数
 }
+
+// post data
+declare type BhsCommentPost = {
+  aid: number,
+  nickname: string,
+  content: string,
+  email: string | null,
+  site: string | null,
+  reply: number | null,
+}

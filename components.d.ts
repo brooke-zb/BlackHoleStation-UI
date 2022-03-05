@@ -18,6 +18,8 @@ declare module 'vue' {
     IRegularImage: typeof import('~icons/regular/image')['default']
     IRegularLink: typeof import('~icons/regular/link')['default']
     IRegularPlus: typeof import('~icons/regular/plus')['default']
+    IRegularSpinner: typeof import('~icons/regular/spinner')['default']
+    IRegularSpinnerThird: typeof import('~icons/regular/spinner-third')['default']
     IRegularTag: typeof import('~icons/regular/tag')['default']
     IRegularUser: typeof import('~icons/regular/user')['default']
     ISolidAlien: typeof import('~icons/solid/alien')['default']

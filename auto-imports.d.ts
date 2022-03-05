@@ -2,11 +2,12 @@
 // We suggest you to commit this file into source control
 declare global {
   const and: typeof import('@/utils/validation/rules')['and']
-  const article: typeof import('@/api/article')['default']
+  const articleApi: typeof import('@/api/article')['default']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const betweenLength: typeof import('@/utils/validation/rules')['betweenLength']
   const biSyncRef: typeof import('@vueuse/core')['biSyncRef']
+  const commentApi: typeof import('@/api/comment')['default']
   const computed: typeof import('vue')['computed']
   const computedInject: typeof import('@vueuse/core')['computedInject']
   const controlledComputed: typeof import('@vueuse/core')['controlledComputed']

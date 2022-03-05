@@ -2,7 +2,9 @@
   <button
       class="m-1.5 select-none cursor-pointer relative inline-flex justify-center items-center transition-bg align-bottom"
       :class="classAppend" :disabled="isDisabled">
-    <slot name="icon" class="w-5 h-5"></slot>
+    <div v-if="$slots.icon" class="w-5 h-5">
+      <slot name="icon"></slot>
+    </div>
     <div :class="{'ml-1': slots.icon && slots.default}">
       <slot></slot>
     </div>

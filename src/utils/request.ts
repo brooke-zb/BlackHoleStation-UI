@@ -44,7 +44,15 @@ instance.interceptors.response.use(
     return response.data
   },
   (error) => {
-    return Promise.resolve(error.response.data)
+    if (error.response) {
+      return Promise.resolve(error.response.data)
+    } else {
+      return Promise.resolve({
+        success: false,
+        data: null,
+        msg: '网络异常，请求失败',
+      })
+    }
   },
 )
 

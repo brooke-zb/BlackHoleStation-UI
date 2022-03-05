@@ -103,14 +103,16 @@ const pictures = ref<HTMLImageElement[]>([])
 const currentIndex = ref(0)
 const currentPicture = ref('')
 const currentAlt = ref('')
-const observer = new IntersectionObserver(([entry]) => {
-  if (entry.isIntersecting) {
-    observer.unobserve(entry.target)
-    let img = entry.target as HTMLImageElement
-    if (img.dataset.src) {
-      img.src = img.dataset.src
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      observer.unobserve(entry.target)
+      let img = entry.target as HTMLImageElement
+      if (img.dataset.src) {
+        img.src = img.dataset.src
+      }
     }
-  }
+  })
 })
 
 function init(selector: string) {

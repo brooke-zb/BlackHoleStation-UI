@@ -7,7 +7,7 @@
             <IRegularUser/>
           </template>
         </Input>
-        <Input placeholder="邮箱(可选,保密)" v-model="data.mail.value" :invalid="data.mail.invalid">
+        <Input placeholder="邮箱(可选,保密)" v-model="data.email.value" :invalid="data.email.invalid">
           <template #left>
             <IRegularEnvelope/>
           </template>
@@ -18,10 +18,16 @@
           </template>
         </Input>
       </div>
-      <Textarea :minRows="4" placeholder="内容" v-model="data.content.value" :invalid="data.content.invalid"/>
+      <Textarea :minRows="4" :placeholder="props.coid ? '内容' : '内容(点击头像可回复他人)'" v-model="data.content.value"
+                :invalid="data.content.invalid"/>
       <div class="flex justify-end">
         <Button v-if="props.coid" :type="isCurrentDarkMode ? 'light' : 'danger'" @click="emits('cancel')">取消</Button>
-        <Button :type="isCurrentDarkMode ? 'info' : 'secondary'" @click="sendComment">发送</Button>
+        <Button :type="isCurrentDarkMode ? 'info' : 'secondary'" @click="sendComment" :disabled="isSending">
+          <template #icon v-if="isSending">
+            <IRegularSpinnerThird class="animate-spin"/>
+          </template>
+          发送
+        </Button>
       </div>
     </div>
   </Teleport>
@@ -42,8 +48,11 @@ import { isCurrentDarkMode } from '@/utils/global'
 const toast = useToast()
 
 const props = defineProps<{
+  aid: number,
   coid?: number
 }>()
+
+const isSending = ref(false)
 
 const data = reactive({
   nickname: {
@@ -54,7 +63,7 @@ const data = reactive({
     }),
     invalid: false,
   },
-  mail: {
+  email: {
     value: '',
     rule: or(email('邮箱格式不正确'), isEmpty('')),
     invalid: false,
@@ -75,22 +84,44 @@ const data = reactive({
 const teleportSelector = computed(() => props.coid ? `#co${ props.coid } .comment-sender` : '#bhs-comment-sender')
 
 const emits = defineEmits<{
-  (e: 'cancel'): void
+  (e: 'cancel'): void,
+  (e: 'refresh'): void,
 }>()
 
 function sendComment() {
   validate(data, (valid, message) => {
     if (valid) {
-      toast.add({
-        type: 'success',
-        message: '评论发送成功',
-        duration: 3000,
+      isSending.value = true
+      commentApi.post({
+        aid: props.aid,
+        nickname: data.nickname.value,
+        email: data.email.value === '' ? null : data.email.value,
+        site: data.site.value,
+        content: data.content.value,
+        reply: props.coid ? props.coid : null,
+      }).then((res) => {
+        isSending.value = false
+        if (res.success) {
+          emits('refresh')
+          data.content.value = ''
+          toast.add({
+            type: 'success',
+            message: res.msg,
+            duration: 5000,
+          })
+        } else {
+          toast.add({
+            type: 'danger',
+            message: res.msg,
+            duration: 5000,
+          })
+        }
       })
     } else {
       toast.add({
         type: 'danger',
         message,
-        duration: 3000,
+        duration: 5000,
       })
     }
   })

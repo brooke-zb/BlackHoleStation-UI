@@ -2,12 +2,12 @@
   <div :id="'co' + props.item.coid" class="my-4 bg-secondary-300 dark:bg-dark-400 bg-opacity-0 dark:bg-opacity-0">
     <div class="flex items-start" :class="{ 'gap-2': props.sub, 'gap-4': !props.sub }">
       <img :alt="props.item.nickname" class="rounded-full cursor-pointer hover:opacity-70"
-           :src="`${baseAvatarUrl}${props.item.avatar}%3Fs%3D48`" title="点击回复"
+           :src="avatar" title="点击回复"
            @click="changeReplyComment(props.item.coid)"
            :height="props.sub ? 36 : 48" :width="props.sub ? 36 : 48"/>
       <div class="grow">
         <div class="text-light-500 dark:text-light-400 flex items-baseline gap-1">
-          <a v-if="props.item.site" :href="cleanURL(props.item.site)" class="link font-bold">
+          <a v-if="props.item.site" :href="cleanURL(props.item.site)" class="link font-bold" rel="noopener noreferrer">
             {{ props.item.nickname }}
           </a>
           <span v-else class="font-bold">
@@ -23,7 +23,7 @@
         <div class="mt-0.5">
           <span v-if="props.item.reply">
             <a class="link" @click.prevent="toAnchor(props.item.reply)"
-               :href="'#' + props.item.reply">@{{ props.item.replyname }}</a>:
+               :href="'#co' + props.item.reply">@{{ props.item.replyname }}</a>
           </span>
           {{ props.item.content }}
         </div>
@@ -33,7 +33,7 @@
         <Comment v-for="item in subComment.items" :key="item.coid" :item="item" :article-uid="props.articleUid" sub/>
         <Button :type="isCurrentDarkMode ? 'info' : 'secondary'" size="sm"
                 v-if="subComment.canShowMore" @click="showAllSubComment">
-          显示所有{{ props.item.children.length }}条回复
+          显示剩余{{ props.item.children.length - 2 }}条回复
         </Button>
       </div>
     </div>
@@ -59,13 +59,21 @@ const props = defineProps<{
   sub?: boolean,
 }>()
 
+const avatar = computed(() => {
+  if (props.item.avatar) {
+    return `${baseAvatarUrl}${props.item.avatar}%3Fs%3D48`
+  } else {
+    return `${baseAvatarUrl}404%3Fs%3D48`
+  }
+})
+
 // 更改评论框位置
 const changeReplyComment = inject('changeReplyComment', Function, true)
 
 const isShowAll = ref(false)
 const subComment = computed(() => {
   let items = props.item.children
-  let canShowMore = items?.length || false
+  let canShowMore = items?.length > 2 || false
   if (!isShowAll.value && items) {
     items = items.slice(0, 2)
   }

@@ -13,7 +13,7 @@ const getByCoid = (coid: string | number) => {
   return request.get<BhsComment>(`/comment/${coid}`)
 }
 
-const post = (data: BhsComment) => {
+const post = (data: BhsCommentPost) => {
   return request.post<null>(`/comment`, {
     data
   })
