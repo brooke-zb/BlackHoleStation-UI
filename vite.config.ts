@@ -37,9 +37,22 @@ export default defineConfig({
           'marked': ['marked'],
           'lodash-es': ['throttle', 'debounce'],
           '@/utils/toast': ['useToast'],
+          '@/utils/validation/index': [
+            ['default', 'validate'],
+          ],
+          '@/utils/validation/rules': [
+            'email',
+            'notEmpty',
+            'isEmpty',
+            'minLength',
+            'maxLength',
+            'betweenLength',
+            'or',
+            'and',
+          ],
           '@/api/article': [
-            ['default', 'article']
-          ]
+            ['default', 'article'],
+          ],
         },
       ],
     }),

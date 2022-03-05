@@ -38,7 +38,6 @@ import Button from '@/components/ui/button/Button.vue'
 import Input from '@/components/ui/form/Input.vue'
 import Textarea from '@/components/ui/form/Textarea.vue'
 import { isCurrentDarkMode } from '@/utils/global'
-import { emailValidator, or, isEmptyValidator, getLengthRangeValidator, validate } from '@/utils/validation'
 
 const toast = useToast()
 
@@ -49,24 +48,27 @@ const props = defineProps<{
 const data = reactive({
   nickname: {
     value: '',
-    rule: getLengthRangeValidator(2, 32),
+    rule: betweenLength(2, 32, {
+      min: '昵称不能少于2个字',
+      max: '昵称不能超过32字',
+    }),
     invalid: false,
-    message: '昵称长度需在2-32字之间',
   },
   mail: {
     value: '',
-    rule: or(emailValidator, isEmptyValidator),
+    rule: or(email('邮箱格式不正确'), isEmpty('')),
     invalid: false,
-    message: '邮箱格式不正确',
   },
   site: {
     value: '',
   },
   content: {
     value: '',
-    rule: getLengthRangeValidator(2, 1000),
+    rule: betweenLength(1, 1000, {
+      min: '评论内容不能少于1个字',
+      max: '评论内容不能超过1000字',
+    }),
     invalid: false,
-    message: '内容长度需在2-1000字之间',
   },
 })
 

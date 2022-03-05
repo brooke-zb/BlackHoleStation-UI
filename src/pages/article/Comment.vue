@@ -23,7 +23,7 @@
         <div class="mt-0.5">
           <span v-if="props.item.reply">
             <a class="link" @click.prevent="toAnchor(props.item.reply)"
-               :href="'#' + props.item.reply">回复{{ props.item.replyname }}</a>:
+               :href="'#' + props.item.reply">@{{ props.item.replyname }}</a>:
           </span>
           {{ props.item.content }}
         </div>
