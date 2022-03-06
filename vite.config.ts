@@ -56,6 +56,9 @@ export default defineConfig({
           '@/api/comment': [
             ['default', 'commentApi'],
           ],
+          '@/api/account': [
+            ['default', 'accountApi'],
+          ],
         },
       ],
     }),

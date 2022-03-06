@@ -20,7 +20,7 @@ const request = {
   patch: <D>(url: string, config: AxiosRequestConfig) => {
     return instance.patch(url, config.data, config) as Promise<BhsResponse<D>>
   },
-  delete: <D>(url: string, config: AxiosRequestConfig) => {
+  delete: <D>(url: string, config?: AxiosRequestConfig) => {
     return instance.delete(url, config) as Promise<BhsResponse<D>>
   },
 }

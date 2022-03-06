@@ -84,12 +84,18 @@ declare type Page<D> = {
   total: number, // 总数量
 }
 
-// post data
-declare type BhsCommentPost = {
+// api props
+declare type BhsCommentProps = {
   aid: number,
   nickname: string,
   content: string,
   email: string | null,
   site: string | null,
   reply: number | null,
+}
+
+declare type BhsLoginProps = {
+  username: string,
+  password: string,
+  rememberMe: boolean,
 }
