@@ -54,6 +54,12 @@ const routes: RouteRecordRaw[] = [
     path: '/:pathMatch(.*)*', name: '404',
     component: () => import('@/pages/error/404.vue'),
   },
+
+  // 管理员登录
+  {
+    path: '/admin/login', name: 'adminLogin',
+    component: () => import('@/pages/admin/Login.vue'),
+  },
 ]
 
 export const routerHistory = createWebHistory()

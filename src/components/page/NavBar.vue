@@ -10,7 +10,7 @@
     <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
     <div class="ml-2 hidden sm:block">{{ title }}</div>
     <div class="grow"/>
-    <MenuButton ref="themeBtn" @click="toggleThemeMenu" :type="isCurrentDarkMode ? 'info' : 'secondary'"
+    <MenuButton title="切换主题" ref="themeBtn" @click="toggleThemeMenu" :type="isCurrentDarkMode ? 'info' : 'secondary'"
                 :highlight="currentTheme !== 'system'">
       <template #icon>
         <IRegularMoonStars v-if="currentTheme === 'dark' || (currentTheme === 'system' && isCurrentDarkMode)"/>
@@ -18,6 +18,11 @@
       </template>
     </MenuButton>
     <Menu ref="themeMenu" :items="menuItem"/>
+    <MenuButton title="登录" @click="$router.push('/admin/login')" :type="isCurrentDarkMode ? 'info' : 'secondary'">
+      <template #icon>
+        <IRegularRightToBracket/>
+      </template>
+    </MenuButton>
   </nav>
 </template>
 
