@@ -249,3 +249,11 @@ code[class*='language-'] {
 .token.inserted {
     @apply text-green-700 dark:text-green-300;
 }
+
+/* custom */
+@media(min-height: 600px) {
+    .box-center {
+        position: relative;
+        margin: calc(50vh - 300px) 0;
+    }
+}
