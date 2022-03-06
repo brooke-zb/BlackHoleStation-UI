@@ -3,7 +3,7 @@
     <div class="flex justify-center text-xl text-secondary-600 dark:text-light-100">
       <Button v-if="!isLoad" @click="loadComments" :type="isCurrentDarkMode ? 'info' : 'secondary'">加载评论</Button>
       <template v-else-if="comments">
-        {{ comments.list.length > 0 ? `${ comments.list.length }条评论` : '空空如也~' }}
+        {{ comments.total > 0 ? `${ comments.total }条评论` : '空空如也~' }}
       </template>
       <template v-else>
         加载中...
@@ -60,14 +60,15 @@ const observer = new IntersectionObserver((entries) => {
 
 const comments = ref<Page<BhsComment>>()
 
+const lastLoadPage = 1
 function loadComments() {
   isLoad.value = true
   observer.disconnect()
 
-  getComments()
+  getComments(lastLoadPage)
 }
 
-async function getComments(page?: number) {
+async function getComments(page: number) {
   let result = await commentApi.getByAid(props.aid, page)
   if (result.success) {
     comments.value = result.data

@@ -20,13 +20,14 @@
       </div>
       <Textarea :minRows="4" :placeholder="props.coid ? '内容' : '内容(点击头像可回复他人)'" v-model="data.content.value"
                 :invalid="data.content.invalid"/>
-      <div class="flex justify-end">
+      <div class="flex justify-end items-center">
+        <div class="mr-1 text-light-400 dark:text-dark-400">{{ data.content.value.length }}/300</div>
         <Button v-if="props.coid" :type="isCurrentDarkMode ? 'light' : 'danger'" @click="emits('cancel')">取消</Button>
         <Button :type="isCurrentDarkMode ? 'info' : 'secondary'" @click="sendComment" :disabled="isSending">
           <template #icon v-if="isSending">
             <IRegularSpinnerThird class="animate-spin"/>
           </template>
-          发送
+          {{ isSending ? '发送中' : '发送' }}
         </Button>
       </div>
     </div>

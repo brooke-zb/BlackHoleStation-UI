@@ -81,6 +81,7 @@ declare type Page<D> = {
   pageNum: number, // 当前页
   pageSize: number, // 每页数量
   pages: number, // 总页数
+  total: number, // 总数量
 }
 
 // post data
