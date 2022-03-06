@@ -31,7 +31,7 @@ function computePos() {
 
   let pos: Record<string, any> = {
     opacity: 0,
-    scaleY: 0,
+    scale: 0,
   }
 
   // y
@@ -56,16 +56,12 @@ function computePos() {
 }
 
 function onEnter(el: Element, done: () => void) {
-  gsap.set(el, Object.assign(computePos(), {
-    onComplete: () => {
-      gsap.to(el, {
-        duration: 0.15,
-        opacity: 1,
-        scaleY: 1,
-        onComplete: done,
-      })
-    },
-  }))
+  gsap.fromTo(el, computePos(), {
+    duration: 0.15,
+    opacity: 1,
+    scale: 1,
+    onComplete: done,
+  })
   document.addEventListener('click', outsideClickListener)
   window.addEventListener('resize', resizeListener)
   window.addEventListener('scroll', scrollListener)
