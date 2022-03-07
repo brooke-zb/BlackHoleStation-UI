@@ -15,7 +15,7 @@
         </template>
       </Input>
       <div class="px-1.5 flex items-center w-full text-light-500 dark:text-dark-300">
-        <input id="login-remember-me" type="checkbox" class="checkbox" :checked="data.rememberMe.value"/>
+        <input id="login-remember-me" type="checkbox" class="checkbox" v-model="data.rememberMe.value"/>
         <label for="login-remember-me" class="select-none">7天内免登录</label>
       </div>
       <div class="flex w-full">
@@ -41,6 +41,7 @@ import Input from '@/components/ui/form/Input.vue'
 import Button from '@/components/ui/button/Button.vue'
 import state from '@/utils/store'
 
+const router = useRouter()
 const toast = useToast()
 state.title = '管理员登录'
 
@@ -68,11 +69,21 @@ function login() {
         username: data.username.value,
         password: data.password.value,
         rememberMe: data.rememberMe.value,
-      })
-      toast.add({
-        type: 'success',
-        message: '登录成功',
-        duration: 5000,
+      }).then((resp) => {
+        if (resp.success) {
+          toast.add({
+            type: 'success',
+            message: resp.msg,
+            duration: 5000,
+          })
+          router.push('/admin')
+        } else {
+          toast.add({
+            type: 'danger',
+            message: resp.msg,
+            duration: 5000,
+          })
+        }
       })
     } else {
       toast.add({
