@@ -15,7 +15,7 @@
         </template>
       </Input>
       <div class="flex w-full">
-        <Button class="block grow" :type="isCurrentDarkMode ? 'info' : 'secondary'" @click="login">
+        <Button class="block grow" :type="state.isDarkMode ? 'info' : 'secondary'" @click="login">
           登录
         </Button>
       </div>
@@ -32,10 +32,10 @@ export default defineComponent({
 <script lang="ts" setup>
 import Input from '@/components/ui/form/Input.vue'
 import Button from '@/components/ui/button/Button.vue'
-import { isCurrentDarkMode, title } from '@/utils/global'
+import state from '@/utils/store'
 
 const toast = useToast()
-title.value = '管理员登录'
+state.title = '管理员登录'
 
 const data = reactive({
   username: {

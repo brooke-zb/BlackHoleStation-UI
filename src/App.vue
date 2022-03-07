@@ -21,7 +21,7 @@
       @leave="leaveLoading"
       :css="false"
   >
-    <Loading v-show="isLoading"/>
+    <Loading v-show="state.isPageLoading"/>
   </transition>
   <Footer/>
   <ToastContainer/>
@@ -34,7 +34,7 @@ import Loading from '@/components/page/Loading.vue'
 import Footer from '@/components/page/Footer.vue'
 import ToastContainer from '@/components/ui/toast/ToastContainer.vue'
 // import SideMenu from '@/components/page/SideMenu.vue'
-import { isLoading, currentTheme, isCurrentDarkMode } from '@/utils/global'
+import state from '@/utils/store'
 import gsap from 'gsap'
 
 // 页面切换动画
@@ -95,32 +95,32 @@ const isPreferredDark = usePreferredDark()
 function applyTheme(theme?: 'dark' | 'light' | 'system') {
   // set theme
   if (theme) {
-    currentTheme.value = theme
+    state.theme = theme
   }
 
-  switch (currentTheme.value) {
+  switch (state.theme) {
     case 'system':
       if (isPreferredDark.value) {
         document.documentElement.classList.add('dark')
-        isCurrentDarkMode.value = true
+        state.isDarkMode = true
       } else {
         document.documentElement.classList.remove('dark')
-        isCurrentDarkMode.value = false
+        state.isDarkMode = false
       }
       break
 
     case 'dark':
       document.documentElement.classList.add('dark')
-      isCurrentDarkMode.value = true
+      state.isDarkMode = true
       break
 
     case 'light':
       document.documentElement.classList.remove('dark')
-      isCurrentDarkMode.value = false
+      state.isDarkMode = false
       break
 
     default:
-      currentTheme.value = 'system'
+      state.theme = 'system'
       applyTheme()
       break
   }

@@ -9,12 +9,12 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import { isShowImage } from '@/utils/global'
+import state from '@/utils/store'
 
 onMounted(() => {
-  isShowImage.value = false
+  state.isShowBgImage = false
 })
 onUnmounted(() => {
-  isShowImage.value = true
+  state.isShowBgImage = true
 })
 </script>

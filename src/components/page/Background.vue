@@ -12,7 +12,7 @@ export default defineComponent({
 import gsap from 'gsap'
 import darkImage from '@/assets/img/blackhole.png?url'
 import lightImage from '@/assets/img/planet.png'
-import { isCurrentDarkMode, isShowImage } from '@/utils/global'
+import state from '@/utils/store'
 
 const bg = ref()
 
@@ -118,7 +118,7 @@ function initImage() {
 // 渲染
 function render() {
   holder.ctx.save()
-  let bgColor = isCurrentDarkMode.value ? setting.bgColor.dark : setting.bgColor.light
+  let bgColor = state.isDarkMode ? setting.bgColor.dark : setting.bgColor.light
 
   // background
   holder.ctx.fillStyle = bgColor
@@ -132,7 +132,7 @@ function render() {
     let x = holder.element.width * light.pos[0] < radius ? holder.element.width * light.pos[0] : radius
     let y = holder.element.height * light.pos[1] < radius ? holder.element.height * light.pos[1] : radius
     let grd = holder.ctx.createRadialGradient(x, y, 50, x, y, radius)
-    grd.addColorStop(0, isCurrentDarkMode.value ? light.color['dark'] : light.color['light'])
+    grd.addColorStop(0, state.isDarkMode ? light.color['dark'] : light.color['light'])
     grd.addColorStop(1, `${ bgColor }01`)
     holder.ctx.fillStyle = grd
     holder.ctx.fillRect(
@@ -145,8 +145,8 @@ function render() {
   holder.ctx.restore()
 
   // image
-  let img = isCurrentDarkMode.value ? holder.image.dark : holder.image.light
-  if (isShowImage.value && img) {
+  let img = state.isDarkMode ? holder.image.dark : holder.image.light
+  if (state.isShowBgImage && img) {
     holder.ctx.drawImage(
         img,
         holder.element.width / 2 - setting.imageSize / 2 + holder.parallax[0],

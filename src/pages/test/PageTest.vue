@@ -13,9 +13,9 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Paginator from '@/components/ui/paginator/Paginator.vue'
-import { title } from '@/utils/global'
+import state from '@/utils/store'
 
-title.value = '分页测试页面'
+state.title = '分页测试页面'
 
 const info = reactive({
   currentPage: 3,

@@ -29,7 +29,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
-import { title } from '@/utils/global'
+import state from '@/utils/store'
 
-title.value = '主页'
+state.title = '主页'
 </script>

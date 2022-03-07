@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import { isShowImage, title } from '@/utils/global'
+import state from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
 import CommentContainer from '@/pages/article/CommentContainer.vue'
@@ -75,17 +75,17 @@ const loading = ref(true)
 const data = ref<BhsArticle>()
 const gallery = ref()
 
-title.value = '文章'
+state.title = '文章'
 onMounted(async () => {
   // 关闭背景图片以避免影响文字显示
-  isShowImage.value = false
+  state.isShowBgImage = false
 
   // 获取文章内容
   let res = await articleApi.getByAid(props.aid)
   if (res.success) {
     data.value = res.data
     data.value.content = marked(data.value.content)
-    title.value = data.value.title
+    state.title = data.value.title
     isShowComment.value = true
   } else {
     toast.add({
@@ -93,7 +93,7 @@ onMounted(async () => {
       message: res.msg,
       duration: 5000,
     })
-    title.value = '文章不存在'
+    state.title = '文章不存在'
   }
   loading.value = false
 
@@ -106,6 +106,6 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
-  isShowImage.value = true
+  state.isShowBgImage = true
 })
 </script>

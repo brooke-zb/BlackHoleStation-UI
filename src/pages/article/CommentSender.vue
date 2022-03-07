@@ -22,8 +22,8 @@
                 :invalid="data.content.invalid"/>
       <div class="flex justify-end items-center">
         <div class="mr-1 text-light-400 dark:text-dark-400">{{ data.content.value.length }}/300</div>
-        <Button v-if="props.coid" :type="isCurrentDarkMode ? 'light' : 'danger'" @click="emits('cancel')">取消</Button>
-        <Button :type="isCurrentDarkMode ? 'info' : 'secondary'" @click="sendComment" :disabled="isSending">
+        <Button v-if="props.coid" :type="state.isDarkMode ? 'light' : 'danger'" @click="emits('cancel')">取消</Button>
+        <Button :type="state.isDarkMode ? 'info' : 'secondary'" @click="sendComment" :disabled="isSending">
           <template #icon v-if="isSending">
             <IRegularSpinnerThird class="animate-spin"/>
           </template>
@@ -44,7 +44,7 @@ export default defineComponent({
 import Button from '@/components/ui/button/Button.vue'
 import Input from '@/components/ui/form/Input.vue'
 import Textarea from '@/components/ui/form/Textarea.vue'
-import { isCurrentDarkMode } from '@/utils/global'
+import state from '@/utils/store'
 
 const toast = useToast()
 
