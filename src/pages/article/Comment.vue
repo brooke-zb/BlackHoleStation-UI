@@ -61,9 +61,9 @@ const props = defineProps<{
 
 const avatar = computed(() => {
   if (props.item.avatar) {
-    return `${baseAvatarUrl}${props.item.avatar}%3Fs%3D48`
+    return `${baseAvatarUrl}${props.item.avatar}?s=48`
   } else {
-    return `${baseAvatarUrl}404%3Fs%3D48`
+    return `${baseAvatarUrl}?s=48`
   }
 })
 
