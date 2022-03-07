@@ -2,7 +2,7 @@
   <div :id="'co' + props.item.coid" class="my-4 bg-secondary-300 dark:bg-dark-400 bg-opacity-0 dark:bg-opacity-0">
     <div class="flex items-start" :class="{ 'gap-2': props.sub, 'gap-4': !props.sub }">
       <img :alt="props.item.nickname" class="rounded-full cursor-pointer hover:opacity-70"
-           :src="avatar" title="点击回复"
+           :src="avatar" v-tooltip="'点击回复'"
            @click="changeReplyComment(props.item.coid)"
            :height="props.sub ? 36 : 48" :width="props.sub ? 36 : 48"/>
       <div class="grow">

@@ -10,7 +10,7 @@
     <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
     <div class="ml-2 hidden sm:block">{{ state.title }}</div>
     <div class="grow"/>
-    <MenuButton title="切换主题" ref="themeBtn" @click="toggleThemeMenu" :type="state.isDarkMode ? 'info' : 'secondary'"
+    <MenuButton v-tooltip="'主题'" ref="themeBtn" @click="toggleThemeMenu" :type="state.isDarkMode ? 'info' : 'secondary'"
                 :highlight="state.theme !== 'system'">
       <template #icon>
         <IRegularMoonStars v-if="state.theme === 'dark' || (state.theme === 'system' && state.isDarkMode)"/>
@@ -18,7 +18,7 @@
       </template>
     </MenuButton>
     <Menu ref="themeMenu" :items="menuItem"/>
-    <MenuButton title="登录" @click="$router.push('/admin/login')" :type="state.isDarkMode ? 'info' : 'secondary'">
+    <MenuButton v-tooltip="'登录'" @click="$router.push('/admin/login')" :type="state.isDarkMode ? 'info' : 'secondary'">
       <template #icon>
         <IRegularRightToBracket/>
       </template>

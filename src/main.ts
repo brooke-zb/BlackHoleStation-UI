@@ -1,6 +1,7 @@
 import { router } from '@/utils/router'
 import state from '@/utils/store'
 import renderer from '@/utils/renderer'
+import tooltip from '@/utils/tooltip'
 
 import App from './App.vue'
 import '@/index.css'
@@ -14,4 +15,5 @@ marked.use({ renderer })
 
 createApp(App)
   .use(router)
+  .use(tooltip)
   .mount('#app')

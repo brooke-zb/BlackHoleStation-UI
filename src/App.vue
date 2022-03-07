@@ -25,6 +25,7 @@
   </transition>
   <Footer/>
   <ToastContainer/>
+  <TooltipContainer/>
 </template>
 
 <script setup lang="ts">
@@ -33,6 +34,7 @@ import Background from '@/components/page/Background.vue'
 import Loading from '@/components/page/Loading.vue'
 import Footer from '@/components/page/Footer.vue'
 import ToastContainer from '@/components/ui/toast/ToastContainer.vue'
+import TooltipContainer from '@/components/ui/tooltip/TooltipContainer.vue'
 // import SideMenu from '@/components/page/SideMenu.vue'
 import state from '@/utils/store'
 import gsap from 'gsap'

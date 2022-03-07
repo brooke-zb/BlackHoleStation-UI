@@ -26,8 +26,29 @@ _toastImpl.add = add
 _toastImpl.remove = remove
 _toastImpl.clear = clear
 
+// toast actions
 const toastQueue = ref<ToastMessage[]>([])
 let nextToastId = 0
+
+function add(toast: ToastProps) {
+  toastQueue.value.push({
+    id: nextToastId++,
+    config: toast,
+  })
+}
+
+function remove(id?: number) {
+  for (let i = 0; i < toastQueue.value.length; i++) {
+    if (toastQueue.value[i].id === id) {
+      toastQueue.value.splice(i, 1)
+      break
+    }
+  }
+}
+
+function clear() {
+  toastQueue.value = []
+}
 
 function onBeforeEnter(el: Element) {
   gsap.set(el, {
@@ -58,27 +79,6 @@ function onLeave(el: Element, done: () => void) {
     translateY: -50,
     onComplete: done,
   })
-}
-
-// toast actions
-function add(toast: ToastProps) {
-  toastQueue.value.push({
-    id: nextToastId++,
-    config: toast,
-  })
-}
-
-function remove(id?: number) {
-  for (let i = 0; i < toastQueue.value.length; i++) {
-    if (toastQueue.value[i].id === id) {
-      toastQueue.value.splice(i, 1)
-      break
-    }
-  }
-}
-
-function clear() {
-  toastQueue.value = []
 }
 
 </script>

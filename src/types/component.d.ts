@@ -1,4 +1,4 @@
-// type definitions of background
+// background
 declare interface BackgroundSetting {
   parallax: [number, number],
   bgColor: {
@@ -63,4 +63,11 @@ declare interface ToastProps {
   message: string,
   icon?: any,
   duration?: number,
+}
+
+// tooltip
+declare type TooltipProps = {
+  id: number,
+  el: Element,
+  content: string,
 }

@@ -56,13 +56,13 @@ function login() {
       toast.add({
         type: 'success',
         message: '登录成功',
-        duration: 5000
+        duration: 5000,
       })
     } else {
       toast.add({
         type: 'danger',
         message: message,
-        duration: 5000
+        duration: 5000,
       })
     }
   })
