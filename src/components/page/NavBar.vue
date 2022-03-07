@@ -10,15 +10,22 @@
     <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
     <div class="ml-2 hidden sm:block">{{ state.title }}</div>
     <div class="grow"/>
-    <MenuButton v-tooltip="'主题'" ref="themeBtn" @click="toggleThemeMenu" :type="state.isDarkMode ? 'info' : 'secondary'"
-                :highlight="state.theme !== 'system'">
+    <MenuButton v-tooltip="'主题'" ref="themeBtn" @click="toggleThemeMenu"
+                :type="state.isDarkMode ? 'info' : 'secondary'" :highlight="state.theme !== 'system'">
       <template #icon>
         <IRegularMoonStars v-if="state.theme === 'dark' || (state.theme === 'system' && state.isDarkMode)"/>
         <IRegularSunBright v-if="state.theme === 'light' || (state.theme === 'system' && !state.isDarkMode)"/>
       </template>
     </MenuButton>
     <Menu ref="themeMenu" :items="menuItem"/>
-    <MenuButton v-tooltip="'登录'" @click="$router.push('/admin/login')" :type="state.isDarkMode ? 'info' : 'secondary'">
+    <MenuButton v-if="state.user" v-tooltip="'后台管理'" @click="$router.push('/admin')"
+                :type="state.isDarkMode ? 'info' : 'secondary'">
+      <template #icon>
+        <IRegularGear/>
+      </template>
+    </MenuButton>
+    <MenuButton v-else v-tooltip="'登录'" @click="$router.push('/admin/login')"
+                :type="state.isDarkMode ? 'info' : 'secondary'">
       <template #icon>
         <IRegularRightToBracket/>
       </template>
@@ -90,6 +97,15 @@ function scrollEvent() {
   // change navbar backdrop-blur
   isScrollDown.value = window.scrollY > 10
 }
+
+// 获取用户信息
+accountApi.getInfo().then(res => {
+  if (res.success) {
+    state.user = res.data
+  } else {
+    state.user = undefined
+  }
+})
 
 onMounted(() => {
   gsap.ticker.add(scrollEvent)

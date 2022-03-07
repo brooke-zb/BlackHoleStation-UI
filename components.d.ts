@@ -15,6 +15,7 @@ declare module 'vue' {
     IRegularEnvelope: typeof import('~icons/regular/envelope')['default']
     IRegularEye: typeof import('~icons/regular/eye')['default']
     IRegularFolder: typeof import('~icons/regular/folder')['default']
+    IRegularGear: typeof import('~icons/regular/gear')['default']
     IRegularImage: typeof import('~icons/regular/image')['default']
     IRegularLink: typeof import('~icons/regular/link')['default']
     IRegularLock: typeof import('~icons/regular/lock')['default']
