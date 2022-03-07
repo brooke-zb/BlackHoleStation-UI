@@ -14,9 +14,16 @@
           <IRegularLock/>
         </template>
       </Input>
+      <div class="px-1.5 flex items-center w-full text-light-500 dark:text-dark-300">
+        <input id="login-remember-me" type="checkbox" class="checkbox" :checked="data.rememberMe.value"/>
+        <label for="login-remember-me" class="select-none">7天内免登录</label>
+      </div>
       <div class="flex w-full">
-        <Button class="block grow" :type="state.isDarkMode ? 'info' : 'secondary'" @click="login">
-          登录
+        <Button class="block grow" :type="state.isDarkMode ? 'info' : 'secondary'" @click="login" :disabled="isLogging">
+          <template #icon v-if="isLogging">
+            <IRegularSpinnerThird class="animate-spin"/>
+          </template>
+          {{ isLogging ? '登录中' : '登录' }}
         </Button>
       </div>
     </div>
@@ -48,11 +55,20 @@ const data = reactive({
     rule: notEmpty('密码不能为空'),
     invalid: false,
   },
+  rememberMe: {
+    value: false,
+  },
 })
+const isLogging = ref(false)
 
 function login() {
   validate(data, (valid, message) => {
     if (valid) {
+      accountApi.login({
+        username: data.username.value,
+        password: data.password.value,
+        rememberMe: data.rememberMe.value,
+      })
       toast.add({
         type: 'success',
         message: '登录成功',

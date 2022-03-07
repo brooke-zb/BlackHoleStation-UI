@@ -99,3 +99,14 @@ declare type BhsLoginProps = {
   password: string,
   rememberMe: boolean,
 }
+
+// store state
+declare type State = {
+  isPageLoading: boolean,
+  isSideMenuOpen: boolean,
+  title: string,
+  theme: string,
+  isDarkMode: boolean,
+  isShowBgImage: boolean,
+  user?: BhsUser
+}

@@ -5,6 +5,8 @@ const state = reactive({
   theme: useStorage('bhs.theme', 'system'),
   isDarkMode: false,
   isShowBgImage: true,
-})
+
+  user: undefined
+}) as State
 
 export default state

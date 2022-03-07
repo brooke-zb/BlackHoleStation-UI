@@ -1,5 +1,5 @@
 declare type ValidationData = {
-  value: string,
+  value: any,
   rule?: Validator,
   invalid?: boolean
 }
