@@ -16,10 +16,10 @@ const tooltip = {
           el,
           content: binding.value,
         }
-        el.addEventListener('mouseenter', () => {
+        el.addEventListener('pointerenter', () => {
           _tooltipImpl.add(tooltip)
         })
-        el.addEventListener('mouseleave', () => {
+        el.addEventListener('pointerleave', () => {
           _tooltipImpl.remove(tooltip.id)
         })
       },

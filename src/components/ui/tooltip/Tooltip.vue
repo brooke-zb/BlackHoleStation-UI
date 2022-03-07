@@ -48,6 +48,11 @@ function updatePos() {
 }
 
 onMounted(() => {
+  window.addEventListener('scroll', updatePos)
   updatePos()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', updatePos)
 })
 </script>
