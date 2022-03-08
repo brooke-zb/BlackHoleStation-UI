@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import state from '@/utils/store'
+import store from '@/utils/store'
 
 const routes: RouteRecordRaw[] = [
   // 主页
@@ -71,13 +71,13 @@ export const router = createRouter({
 router.beforeEach(async (to, from) => {
   // avoid loading when playing out animate
   // if (to.fullPath !== from.fullPath || to.name !== from.name) {
-  state.isPageLoading = true
+  store.state.isPageLoading = true
   // }
-  state.isSideMenuOpen = false
+  store.state.isSideMenuOpen = false
   // await sleep(500)
 })
 router.beforeResolve((to, from) => {
-  state.isPageLoading = false
+  store.state.isPageLoading = false
 })
 
 // DEBUG

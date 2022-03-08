@@ -1,7 +1,7 @@
 <template>
   <div id="bhs-comment" ref="obs" class="my-4 p-2 rounded-md bg-white/50 dark:bg-dark-700/50 shadow-lg">
     <div class="flex justify-center text-xl text-secondary-600 dark:text-light-100">
-      <Button v-if="!isLoad" @click="loadComments" :type="state.isDarkMode ? 'info' : 'secondary'">加载评论</Button>
+      <Button v-if="!isLoad" @click="loadComments" :type="store.state.isDarkMode ? 'info' : 'secondary'">加载评论</Button>
       <template v-else-if="comments">
         {{ comments.total > 0 ? `${ comments.total }条评论` : '空空如也~' }}
       </template>
@@ -33,7 +33,7 @@ import Comment from '@/pages/article/Comment.vue'
 import CommentSender from '@/pages/article/CommentSender.vue'
 import Button from '@/components/ui/button/Button.vue'
 import Paginator from '@/components/ui/paginator/Paginator.vue'
-import state from '@/utils/store'
+import store from '@/utils/store'
 
 // 更改回复框位置
 const coid = ref<number>()

@@ -16,9 +16,9 @@ export default defineComponent({
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
 import Icon from '~icons/regular/alien'
-import state from '@/utils/store'
+import store from '@/utils/store'
 
-state.title = '通知测试页面'
+store.state.title = '通知测试页面'
 
 const toast = useToast()
 

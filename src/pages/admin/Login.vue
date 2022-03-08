@@ -19,7 +19,7 @@
         <label for="login-remember-me" class="select-none">7天内免登录</label>
       </div>
       <div class="flex w-full">
-        <Button class="block grow" :type="state.isDarkMode ? 'info' : 'secondary'" @click="login" :disabled="isLogging">
+        <Button class="block grow" :type="store.state.isDarkMode ? 'info' : 'secondary'" @click="login" :disabled="isLogging">
           <template #icon v-if="isLogging">
             <IRegularSpinnerThird class="animate-spin"/>
           </template>
@@ -39,11 +39,11 @@ export default defineComponent({
 <script lang="ts" setup>
 import Input from '@/components/ui/form/Input.vue'
 import Button from '@/components/ui/button/Button.vue'
-import state from '@/utils/store'
+import store from '@/utils/store'
 
 const router = useRouter()
 const toast = useToast()
-state.title = '管理员登录'
+store.state.title = '管理员登录'
 
 const data = reactive({
   username: {

@@ -148,7 +148,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
-import state from '@/utils/store'
+import store from '@/utils/store'
 
-state.title = '按钮测试页面'
+store.state.title = '按钮测试页面'
 </script>

@@ -31,7 +31,7 @@
         <div class="comment-sender"></div>
         <!--子评论-->
         <Comment v-for="item in subComment.items" :key="item.coid" :item="item" :article-uid="props.articleUid" sub/>
-        <Button :type="state.isDarkMode ? 'info' : 'secondary'" size="sm"
+        <Button :type="store.state.isDarkMode ? 'info' : 'secondary'" size="sm"
                 v-if="subComment.canShowMore" @click="showAllSubComment">
           显示剩余{{ props.item.children.length - 2 }}条回复
         </Button>
@@ -48,7 +48,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Button from '@/components/ui/button/Button.vue'
-import state from '@/utils/store'
+import store from '@/utils/store'
 import gsap from 'gsap'
 
 const baseAvatarUrl = import.meta.env.BHS_AVATAR_URL

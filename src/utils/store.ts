@@ -9,4 +9,19 @@ const state = reactive({
   user: undefined
 }) as State
 
-export default state
+const methods = {
+  getLoginUser() {
+    accountApi.getInfo().then(res => {
+      if (res.success) {
+        state.user = res.data
+      } else {
+        state.user = undefined
+      }
+    })
+  }
+}
+
+export default {
+  state,
+  ...methods
+}

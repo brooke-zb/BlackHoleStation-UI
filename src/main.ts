@@ -1,5 +1,5 @@
 import { router } from '@/utils/router'
-import state from '@/utils/store'
+import store from '@/utils/store'
 import renderer from '@/utils/renderer'
 import tooltip from '@/utils/tooltip'
 
@@ -8,7 +8,7 @@ import '@/index.css'
 
 // 固定标题样式
 const siteName = import.meta.env.BHS_SITE_NAME
-useTitle(computed(() => state.title ? `${ state.title } - ${ siteName }` : siteName))
+useTitle(computed(() => store.state.title ? `${ store.state.title } - ${ siteName }` : siteName))
 
 // 设置marked渲染器
 marked.use({ renderer })

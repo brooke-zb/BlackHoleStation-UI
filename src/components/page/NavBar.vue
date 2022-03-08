@@ -2,30 +2,30 @@
   <nav ref="nav" class="sticky w-full h-14 top-0 z-40
   flex items-center justify-between transition-bg
   shadow-light-600/20 dark:shadow-light-300/20" :class="classAppend">
-    <MenuButton :type="state.isDarkMode ? 'info' : 'secondary'">
+    <MenuButton :type="store.state.isDarkMode ? 'info' : 'secondary'">
       <template #icon>
         <ISolidBars/>
       </template>
     </MenuButton>
     <router-link to="/" class="select-none text-lg">{{ siteName }}</router-link>
-    <div class="ml-2 hidden sm:block">{{ state.title }}</div>
+    <div class="ml-2 hidden sm:block">{{ store.state.title }}</div>
     <div class="grow"/>
     <MenuButton v-tooltip="'主题'" ref="themeBtn" @click="toggleThemeMenu"
-                :type="state.isDarkMode ? 'info' : 'secondary'" :highlight="state.theme !== 'system'">
+                :type="store.state.isDarkMode ? 'info' : 'secondary'" :highlight="store.state.theme !== 'system'">
       <template #icon>
-        <IRegularMoonStars v-if="state.theme === 'dark' || (state.theme === 'system' && state.isDarkMode)"/>
-        <IRegularSunBright v-if="state.theme === 'light' || (state.theme === 'system' && !state.isDarkMode)"/>
+        <IRegularMoonStars v-if="store.state.theme === 'dark' || (store.state.theme === 'system' && store.state.isDarkMode)"/>
+        <IRegularSunBright v-if="store.state.theme === 'light' || (store.state.theme === 'system' && !store.state.isDarkMode)"/>
       </template>
     </MenuButton>
     <Menu ref="themeMenu" :items="menuItem"/>
-    <MenuButton v-if="state.user" v-tooltip="'后台管理'" @click="$router.push('/admin')"
-                :type="state.isDarkMode ? 'info' : 'secondary'">
+    <MenuButton v-if="store.state.user" v-tooltip="'后台管理'" @click="$router.push('/admin')"
+                :type="store.state.isDarkMode ? 'info' : 'secondary'">
       <template #icon>
         <IRegularGear/>
       </template>
     </MenuButton>
     <MenuButton v-else v-tooltip="'登录'" @click="$router.push('/admin/login')"
-                :type="state.isDarkMode ? 'info' : 'secondary'">
+                :type="store.state.isDarkMode ? 'info' : 'secondary'">
       <template #icon>
         <IRegularRightToBracket/>
       </template>
@@ -40,10 +40,10 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import state from '@/utils/store'
 import MenuButton from '@/components/ui/button/MenuButton.vue'
 import Menu from '@/components/ui/menu/Menu.vue'
 import gsap from 'gsap'
+import store from '@/utils/store'
 
 import IRegularSunBright from '~icons/regular/sun-bright'
 import IRegularMoonStars from '~icons/regular/moon-stars'
@@ -62,21 +62,21 @@ const menuItem: MenuItemProps[] = [
     onClick: () => applyTheme('light'),
     icon: IRegularSunBright,
     text: '亮色',
-    highlight: computed(() => state.theme === 'light'),
+    highlight: computed(() => store.state.theme === 'light'),
   },
   {
     type: 'action',
     onClick: () => applyTheme('dark'),
     icon: IRegularMoonStars,
     text: '暗色',
-    highlight: computed(() => state.theme === 'dark'),
+    highlight: computed(() => store.state.theme === 'dark'),
   },
   {
     type: 'action',
     onClick: () => applyTheme('system'),
     icon: IRegularDisplay,
     text: '跟随系统',
-    highlight: computed(() => state.theme === 'system'),
+    highlight: computed(() => store.state.theme === 'system'),
   },
 ]
 
@@ -99,13 +99,7 @@ function scrollEvent() {
 }
 
 // 获取用户信息
-accountApi.getInfo().then(res => {
-  if (res.success) {
-    state.user = res.data
-  } else {
-    state.user = undefined
-  }
-})
+store.getLoginUser()
 
 onMounted(() => {
   gsap.ticker.add(scrollEvent)
