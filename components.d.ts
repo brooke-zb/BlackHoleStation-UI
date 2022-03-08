@@ -4,7 +4,9 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    IBrandsVuejs: typeof import('~icons/brands/vuejs')['default']
     IRegularBars: typeof import('~icons/regular/bars')['default']
+    IRegularBrowser: typeof import('~icons/regular/browser')['default']
     IRegularCalendarLines: typeof import('~icons/regular/calendar-lines')['default']
     IRegularCalendarLinesPen: typeof import('~icons/regular/calendar-lines-pen')['default']
     IRegularChevronLeft: typeof import('~icons/regular/chevron-left')['default']
@@ -12,6 +14,8 @@ declare module 'vue' {
     IRegularChevronsLeft: typeof import('~icons/regular/chevrons-left')['default']
     IRegularChevronsRight: typeof import('~icons/regular/chevrons-right')['default']
     IRegularCircleCheck: typeof import('~icons/regular/circle-check')['default']
+    IRegularCircleInfo: typeof import('~icons/regular/circle-info')['default']
+    IRegularCode: typeof import('~icons/regular/code')['default']
     IRegularEnvelope: typeof import('~icons/regular/envelope')['default']
     IRegularEye: typeof import('~icons/regular/eye')['default']
     IRegularFolder: typeof import('~icons/regular/folder')['default']
@@ -24,8 +28,15 @@ declare module 'vue' {
     IRegularSpinnerThird: typeof import('~icons/regular/spinner-third')['default']
     IRegularTag: typeof import('~icons/regular/tag')['default']
     IRegularUser: typeof import('~icons/regular/user')['default']
+    IRegularVuejs: typeof import('~icons/regular/vuejs')['default']
+    IRegularVueJs: typeof import('~icons/regular/vue-js')['default']
+    IRegularXMark: typeof import('~icons/regular/x-mark')['default']
     ISolidAlien: typeof import('~icons/solid/alien')['default']
     ISolidBars: typeof import('~icons/solid/bars')['default']
+    ISolidBrowser: typeof import('~icons/solid/browser')['default']
+    ISolidCircleInfo: typeof import('~icons/solid/circle-info')['default']
+    ISolidFolder: typeof import('~icons/solid/folder')['default']
+    ISolidSquareInfo: typeof import('~icons/solid/square-info')['default']
     ISolidXmark: typeof import('~icons/solid/xmark')['default']
   }
 }

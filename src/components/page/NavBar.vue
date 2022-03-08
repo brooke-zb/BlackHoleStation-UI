@@ -2,7 +2,8 @@
   <nav ref="nav" class="sticky w-full h-14 top-0 z-40
   flex items-center justify-between transition-bg
   shadow-light-600/20 dark:shadow-light-300/20" :class="classAppend">
-    <MenuButton :type="store.state.isDarkMode ? 'info' : 'secondary'">
+    <MenuButton :type="store.state.isDarkMode ? 'info' : 'secondary'"
+                @click="store.state.isSideMenuOpen = true">
       <template #icon>
         <ISolidBars/>
       </template>

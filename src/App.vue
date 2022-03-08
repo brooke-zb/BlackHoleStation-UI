@@ -1,29 +1,24 @@
 <template>
   <Background/>
-  <!--  <SideMenu/>-->
   <NavBar/>
-  <div class="my-2 container overflow-visible">
-    <router-view v-slot="{ Component }">
-      <transition
-          mode="out-in"
-          @before-enter="beforeEnter"
-          @enter="enter"
-          @leave="leave"
-          :css="false"
-      >
-        <component :key="$route.path" :is="Component"/>
-      </transition>
-    </router-view>
+  <div>
+    <SideMenu/>
+    <div class="my-2 container overflow-visible">
+      <router-view v-slot="{ Component }">
+        <transition
+            mode="out-in"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+            :css="false"
+        >
+          <component :key="$route.path" :is="Component"/>
+        </transition>
+      </router-view>
+    </div>
+    <Footer/>
   </div>
-  <transition
-      @before-enter="beforeLoading"
-      @enter="enterLoading"
-      @leave="leaveLoading"
-      :css="false"
-  >
-    <Loading v-show="store.state.isPageLoading"/>
-  </transition>
-  <Footer/>
+  <Loading/>
   <ToastContainer/>
   <TooltipContainer/>
 </template>
@@ -35,7 +30,7 @@ import Loading from '@/components/page/Loading.vue'
 import Footer from '@/components/page/Footer.vue'
 import ToastContainer from '@/components/ui/toast/ToastContainer.vue'
 import TooltipContainer from '@/components/ui/tooltip/TooltipContainer.vue'
-// import SideMenu from '@/components/page/SideMenu.vue'
+import SideMenu from '@/components/page/SideMenu.vue'
 import store from '@/utils/store'
 import gsap from 'gsap'
 
@@ -66,29 +61,6 @@ function leave(el: Element, done: () => void) {
     duration: 0.2,
     scaleX: 0.8,
     scaleY: 0.8,
-    opacity: 0,
-    onComplete: done,
-  })
-}
-
-// loading transition
-function beforeLoading(el: Element) {
-  gsap.set(el, {
-    opacity: 0,
-  })
-}
-
-function enterLoading(el: Element, done: () => void) {
-  gsap.to(el, {
-    duration: 0.4,
-    opacity: 1,
-    onComplete: done,
-  })
-}
-
-function leaveLoading(el: Element, done: () => void) {
-  gsap.to(el, {
-    duration: 0.4,
     opacity: 0,
     onComplete: done,
   })

@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <transition @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave">
+    <transition @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" :css="false">
       <div v-show="isShow" ref="container" @wheel.stop.prevent="onWheel"
            class="fixed top-0 left-0 w-full h-full overflow-hidden
            bg-light-900 z-50 select-none flex flex-col justify-between">
