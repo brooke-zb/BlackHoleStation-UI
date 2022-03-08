@@ -97,10 +97,7 @@ table.table th {
 }
 
 table.table tbody tr:nth-child(2n) {
-    @apply border bg-secondary-200 dark:bg-dark-700;
-    transition-property: background-color !important;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
+    @apply border bg-secondary-200 dark:bg-dark-700 transition-bg;
 }
 
 p.p {

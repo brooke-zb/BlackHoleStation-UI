@@ -1,6 +1,6 @@
 <template>
   <button
-      class="m-1.5 select-none cursor-pointer relative inline-flex justify-center items-center transition-bg align-bottom"
+      class="m-1.5 select-none cursor-pointer relative inline-flex justify-center items-center transition-bg align-bottom outline-0"
       :class="classAppend" :disabled="isDisabled">
     <div v-if="$slots.icon" class="w-5 h-5">
       <slot name="icon"></slot>
@@ -131,7 +131,7 @@ button::after {
   content: '';
   height: calc(100% + 4px);
   width: calc(100% + 4px);
-  @apply absolute -left-0.5 -top-0.5 transition-all duration-150;
+  @apply absolute -left-0.5 -top-0.5 transition-all;
 }
 
 button:not([disabled]):hover::after,

@@ -19,16 +19,13 @@ declare module 'vue' {
     IRegularImage: typeof import('~icons/regular/image')['default']
     IRegularLink: typeof import('~icons/regular/link')['default']
     IRegularLock: typeof import('~icons/regular/lock')['default']
-    IRegularLockKeyhole: typeof import('~icons/regular/lock-keyhole')['default']
     IRegularPlus: typeof import('~icons/regular/plus')['default']
     IRegularRightToBracket: typeof import('~icons/regular/right-to-bracket')['default']
-    IRegularSpinner: typeof import('~icons/regular/spinner')['default']
     IRegularSpinnerThird: typeof import('~icons/regular/spinner-third')['default']
     IRegularTag: typeof import('~icons/regular/tag')['default']
     IRegularUser: typeof import('~icons/regular/user')['default']
     ISolidAlien: typeof import('~icons/solid/alien')['default']
     ISolidBars: typeof import('~icons/solid/bars')['default']
-    ISolidUser: typeof import('~icons/solid/user')['default']
     ISolidXmark: typeof import('~icons/solid/xmark')['default']
   }
 }

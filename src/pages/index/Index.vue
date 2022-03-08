@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[1145px]">
+  <div>
     <div>
       <router-link to="/test/btn">
         <Button>click me to btn</Button>
