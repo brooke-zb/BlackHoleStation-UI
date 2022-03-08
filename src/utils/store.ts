@@ -18,7 +18,10 @@ const methods = {
         state.user = undefined
       }
     })
-  }
+  },
+  toggleSideMenu() {
+    state.isSideMenuOpen = !state.isSideMenuOpen
+  },
 }
 
 export default {

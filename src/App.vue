@@ -1,23 +1,21 @@
 <template>
   <Background/>
+  <SideMenu/>
   <NavBar/>
-  <div>
-    <SideMenu/>
-    <div class="my-2 container overflow-visible">
-      <router-view v-slot="{ Component }">
-        <transition
-            mode="out-in"
-            @before-enter="beforeEnter"
-            @enter="enter"
-            @leave="leave"
-            :css="false"
-        >
-          <component :key="$route.path" :is="Component"/>
-        </transition>
-      </router-view>
-    </div>
-    <Footer/>
+  <div class="my-2 container overflow-visible">
+    <router-view v-slot="{ Component }">
+      <transition
+          mode="out-in"
+          @before-enter="beforeEnter"
+          @enter="enter"
+          @leave="leave"
+          :css="false"
+      >
+        <component :key="$route.path" :is="Component"/>
+      </transition>
+    </router-view>
   </div>
+  <Footer/>
   <Loading/>
   <ToastContainer/>
   <TooltipContainer/>

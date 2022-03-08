@@ -3,7 +3,7 @@
   flex items-center justify-between transition-bg
   shadow-light-600/20 dark:shadow-light-300/20" :class="classAppend">
     <MenuButton :type="store.state.isDarkMode ? 'info' : 'secondary'"
-                @click="store.state.isSideMenuOpen = true">
+                @click="store.toggleSideMenu" v-tooltip="'菜单'">
       <template #icon>
         <ISolidBars/>
       </template>

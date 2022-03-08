@@ -2,7 +2,7 @@
   <div class="box-center flex justify-center">
     <div class="flex flex-col items-center rounded-md bg-light-50/80 dark:bg-dark-700/90
                 w-80 mx-2 px-4 py-8 gap-4 backdrop-blur">
-      <div class="text-xl text-light-400 dark:text-dark-300">黑洞空间站</div>
+      <div class="text-xl text-light-400 dark:text-dark-300">{{ siteName }}</div>
       <Input v-model="data.username.value" placeholder="用户名" :invalid="data.username.invalid">
         <template #left>
           <IRegularUser/>
@@ -44,6 +44,7 @@ import store from '@/utils/store'
 const router = useRouter()
 const toast = useToast()
 store.state.title = '管理员登录'
+const siteName = import.meta.env.BHS_SITE_NAME
 
 const data = reactive({
   username: {
