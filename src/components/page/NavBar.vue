@@ -98,9 +98,6 @@ function scrollEvent() {
   isScrollDown.value = window.scrollY > 10
 }
 
-// 获取用户信息
-store.getLoginUser()
-
 onMounted(() => {
   gsap.ticker.add(scrollEvent)
 })

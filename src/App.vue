@@ -39,6 +39,9 @@ import TooltipContainer from '@/components/ui/tooltip/TooltipContainer.vue'
 import store from '@/utils/store'
 import gsap from 'gsap'
 
+// 获取用户信息
+store.getLoginUser()
+
 // 页面切换动画
 function beforeEnter(el: Element) {
   gsap.set(el, {

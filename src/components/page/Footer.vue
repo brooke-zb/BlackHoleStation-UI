@@ -15,7 +15,7 @@
       <div class="w-1/2 sm:w-1/3 text-right p-2">
         <div>
           Power by
-          <a class="link" v-tooltip="'BlackHoleStation'" href="https://github.com/brooke-zb/BlackHoleStation">BHS</a>
+          <a class="link" v-tooltip="'BlackHoleStation'" target="_blank" href="https://github.com/brooke-zb/BlackHoleStation">BHS</a>
         </div>
       </div>
     </div>
