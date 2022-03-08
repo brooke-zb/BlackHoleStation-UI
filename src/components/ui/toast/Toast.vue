@@ -5,7 +5,7 @@
       @click="emits('close')">
     <div class="p-4 flex items-start gap-2">
       <div class="flex items-center text-xl">
-        <Component :is="props.config.icon ? props.config.icon : defaultIcons[props.config.type]"/>
+        <component :is="props.config.icon ? props.config.icon : defaultIcons[props.config.type]"/>
       </div>
       <div class="whitespace-pre-wrap">{{ props.config.message }}</div>
     </div>
