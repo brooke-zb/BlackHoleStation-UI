@@ -3,21 +3,22 @@
     <div v-show="store.state.isSideMenuOpen" @click="store.state.isSideMenuOpen = false"
          class="fixed top-0 left-0 w-full h-full bg-black z-[80] p-8 md:p-16 flex items-center">
       <div ref="menu" @click.stop="" class="w-full h-full rounded-lg overflow-hidden
-           bg-light-100 dark:bg-dark-800 border-2 border-dark-700">
+           bg-light-100 dark:bg-dark-800 border-2 border-light-200 dark:border-dark-700">
         <!--菜单栏-->
         <div class="flex justify-between bg-light-200 dark:bg-dark-700">
           <div class="px-1 py-1 fill-light-500 dark:fill-dark-300">
             <ISolidFolderBlank/>
           </div>
           <div class="px-2 py-1 text-sm select-none">{{ siteName }}</div>
-          <div class="flex items-center px-1">
-            <ISolidCircleSmall class="fill-success-500"/>
-            <ISolidCircleSmall class="fill-warning-500"/>
-            <ISolidCircleSmall class="fill-danger-500 cursor-pointer" @click="store.toggleSideMenu"/>
+          <div class="flex items-center px-3 cursor-pointer group" @click="store.toggleSideMenu">
+            <ISolidXmark class="group-hover:scale-125 group-hover:fill-danger-600 transition-all"/>
           </div>
         </div>
         <!--文件栏-->
-        <TabNav :items="tabItems" :active="activeIndex" @change="navigateTab">
+        <TabNav :navs="tabItems" :active="activeIndex" @change="navigateTab">
+          <div class="p-8 gap-8 flex flex-col sm:flex-row items-center sm:items-start">
+            归档 分类 标签 友链
+          </div>
           <div class="p-8 gap-8 flex flex-col sm:flex-row items-center sm:items-start">
             <div>
               <img :src="avatar" width="128" height="128" alt=""
@@ -25,15 +26,6 @@
             </div>
             <div>
               <div class="text-xl font-bold tracking-wide">{{ siteName }}</div>
-            </div>
-          </div>
-          <div class="p-8 gap-8 flex flex-col sm:flex-row items-center sm:items-start">
-            <div>
-              <img :src="avatar" width="128" height="128" alt=""
-                   class="rounded-xl ring ring-light-400 dark:ring-dark-400"/>
-            </div>
-            <div>
-              <div class="text-xl font-bold tracking-wide">{{ siteName.split('').reverse().join('') }}</div>
             </div>
           </div>
         </TabNav>
