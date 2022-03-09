@@ -1,3 +1,5 @@
+import store from '@/utils/store'
+
 const renderer = {
   options: {},
   code: (code: string, language: string) => {
@@ -8,8 +10,14 @@ const renderer = {
     `<blockquote class="blockquote">${ quote }</blockquote>\n`,
 
   // html: (html: string) => html,
-  heading: (text: string, level: 1 | 2 | 3 | 4 | 5 | 6) =>
-    `<h${ level } class="heading">${ text }</h${ level }>\n`,
+  heading: (text: string, level: 1 | 2 | 3 | 4 | 5 | 6) => {
+    if (level < 4) {
+      let id = store.addAnchor(text, level)
+      return `<h${ level } id="${ id }" class="heading">${ text }</h${ level }>\n`
+    } else {
+      return `<h${ level } class="heading">${ text }</h${ level }>\n`
+    }
+  },
 
   hr: () => '<hr class="hr"/>\n',
 

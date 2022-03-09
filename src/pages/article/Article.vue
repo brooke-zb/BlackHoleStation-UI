@@ -6,14 +6,16 @@
     <template v-else-if="data">
       <div class="text-xl sm:text-2xl text-center font-bold mb-2">{{ data.title }}</div>
       <div
-          class="flex justify-center items-center gap-2 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
-        <IRegularCalendarLines/>
-        {{ data.created }}
-        <template v-if="data.modified">
+          class="flex justify-center gap-2 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
+        <div v-tooltip="'发布时间'">
+          <IRegularCalendarLines class="inline align-text-top"/>
+          {{ data.created }}
+        </div>
+        <div v-if="data.modified" v-tooltip="'上次更新'">
           -
-          <IRegularCalendarLinesPen/>
+          <IRegularCalendarLinesPen class="inline align-text-top"/>
           {{ data.modified }}
-        </template>
+        </div>
       </div>
       <div
           class="flex justify-center items-center gap-1.5 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
@@ -33,6 +35,9 @@
           <IRegularTag/>
           {{ tag.name }}
         </router-link>
+      </div>
+      <div>
+        <a class="link" v-for="item in store.state.anchors" :href="'#' + item.id">{{ '&nbsp;'.repeat(item.level) + item.title }}</a>
       </div>
       <div class="bhs-content" v-html="data.content"></div>
       <CommentContainer v-if="isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
@@ -83,6 +88,7 @@ onMounted(async () => {
   // 获取文章内容
   let res = await articleApi.getByAid(props.aid)
   if (res.success) {
+    store.clearAnchors()
     data.value = res.data
     data.value.content = marked(data.value.content)
     store.state.title = data.value.title
@@ -107,5 +113,6 @@ onMounted(async () => {
 
 onUnmounted(() => {
   store.state.isShowBgImage = true
+  store.clearAnchors()
 })
 </script>

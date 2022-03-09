@@ -108,5 +108,12 @@ declare type State = {
   theme: string,
   isDarkMode: boolean,
   isShowBgImage: boolean,
-  user?: BhsUser
+  user?: BhsUser,
+  anchors: Anchor[],
+}
+
+declare type Anchor = {
+  id: string,
+  title: string,
+  level: 1 | 2 | 3 | 4 | 5 | 6,
 }
