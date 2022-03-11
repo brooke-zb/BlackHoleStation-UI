@@ -42,6 +42,7 @@
       <div class="bhs-content" v-html="data.content"></div>
       <CommentContainer v-if="isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
     </template>
+    <NotFound v-else code="404" title="文章不存在" message="该文章也许被博主吃掉了，可以尝试："/>
     <GalleryContainer ref="gallery"/>
   </div>
 </template>
@@ -57,6 +58,7 @@ import store from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
 import CommentContainer from '@/pages/article/CommentContainer.vue'
+import NotFound from '@/pages/error/Error.vue'
 
 // code highlight
 import Prism from 'prismjs'

@@ -52,7 +52,12 @@ const routes: RouteRecordRaw[] = [
   // 404页面
   {
     path: '/:pathMatch(.*)*', name: '404',
-    component: () => import('@/pages/error/404.vue'),
+    component: () => import('@/pages/error/Error.vue'),
+    props: {
+      code: '404',
+      title: '页面丢失了',
+      message: '您要的页面已经消失在星际中了，可以尝试：'
+    }
   },
 
   // 管理员登录
