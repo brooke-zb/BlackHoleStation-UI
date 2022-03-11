@@ -11,9 +11,9 @@
     </li>
     <li class="grow border-b-2 border-light-200 dark:border-dark-700 bg-light-200 dark:bg-dark-700"></li>
   </ul>
-  <template v-for="(item, index) in tabs">
-    <component :is="item" :props="item.props" v-show="index === props.active"/>
-  </template>
+  <div v-for="(item, index) in tabs" v-show="index === props.active">
+    <component :is="item"/>
+  </div>
 </template>
 
 <script lang="ts">
