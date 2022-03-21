@@ -1,7 +1,7 @@
 <template>
   <li class="hover:bg-secondary-100 dark:hover:bg-dark-800 text-sm font-bold">
     <a :href="props.item.to" @click.prevent="onClick" :class="classAppend">
-      <div class="w-5 h-5">
+      <div v-if="props.item.icon" class="w-5 h-5">
         <component v-if="props.item.icon" :is="props.item.icon"/>
       </div>
       {{ props.item.text }}
