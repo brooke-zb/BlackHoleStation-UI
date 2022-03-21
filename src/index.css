@@ -35,15 +35,15 @@ a.link {
 }
 
 h1.heading {
-    @apply text-4xl py-6;
+    @apply text-3xl py-6;
 }
 
 h2.heading {
-    @apply text-3xl py-4;
+    @apply text-2xl py-4;
 }
 
 h3.heading {
-    @apply text-2xl py-3;
+    @apply text-xl py-3;
 }
 
 h4.heading {

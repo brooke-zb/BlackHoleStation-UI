@@ -107,7 +107,7 @@ onMounted(() => {
 <style scoped>
 @supports (backdrop-filter: blur(8px)) {
   .nav-scrolldown {
-    @apply backdrop-blur bg-dark-50/60 dark:bg-dark-900/60;
+    @apply backdrop-blur bg-dark-50/70 dark:bg-dark-900/70;
   }
 }
 
