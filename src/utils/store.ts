@@ -8,6 +8,7 @@ const state = reactive({
 
   user: undefined,
   anchors: [],
+  anchorIndex: 0,
 }) as State
 
 const methods = {
@@ -24,7 +25,7 @@ const methods = {
     state.isSideMenuOpen = !state.isSideMenuOpen
   },
   addAnchor(title: string, level: 1 | 2 | 3 | 4 | 5 | 6) {
-    let id = `ac-${ title.replaceAll(' ', '-').replaceAll(/[^0-9a-zA-Z-]/g, '') }-${ level }`
+    let id = `ac${ state.anchorIndex++ }-${ title.replaceAll(' ', '-').replaceAll(/[^0-9a-zA-Z-]/g, '') }`
     state.anchors.push({
       id,
       title,
@@ -34,6 +35,7 @@ const methods = {
   },
   clearAnchors() {
     state.anchors = []
+    state.anchorIndex = 0
   },
 }
 

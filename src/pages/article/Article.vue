@@ -37,7 +37,7 @@
         </router-link>
       </div>
       <div>
-        <a class="link" v-for="item in store.state.anchors" :href="'#' + item.id">{{ '&nbsp;'.repeat(item.level) + item.title }}</a>
+        <a class="link" v-for="item in store.state.anchors" :href="'#' + item.id" @click.prevent="toAnchor(item.id)">{{ '&nbsp;'.repeat(item.level) + item.title }}</a>
       </div>
       <div class="bhs-content" v-html="data.content"></div>
       <CommentContainer v-if="isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
@@ -117,4 +117,15 @@ onUnmounted(() => {
   store.state.isShowBgImage = true
   store.clearAnchors()
 })
+
+// 锚点
+function toAnchor(id: string) {
+  let anchor = document.getElementById(id)
+  if (anchor) {
+    window.scrollTo({
+      top: anchor.offsetTop,
+      behavior: 'smooth',
+    })
+  }
+}
 </script>

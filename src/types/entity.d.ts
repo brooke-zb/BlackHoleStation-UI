@@ -110,6 +110,7 @@ declare type State = {
   isShowBgImage: boolean,
   user?: BhsUser,
   anchors: Anchor[],
+  anchorIndex: number,
 }
 
 declare type Anchor = {
