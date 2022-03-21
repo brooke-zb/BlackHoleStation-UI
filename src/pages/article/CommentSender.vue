@@ -74,9 +74,9 @@ const data = reactive({
   },
   content: {
     value: '',
-    rule: betweenLength(1, 1000, {
+    rule: betweenLength(1, 300, {
       min: '评论内容不能少于1个字',
-      max: '评论内容不能超过1000字',
+      max: '评论内容不能超过300字',
     }),
     invalid: false,
   },
