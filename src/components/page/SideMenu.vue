@@ -17,9 +17,12 @@
         <!--文件栏-->
         <TabView :navs="tabItems" :active="activeIndex" @change="navigateTab">
           <TabPanel>
-            <div class="p-4 flex flex-col">
-              <div class="py-10 flex justify-center items-center grow text-4xl font-bold text-secondary-600 dark:text-info-400 select-none">
+            <div class="p-4 flex flex-col font-bold text-secondary-600 dark:text-info-400 select-none">
+              <div class="pt-10 pb-1 flex justify-center items-center grow text-4xl">
                 {{ currentTime }}
+              </div>
+              <div class="pt-1 pb-10 flex justify-center items-center grow text-lg">
+                {{ currentYear }}
               </div>
               <div class="flex flex-col items-center gap-4">
                 <router-link v-for="item in navItems" :to="item.to"
@@ -146,9 +149,9 @@ function navigateTab(index: number) {
 
 // 导航项
 const now = useNow()
-const currentTime = computed(() => {
-  return now.value.toLocaleTimeString()
-})
+const currentTime = useDateFormat(now, 'HH:mm:ss')
+const currentYear = useDateFormat(now, 'YYYY-MM-DD')
+
 const navItems = [
   {
     label: '首页',
