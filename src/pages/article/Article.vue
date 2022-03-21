@@ -36,14 +36,12 @@
           {{ tag.name }}
         </router-link>
       </div>
-      <div>
-        <a class="link" v-for="item in store.state.anchors" :href="'#' + item.id" @click.prevent="toAnchor(item.id)">{{ '&nbsp;'.repeat(item.level) + item.title }}</a>
-      </div>
       <div class="bhs-content" v-html="data.content"></div>
       <CommentContainer v-if="isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
     </template>
     <NotFound v-else code="404" title="文章不存在" message="该文章也许被博主吃掉了，可以尝试："/>
     <GalleryContainer ref="gallery"/>
+    <Catalogue v-if="data"/>
   </div>
 </template>
 
@@ -58,6 +56,7 @@ import store from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
 import CommentContainer from '@/pages/article/CommentContainer.vue'
+import Catalogue from '@/pages/article/Catalogue.vue'
 import NotFound from '@/pages/error/Error.vue'
 
 // code highlight
@@ -109,7 +108,6 @@ onMounted(async () => {
   nextTick(() => {
     Prism.highlightAll()
     gallery.value.init('[data-gallery]')
-    // gallerybox.init('.bhs-gallery')
   })
 })
 

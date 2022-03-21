@@ -20,6 +20,7 @@ declare module 'vue' {
     IRegularGear: typeof import('~icons/regular/gear')['default']
     IRegularImage: typeof import('~icons/regular/image')['default']
     IRegularLink: typeof import('~icons/regular/link')['default']
+    IRegularList: typeof import('~icons/regular/list')['default']
     IRegularLock: typeof import('~icons/regular/lock')['default']
     IRegularPlus: typeof import('~icons/regular/plus')['default']
     IRegularRightToBracket: typeof import('~icons/regular/right-to-bracket')['default']
@@ -29,6 +30,7 @@ declare module 'vue' {
     ISolidAlien: typeof import('~icons/solid/alien')['default']
     ISolidBars: typeof import('~icons/solid/bars')['default']
     ISolidFolderBlank: typeof import('~icons/solid/folder-blank')['default']
+    ISolidList: typeof import('~icons/solid/list')['default']
     ISolidXmark: typeof import('~icons/solid/xmark')['default']
   }
 }
