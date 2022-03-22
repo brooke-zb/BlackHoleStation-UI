@@ -9,7 +9,7 @@
         </template>
       </Button>
       <transition @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" :css="false">
-        <ul ref="menu" v-if="isShow" @click.stop="" class="bg-light-50 dark:bg-dark-700 p-2 rounded-lg shadow-lg inline-block
+        <ul ref="menu" v-show="isShow" @click.stop="" class="bg-light-50 dark:bg-dark-700 p-2 rounded-lg shadow-lg inline-block
             absolute left-auto right-0 sm:left-0 sm:right-auto top-0 pointer-events-auto origin-top-right sm:origin-top-left">
           <li class="block catalogue cursor-pointer px-1 py-0.5 hover:bg-secondary-100 dark:hover:bg-dark-800"
               :data-level="item.level" v-for="item in store.state.anchors" @click="toAnchor(item.id)">

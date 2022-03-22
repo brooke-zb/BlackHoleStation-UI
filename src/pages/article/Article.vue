@@ -41,7 +41,7 @@
     </template>
     <NotFound v-else code="404" title="文章不存在" message="该文章也许被博主吃掉了，可以尝试："/>
     <GalleryContainer ref="gallery"/>
-    <Catalogue v-if="data"/>
+    <Catalogue v-if="data && store.state.anchors.length > 0"/>
   </div>
 </template>
 
