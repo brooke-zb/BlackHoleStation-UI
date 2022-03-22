@@ -19,9 +19,7 @@ let alias: Record<string, string> = {
 
 export default defineConfig({
   plugins: [
-    vue({
-      reactivityTransform: true
-    }),
+    vue(),
     Components({
       dirs: [],
       resolvers: [

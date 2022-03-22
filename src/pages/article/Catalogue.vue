@@ -32,10 +32,10 @@ import gsap from 'gsap'
 import store from '@/utils/store'
 import Button from '@/components/ui/button/Button.vue'
 
-let isShow = $ref(false)
+const isShow = ref(false)
 
 function toggleMenu() {
-  isShow = !isShow
+  isShow.value = !isShow.value
 }
 
 function onBeforeEnter(el: Element) {
