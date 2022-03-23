@@ -51,8 +51,6 @@ declare type BhsArticle = {
   category: BhsCategory,
   tags: BhsTag[],
   title: string,
-  description: string | null,
-  picture: string | null,
   content: string,
   commentabled: boolean,
   appreciatabled: boolean,
