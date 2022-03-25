@@ -9,7 +9,18 @@ const state = reactive({
   user: undefined,
   anchors: [],
   anchorIndex: 0,
-}) as State
+}) as {
+  isPageLoading: boolean,
+  isSideMenuOpen: boolean,
+  title: string,
+  theme: string,
+  isDarkMode: boolean,
+  isShowBgImage: boolean,
+
+  user?: BhsUser,
+  anchors: Anchor[],
+  anchorIndex: number,
+}
 
 const methods = {
   getLoginUser() {

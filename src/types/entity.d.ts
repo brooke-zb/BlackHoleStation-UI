@@ -98,19 +98,6 @@ declare type BhsLoginProps = {
   rememberMe: boolean,
 }
 
-// store state
-declare type State = {
-  isPageLoading: boolean,
-  isSideMenuOpen: boolean,
-  title: string,
-  theme: string,
-  isDarkMode: boolean,
-  isShowBgImage: boolean,
-  user?: BhsUser,
-  anchors: Anchor[],
-  anchorIndex: number,
-}
-
 declare type Anchor = {
   id: string,
   title: string,

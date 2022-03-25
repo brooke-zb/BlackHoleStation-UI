@@ -18,7 +18,7 @@
         <Button type="secondary">click me to article</Button>
       </router-link>
     </div>
-    <div v-if="data" class="flex justify-center">
+    <div v-if="data" class="flex flex-col items-center">
       <div class="flex flex-col gap-2">
         <router-link v-for="item in data.list" :to="'/articles/' + item.aid"
                      class="justify-center items-center p-4 text-secondary-700 dark:text-info-300 fill-secondary-700 dark:fill-info-300 relative
@@ -32,7 +32,7 @@
           </div>
         </router-link>
       </div>
-      <div v-if="data.pages > 1" class="flex justify-center items-center pt-4">
+      <div v-if="data.pages > 1" class="flex justify-center pt-4">
         <Paginator :current-page="data.pageNum" :total-pages="data.pages"
                    :page-size="data.pageSize" @current-change="getArticleList"/>
       </div>
@@ -54,7 +54,7 @@ import Paginator from '@/components/ui/paginator/Paginator.vue'
 store.state.title = '主页'
 const toast = useToast()
 
-let data = ref<Page<BhsArticle>>()
+const data = ref<Page<BhsArticle>>()
 
 onMounted(async () => {
   getArticleList(1)
