@@ -53,7 +53,6 @@ const pageInfo = reactive<PageInfo>({
 
 const props = defineProps<{
   currentPage: number,
-  pageSize: number,
   totalPages: number,
 }>()
 

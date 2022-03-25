@@ -33,8 +33,7 @@
         </router-link>
       </div>
       <div v-if="data.pages > 1" class="flex justify-center pt-4">
-        <Paginator :current-page="data.pageNum" :total-pages="data.pages"
-                   :page-size="data.pageSize" @current-change="getArticleList"/>
+        <Paginator :current-page="data.pageNum" :total-pages="data.pages" @current-change="getArticleList"/>
       </div>
     </div>
   </div>

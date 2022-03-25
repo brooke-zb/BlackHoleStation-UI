@@ -1,6 +1,5 @@
 <template>
   <Paginator :current-page="info.currentPage"
-             :page-size="info.size"
              :total-pages="info.totalPages"
              @current-change="page"/>
 </template>
