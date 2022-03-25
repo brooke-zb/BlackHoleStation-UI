@@ -11,6 +11,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/index/Index.vue'),
   },
 
+  // 归档
+  {
+    path: '/archive',
+    component: () => import('@/pages/archive/Archive.vue')
+  },
+
   {
     path: '/test', name: 'test',
     component: () => import('@/pages/test/Test.vue'),
@@ -56,7 +62,6 @@ const routes: RouteRecordRaw[] = [
     props: {
       code: '404',
       title: '页面丢失了',
-      message: '您要的页面已经消失在星际中了，可以尝试：'
     }
   },
 
