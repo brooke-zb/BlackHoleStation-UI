@@ -1,5 +1,6 @@
 <template>
-  <div class="relative flex flex-col gap-4 items-center fill-light-500/50 dark:fill-light-200/50" v-if="props.type === 'article'">
+  <div v-if="props.type === 'article'"
+       class="relative flex flex-col gap-4 items-center fill-light-500/50 dark:fill-light-200/50">
     <div class="skeleton p-5 w-2/3 sm:w-1/2 md:w-1/3 mb-1"></div>
     <div class="skeleton p-2 w-1/2 sm:w-1/3 md:w-1/4"></div>
     <div class="skeleton p-2 w-1/3 sm:w-1/4 md:w-1/5"></div>
@@ -19,6 +20,19 @@
       <div class="skeleton p-3 w-3/4"></div>
     </div>
   </div>
+  <div v-else-if="props.type === 'timeline'" class="px-4 mx-auto max-w-xl flex gap-3">
+    <div class="w-2 skeleton"></div>
+    <div class="relative flex flex-col gap-4 fill-light-500/50 dark:fill-light-200/50 grow">
+      <div class="skeleton p-4 w-1/4 my-2"></div>
+      <div class="skeleton p-3 w-1/2"></div>
+      <div class="skeleton p-3 w-2/3"></div>
+      <div class="skeleton p-3 w-1/2"></div>
+      <div class="skeleton p-4 w-1/4 my-2"></div>
+      <div class="skeleton p-3 w-3/4"></div>
+      <div class="skeleton p-3 w-1/2"></div>
+      <div class="skeleton p-3 w-2/3"></div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -29,7 +43,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 const props = defineProps<{
-  type: 'article'
+  type: 'article' | 'timeline'
 }>()
 </script>
 
