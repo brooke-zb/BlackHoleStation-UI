@@ -27,9 +27,13 @@
       <div class="skeleton p-3 w-1/2"></div>
       <div class="skeleton p-3 w-2/3"></div>
       <div class="skeleton p-3 w-1/2"></div>
+      <div class="skeleton p-3 w-2/3"></div>
+      <div class="skeleton p-3 w-1/2"></div>
       <div class="skeleton p-4 w-1/4 my-2"></div>
       <div class="skeleton p-3 w-3/4"></div>
       <div class="skeleton p-3 w-1/2"></div>
+      <div class="skeleton p-3 w-2/3"></div>
+      <div class="skeleton p-3 w-2/3"></div>
       <div class="skeleton p-3 w-2/3"></div>
     </div>
   </div>
