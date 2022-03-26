@@ -60,6 +60,12 @@ declare type BhsArticle = {
   views: number,
 }
 
+declare type BhsTimeline = {
+  aid: number,
+  title: string,
+  created: string,
+}
+
 declare type BhsResponse<D> = {
   success: true,
   data: D,

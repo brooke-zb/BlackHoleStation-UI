@@ -12,7 +12,7 @@ export default {
     })
   },
   getTimeline(page?: number) {
-    return request.get<BhsArticle[]>(`/article/timeline`, {
+    return request.get<Page<BhsTimeline>>(`/article/timeline`, {
       params: {
         page: page ? page : 1,
       },
