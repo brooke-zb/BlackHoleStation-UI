@@ -28,8 +28,8 @@
                 <router-link v-for="item in navItems" :to="item.to"
                              class="text-center w-1/2 transition-colors px-8 py-1 hover:bg-secondary-500 dark:hover:bg-info-500
                              hover:text-light-50 dark:hover:text-light-50 hover:fill-light-50 dark:hover:fill-light-50"
-                             :class="{'text-secondary-500 dark:text-info-300 fill-secondary-500 dark:fill-info-300': item.to === $route.path,
-                             'text-light-900 dark:text-light-50 fill-light-900 dark:fill-light-50': item.to !== $route.path}">
+                             :class="{'text-secondary-500 dark:text-info-300 fill-secondary-500 dark:fill-info-300': item.name === $route.name,
+                             'text-light-900 dark:text-light-50 fill-light-900 dark:fill-light-50': item.name !== $route.name}">
                   <component :is="item.icon" class="inline align-text-bottom"/>
                   {{ item.label }}
                 </router-link>
@@ -157,26 +157,31 @@ const navItems = [
     label: '首页',
     icon: IRegularHouse,
     to: '/',
+    name: 'index',
   },
   {
     label: '归档',
     icon: IRegularBoxArchive,
     to: '/archive',
+    name: 'archive',
   },
   {
     label: '分类',
     icon: IRegularFolders,
     to: '/categories',
+    name: 'categories',
   },
   {
     label: '标签',
     icon: IRegularTags,
     to: '/tags',
+    name: 'tags',
   },
   {
     label: '友链',
     icon: IRegularLink,
     to: '/friends',
+    name: 'friends',
   },
 ]
 </script>

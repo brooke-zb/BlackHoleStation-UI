@@ -13,7 +13,7 @@ const routes: RouteRecordRaw[] = [
 
   // 归档
   {
-    path: '/archive',
+    path: '/archive', name: 'archive',
     component: () => import('@/pages/archive/Archive.vue')
   },
 
