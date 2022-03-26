@@ -15,7 +15,7 @@
       <Comment :item="item" :article-uid="props.articleUid"/>
     </template>
     <div v-if="comments" class="flex justify-center">
-      <Paginator :current-page="comments.pageNum" :total-pages="comments.pages" @current-change="getComments"/>
+      <Paginator :current-page="comments.pageNum" :total-pages="comments.pages" @change="getComments"/>
     </div>
   </div>
   <CommentSender :aid="props.aid" :coid="coid" @refresh="loadComments" @cancel="coid = undefined"/>

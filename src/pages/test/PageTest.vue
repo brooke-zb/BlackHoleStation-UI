@@ -1,7 +1,5 @@
 <template>
-  <Paginator :current-page="info.currentPage"
-             :total-pages="info.totalPages"
-             @current-change="page"/>
+  <Paginator :current-page="info.currentPage" :total-pages="info.totalPages" @change="page"/>
 </template>
 
 <script lang="ts">

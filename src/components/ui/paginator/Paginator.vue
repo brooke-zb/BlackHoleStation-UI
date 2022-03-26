@@ -57,7 +57,7 @@ const props = defineProps<{
 }>()
 
 const emits = defineEmits<{
-  (e: 'currentChange', event: number): void,
+  (e: 'change', event: number): void,
 }>()
 
 watch(() => props.currentPage, () => {
@@ -100,7 +100,7 @@ function toPage(page: number) {
   }
   pageInfo.currentPage = page
   getPages(page)
-  emits('currentChange', page)
+  emits('change', page)
 }
 
 function offsetPage(offset: number) {
