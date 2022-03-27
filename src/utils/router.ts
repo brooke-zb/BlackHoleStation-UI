@@ -29,6 +29,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/tags/Tags.vue')
   },
 
+  // 友链
+  {
+    path: '/friends', name: 'friends',
+    component: () => import('@/pages/friends/Friends.vue')
+  },
+
   {
     path: '/test', name: 'test',
     component: () => import('@/pages/test/Test.vue'),
@@ -58,13 +64,6 @@ const routes: RouteRecordRaw[] = [
     props: (route) => ({
       aid: Number(route.params.aid),
     }),
-  },
-
-  // 关于页面
-  {
-    path: '/about', name: 'about',
-    component: () => import('@/pages/about/About.vue'),
-    props: true,
   },
 
   // 404页面
