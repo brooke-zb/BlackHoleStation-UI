@@ -73,6 +73,13 @@ declare type BhsTimeline = {
   created: string,
 }
 
+declare type BhsFriend = {
+  fid: number,
+  name: string,
+  link: string,
+  avatar: string | null,
+}
+
 declare type BhsResponse<D> = {
   success: true,
   data: D,

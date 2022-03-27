@@ -65,6 +65,9 @@ export default defineConfig({
           '@/api/tag': [
             ['default', 'tagApi'],
           ],
+          '@/api/friend': [
+            ['default', 'friendApi'],
+          ],
         },
       ],
     }),
