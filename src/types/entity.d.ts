@@ -45,6 +45,13 @@ declare type BhsTag = {
   heat?: number,
 }
 
+declare type BhsTagWithHeat = {
+  tid: number,
+  name: string,
+  color: string,
+  size: string,
+}
+
 declare type BhsArticle = {
   aid: number,
   user: BhsUser,

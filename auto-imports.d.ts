@@ -91,6 +91,7 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
+  const tagApi: typeof import('@/api/tag')['default']
   const templateRef: typeof import('@vueuse/core')['templateRef']
   const throttle: typeof import('lodash-es')['throttle']
   const throttledRef: typeof import('@vueuse/core')['throttledRef']

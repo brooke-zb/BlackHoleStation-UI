@@ -23,6 +23,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/categories/Categories.vue')
   },
 
+  // 标签
+  {
+    path: '/tags', name: 'tags',
+    component: () => import('@/pages/tags/Tags.vue')
+  },
+
   {
     path: '/test', name: 'test',
     component: () => import('@/pages/test/Test.vue'),
