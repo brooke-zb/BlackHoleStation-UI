@@ -3,11 +3,11 @@
     <h2 class="text-center text-2xl mb-4">所有分类</h2>
     <div v-for="parent in data" class="flex flex-col items-start gap-2">
       <router-link :to="'/categories/' + parent.cid" class="link">
-        <IRegularFolder class="w-4 h-4 inline mr-2" />
+        <ISolidFolder class="w-4 h-4 inline mr-2"/>
         {{ parent.name }}
       </router-link>
       <router-link v-for="child in parent.children" :to="'/categories/' + child.cid" class="link ml-8">
-        <IRegularFolder class="w-4 h-4 inline mr-2" />
+        <ISolidFolder class="w-4 h-4 inline mr-2"/>
         {{ child.name }}
       </router-link>
     </div>

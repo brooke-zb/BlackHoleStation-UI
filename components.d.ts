@@ -31,6 +31,7 @@ declare module 'vue' {
     ISolidAlien: typeof import('~icons/solid/alien')['default']
     ISolidBars: typeof import('~icons/solid/bars')['default']
     ISolidCircleSmall: typeof import('~icons/solid/circle-small')['default']
+    ISolidFolder: typeof import('~icons/solid/folder')['default']
     ISolidFolderBlank: typeof import('~icons/solid/folder-blank')['default']
     ISolidList: typeof import('~icons/solid/list')['default']
     ISolidXmark: typeof import('~icons/solid/xmark')['default']
