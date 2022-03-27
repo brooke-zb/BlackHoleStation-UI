@@ -7,6 +7,7 @@ declare global {
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const betweenLength: typeof import('@/utils/validation/rules')['betweenLength']
+  const categoryApi: typeof import('@/api/category')['default']
   const commentApi: typeof import('@/api/comment')['default']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']

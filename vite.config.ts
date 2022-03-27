@@ -59,6 +59,9 @@ export default defineConfig({
           '@/api/account': [
             ['default', 'accountApi'],
           ],
+          '@/api/category': [
+            ['default', 'categoryApi'],
+          ],
         },
       ],
     }),

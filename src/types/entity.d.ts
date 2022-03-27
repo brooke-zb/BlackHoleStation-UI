@@ -9,7 +9,7 @@ declare type BhsUser = {
   role: BhsRole,
   name: string,
   mail: string,
-  avatar: string | undefined,
+  avatar?: string,
   link: string | null,
   enabled: boolean,
 }
@@ -36,13 +36,13 @@ declare type BhsCategory = {
   cid: number,
   name: string,
   parent: number,
-  children: BhsCategory[] | undefined,
+  children?: BhsCategory[],
 }
 
 declare type BhsTag = {
   tid: number,
   name: string,
-  heat: number | undefined,
+  heat?: number,
 }
 
 declare type BhsArticle = {
