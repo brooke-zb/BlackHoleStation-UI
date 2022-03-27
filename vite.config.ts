@@ -62,6 +62,9 @@ export default defineConfig({
           '@/api/category': [
             ['default', 'categoryApi'],
           ],
+          '@/api/tag': [
+            ['default', 'tagApi'],
+          ],
         },
       ],
     }),
