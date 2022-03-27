@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="data">
-      <div v-if="timeline" class="px-4 mx-auto max-w-xl">
+      <div v-if="timeline" class="px-4 mx-auto max-w-2xl">
         <div v-for="year in timeline" class="border-l-2 border-secondary-500 dark:border-light-200 pl-4 relative">
           <div class="py-4 text-3xl text-secondary-600 dark:text-info-300 before:absolute before:-left-[0.5625rem] before:translate-y-2
              before:w-4 before:h-4 before:rounded-full before:border-2
@@ -41,9 +41,7 @@ store.state.title = '归档'
 const data = ref<Page<BhsTimeline>>()
 const timeline = ref<Map<number, BhsTimeline[]>>(new Map())
 
-onMounted(() => {
-  loadTimeline()
-})
+onMounted(loadTimeline)
 
 function loadTimeline(page?: number) {
   articleApi.getTimeline(page).then(res => {
