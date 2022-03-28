@@ -47,27 +47,27 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/friends/Friends.vue')
   },
 
-  {
-    path: '/test', name: 'test',
-    component: () => import('@/pages/test/Test.vue'),
-    children: [
-      // 按钮测试页面
-      {
-        path: 'btn', name: 'btn',
-        component: () => import('@/pages/test/BtnTest.vue'),
-      },
-      // 通知测试页面
-      {
-        path: 'toast', name: 'toast',
-        component: () => import('@/pages/test/ToastTest.vue'),
-      },
-      // 分页测试页面
-      {
-        path: 'page', name: 'page',
-        component: () => import('@/pages/test/PageTest.vue'),
-      },
-    ],
-  },
+  // {
+  //   path: '/test', name: 'test',
+  //   component: () => import('@/pages/test/Test.vue'),
+  //   children: [
+  //     // 按钮测试页面
+  //     {
+  //       path: 'btn', name: 'btn',
+  //       component: () => import('@/pages/test/BtnTest.vue'),
+  //     },
+  //     // 通知测试页面
+  //     {
+  //       path: 'toast', name: 'toast',
+  //       component: () => import('@/pages/test/ToastTest.vue'),
+  //     },
+  //     // 分页测试页面
+  //     {
+  //       path: 'page', name: 'page',
+  //       component: () => import('@/pages/test/PageTest.vue'),
+  //     },
+  //   ],
+  // },
 
   // 文章页面
   {
@@ -102,8 +102,6 @@ export const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
-  // avoid loading when playing out animate
-  // if (to.fullPath !== from.fullPath || to.name !== from.name) {
   store.state.isPageLoading = true
   // }
   store.state.isSideMenuOpen = false
@@ -114,10 +112,10 @@ router.beforeResolve((to, from) => {
 })
 
 // DEBUG
-function sleep(ms: number) {
-  return new Promise<void>((resolve, reject) => {
-    setTimeout(() => {
-      resolve()
-    }, ms)
-  })
-}
+// function sleep(ms: number) {
+//   return new Promise<void>((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve()
+//     }, ms)
+//   })
+// }
