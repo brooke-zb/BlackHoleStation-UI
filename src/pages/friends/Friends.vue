@@ -3,7 +3,7 @@
     <h2 class="text-center text-2xl mb-4">友情链接</h2>
     <div v-if="data && data.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
       <a v-for="item in data" target="_blank" :href="item.link" rel="noopener noreferrer"
-         class="p-3 bg-secondary-200/60 dark:bg-dark-700/70 flex items-center rounded-lg">
+         class="p-3 bg-secondary-200/60 dark:bg-dark-700/70 flex items-center rounded-lg hover:shadow-lg hover:-translate-y-1 dark:shadow-dark-900/70 transition-all">
         <img :src="item.avatar" class="h-12 w-12 rounded-lg">
         <div class="ml-3">
           <div class="text-lg mb-1">{{ item.name }}</div>
