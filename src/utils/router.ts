@@ -22,11 +22,23 @@ const routes: RouteRecordRaw[] = [
     path: '/categories', name: 'categories',
     component: () => import('@/pages/categories/Categories.vue')
   },
+  {
+    path: '/categories/:cid(\\d+)', name: 'category_list',
+    component: () => import('@/pages/categories/CategoryList.vue'),
+    props: route => ({
+      cid: Number(route.params.cid),
+    }),
+  },
 
   // 标签
   {
     path: '/tags', name: 'tags',
     component: () => import('@/pages/tags/Tags.vue')
+  },
+  {
+    path: '/tags/:name', name: 'tag_list',
+    component: () => import('@/pages/tags/TagList.vue'),
+    props: true
   },
 
   // 友链
@@ -61,7 +73,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/articles/:aid(\\d+)', name: 'article',
     component: () => import('@/pages/article/Article.vue'),
-    props: (route) => ({
+    props: route => ({
       aid: Number(route.params.aid),
     }),
   },
