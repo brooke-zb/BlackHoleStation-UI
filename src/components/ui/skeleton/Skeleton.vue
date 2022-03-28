@@ -43,6 +43,22 @@
     <div class="skeleton p-10 w-full max-w-sm"></div>
     <div class="skeleton p-10 w-full max-w-sm"></div>
   </div>
+  <div v-else-if="props.type === 'category'" class="flex flex-col gap-4">
+    <div class="skeleton p-3 w-full w-24"></div>
+    <div class="skeleton p-3 w-full w-24 ml-6"></div>
+    <div class="skeleton p-3 w-full w-24 ml-6"></div>
+    <div class="skeleton p-3 w-full w-24"></div>
+    <div class="skeleton p-3 w-full w-24 ml-6"></div>
+    <div class="skeleton p-3 w-full w-24"></div>
+  </div>
+  <div v-else-if="props.type === 'tag'" class="gap-4 flex flex-wrap gap-4">
+    <div class="inline-block skeleton p-3.5 w-full w-16"></div>
+    <div class="inline-block skeleton p-3.5 w-full w-24"></div>
+    <div class="inline-block skeleton p-3.5 w-full w-16"></div>
+    <div class="inline-block skeleton p-3.5 w-full w-16"></div>
+    <div class="inline-block skeleton p-3.5 w-full w-24"></div>
+    <div class="inline-block skeleton p-3.5 w-full w-12"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -53,7 +69,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 const props = defineProps<{
-  type: 'article' | 'timeline' | 'list'
+  type: 'article' | 'timeline' | 'list' | 'category' | 'tag'
 }>()
 </script>
 
