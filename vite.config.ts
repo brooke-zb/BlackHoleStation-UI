@@ -94,6 +94,9 @@ export default defineConfig({
       },
     },
   },
+  preview:{
+    port: 3000,
+  },
   envDir: './src/env',
   envPrefix: 'BHS_',
 })
