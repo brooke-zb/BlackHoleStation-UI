@@ -33,6 +33,7 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const email: typeof import('@/utils/validation/rules')['email']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const friendApi: typeof import('@/api/friend')['default']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']

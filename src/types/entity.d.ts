@@ -77,7 +77,8 @@ declare type BhsFriend = {
   fid: number,
   name: string,
   link: string,
-  avatar: string | null,
+  avatar: string,
+  description: string | null,
 }
 
 declare type BhsResponse<D> = {
