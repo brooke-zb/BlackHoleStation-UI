@@ -77,6 +77,7 @@ function login() {
             message: resp.msg,
             duration: 5000,
           })
+          store.getLoginUser()
           router.push('/admin')
         } else {
           toast.add({
