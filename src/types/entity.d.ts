@@ -101,6 +101,7 @@ declare type Page<D> = {
   pageSize: number, // 每页数量
   pages: number, // 总页数
   total: number, // 总数量
+  size: number, // 当前页数量
 }
 
 // api props
