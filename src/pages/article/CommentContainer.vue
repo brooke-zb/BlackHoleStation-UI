@@ -14,7 +14,7 @@
       <div v-if="index !== 0" class="border-light-300 dark:border-light-600 border-t border-dashed"></div>
       <Comment :item="item" :article-uid="props.articleUid"/>
     </template>
-    <div v-if="comments" class="flex justify-center">
+    <div v-if="comments?.pages > 1" class="flex justify-center">
       <Paginator :current-page="comments.pageNum" :total-pages="comments.pages" @change="getComments"/>
     </div>
   </div>
