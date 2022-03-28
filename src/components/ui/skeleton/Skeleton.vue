@@ -37,6 +37,12 @@
       <div class="skeleton p-3 w-2/3"></div>
     </div>
   </div>
+  <div v-else-if="props.type === 'list'" class="px-2 mx-auto max-w-xl flex flex-col items-center gap-4">
+    <div class="skeleton p-10 w-full max-w-sm"></div>
+    <div class="skeleton p-10 w-full max-w-sm"></div>
+    <div class="skeleton p-10 w-full max-w-sm"></div>
+    <div class="skeleton p-10 w-full max-w-sm"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -47,7 +53,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 const props = defineProps<{
-  type: 'article' | 'timeline'
+  type: 'article' | 'timeline' | 'list'
 }>()
 </script>
 
