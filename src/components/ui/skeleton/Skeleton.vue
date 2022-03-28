@@ -59,6 +59,13 @@
     <div class="inline-block skeleton p-3.5 w-full w-24"></div>
     <div class="inline-block skeleton p-3.5 w-full w-12"></div>
   </div>
+  <div v-else-if="props.type === 'friend'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-4">
+    <div class="skeleton p-8 w-full"></div>
+    <div class="skeleton p-8 w-full"></div>
+    <div class="skeleton p-8 w-full"></div>
+    <div class="skeleton p-8 w-full"></div>
+    <div class="skeleton p-8 w-full"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -69,7 +76,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 const props = defineProps<{
-  type: 'article' | 'timeline' | 'list' | 'category' | 'tag'
+  type: 'article' | 'timeline' | 'list' | 'category' | 'tag' | 'friend'
 }>()
 </script>
 
