@@ -43,6 +43,7 @@
 </script>
 
 <script lang="ts" setup>
+import store from '@/utils/store'
 import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
 
 // code highlight
@@ -62,8 +63,19 @@ const props = defineProps<{
 }>()
 
 onMounted(() => {
+  store.clearAnchors()
+  store.state.title = props.data.title
+
+  // 关闭背景图片以避免影响文字显示
+  store.state.isShowBgImage = false
+
   // 加载代码高亮、图片灯箱
   Prism.highlightAll()
   gallery.value.init('[data-gallery]')
+})
+
+onUnmounted(() => {
+  store.state.isShowBgImage = true
+  store.clearAnchors()
 })
 </script>

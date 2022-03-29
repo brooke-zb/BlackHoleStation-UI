@@ -37,16 +37,11 @@ const data = ref<BhsArticle>()
 
 store.state.title = '文章'
 onMounted(async () => {
-  // 关闭背景图片以避免影响文字显示
-  store.state.isShowBgImage = false
-
   // 获取文章内容
   let res = await articleApi.getByAid(props.aid)
   if (res.success) {
-    store.clearAnchors()
     data.value = res.data
     data.value.content = marked(data.value.content)
-    store.state.title = data.value.title
     isShowComment.value = true
   } else {
     toast.add({
@@ -57,10 +52,5 @@ onMounted(async () => {
     store.state.title = '文章不存在'
   }
   loading.value = false
-})
-
-onUnmounted(() => {
-  store.state.isShowBgImage = true
-  store.clearAnchors()
 })
 </script>
