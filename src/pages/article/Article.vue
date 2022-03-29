@@ -6,7 +6,6 @@
       <NotFound v-else code="404" title="文章不存在" message="该文章也许被博主吃掉了，可以尝试："/>
     </Content>
     <CommentContainer v-if="data && isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
-    <Catalogue v-if="data && store.state.anchors.length > 0"/>
   </div>
 </template>
 
@@ -20,7 +19,6 @@ export default defineComponent({
 import store from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import CommentContainer from '@/pages/article/CommentContainer.vue'
-import Catalogue from '@/pages/article/Catalogue.vue'
 import NotFound from '@/pages/error/Error.vue'
 import Content from '@/components/ui/skeleton/Content.vue'
 import ArticleContent from '@/pages/article/ArticleContent.vue'

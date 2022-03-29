@@ -34,6 +34,7 @@
     </div>
     <div class="bhs-content" v-html="data.content"></div>
     <GalleryContainer ref="gallery"/>
+    <Catalogue v-if="props.data && store.state.anchors.length > 0"/>
   </div>
 </template>
 
@@ -45,6 +46,7 @@
 <script lang="ts" setup>
 import store from '@/utils/store'
 import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
+import Catalogue from '@/pages/article/Catalogue.vue'
 
 // code highlight
 import Prism from 'prismjs'
@@ -63,7 +65,6 @@ const props = defineProps<{
 }>()
 
 onMounted(() => {
-  store.clearAnchors()
   store.state.title = props.data.title
 
   // 关闭背景图片以避免影响文字显示
