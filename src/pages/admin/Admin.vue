@@ -9,6 +9,7 @@ export default defineComponent({
   name: 'Admin',
   mixins: [{
     beforeCreate(this: any) {
+      // 未登录重定向
       if (!store.state.user && this.$route.name !== 'login') {
         useToast().add({
           type: 'danger',
@@ -16,6 +17,10 @@ export default defineComponent({
           duration: 5000,
         })
         this.$router.push('/admin/login')
+      }
+      // 已登录重定向
+      if (store.state.user && this.$route.name === 'login') {
+        this.$router.push('/admin')
       }
     }
   }]
