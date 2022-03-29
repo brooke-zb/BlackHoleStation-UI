@@ -90,8 +90,18 @@ const routes: RouteRecordRaw[] = [
 
   // 管理员登录
   {
-    path: '/admin/login', name: 'adminLogin',
-    component: () => import('@/pages/admin/Login.vue'),
+    path: '/admin',
+    component: () => import('@/pages/admin/Admin.vue'),
+    children: [
+      {
+        path: '', name: 'admin_index',
+        component: () => import('@/pages/admin/Index.vue'),
+      },
+      {
+        path: 'login', name: 'login',
+        component: () => import('@/pages/admin/Login.vue'),
+      }
+    ],
   },
 ]
 
