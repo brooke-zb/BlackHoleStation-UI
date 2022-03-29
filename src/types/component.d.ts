@@ -71,3 +71,11 @@ declare type TooltipProps = {
   el: Element,
   content: string,
 }
+
+// sidemenu
+declare type NavItem = {
+  label: string,
+  icon: any,
+  to: string,
+  names: Array<string | symbol>
+}
