@@ -8,7 +8,7 @@
                      after:w-12 after:h-12 after:absolute after:top-0 after:left-0 after:border-l-2 after:border-t-2
                      after:border-secondary-500 dark:after:border-info-300 after:scale-0 hover:after:scale-100 before:transition-transform before:origin-left">
       <div class="text-xl">{{ item.title }}</div>
-      <div class="text-secondary-500 dark:text-info-400">
+      <div class="text-secondary-500 dark:text-info-500">
         {{ item.created.split(' ')[0] }} · {{ item.category.name }}
       </div>
     </router-link>

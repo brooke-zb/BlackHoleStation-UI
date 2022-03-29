@@ -1,16 +1,18 @@
 <template>
   <div class="max-w-4xl mx-auto">
     <h2 class="text-center text-2xl mb-4">标签</h2>
-    <template v-if="tags">
-      <router-link v-for="tag in tags" :to="'/tags/' + tag.name" class="m-2" :class="[tag.color, tag.size]">
-        {{ tag.name }}
-      </router-link>
-      <div v-if="tags.length === 0" class="text-center">
-        <div>¯\_(ツ)_/¯</div>
-        <div>空空如也~</div>
+    <Content>
+      <div v-if="tags">
+        <router-link v-for="tag in tags" :to="'/tags/' + tag.name" class="m-2" :class="[tag.color, tag.size]">
+          {{ tag.name }}
+        </router-link>
+        <div v-if="tags.length === 0" class="text-center">
+          <div>¯\_(ツ)_/¯</div>
+          <div>空空如也~</div>
+        </div>
       </div>
-    </template>
-    <Skeleton v-else type="tag"/>
+      <Skeleton v-else type="tag"/>
+    </Content>
   </div>
 </template>
 
@@ -23,6 +25,7 @@ export default defineComponent({
 <script lang="ts" setup>
 import store from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
+import Content from '@/components/ui/skeleton/Content.vue'
 
 store.state.title = '标签'
 const toast = useToast()

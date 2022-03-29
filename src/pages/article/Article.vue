@@ -1,45 +1,45 @@
 <template>
   <div class="px-1.5">
-    <template v-if="loading">
-      <Skeleton type="article"/>
-    </template>
-    <template v-else-if="data">
-      <div class="text-xl sm:text-2xl text-center font-bold mb-2">{{ data.title }}</div>
-      <div
-          class="flex justify-center gap-2 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
-        <div v-tooltip="'发布时间'">
-          <IRegularCalendarLines class="inline align-text-top"/>
-          {{ data.created }}
+    <Content>
+      <Skeleton v-if="loading" type="article"/>
+      <div v-else-if="data">
+        <div class="text-xl sm:text-2xl text-center font-bold mb-2">{{ data.title }}</div>
+        <div
+            class="flex justify-center gap-2 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
+          <div v-tooltip="'发布时间'">
+            <IRegularCalendarLines class="inline align-text-top"/>
+            {{ data.created }}
+          </div>
+          <div v-if="data.modified" v-tooltip="'上次更新'">
+            -
+            <IRegularCalendarLinesPen class="inline align-text-top"/>
+            {{ data.modified }}
+          </div>
         </div>
-        <div v-if="data.modified" v-tooltip="'上次更新'">
+        <div
+            class="flex justify-center items-center gap-1.5 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
+          <IRegularEye/>
+          {{ data.views }}
           -
-          <IRegularCalendarLinesPen class="inline align-text-top"/>
-          {{ data.modified }}
+          <router-link class="link flex justify-center items-center gap-1.5" :to="'/categories/' + data.category.cid">
+            <IRegularFolder/>
+            {{ data.category.name }}
+          </router-link>
         </div>
+        <div
+            class="flex justify-center items-end gap-2 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
+          <router-link v-for="tag in data.tags"
+                       class="link flex justify-center items-center gap-0.5"
+                       :to="'/tags/' + tag.name">
+            <IRegularTag/>
+            {{ tag.name }}
+          </router-link>
+        </div>
+        <div class="bhs-content" v-html="data.content"></div>
       </div>
-      <div
-          class="flex justify-center items-center gap-1.5 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
-        <IRegularEye/>
-        {{ data.views }}
-        -
-        <router-link class="link flex justify-center items-center gap-1.5" :to="'/categories/' + data.category.cid">
-          <IRegularFolder/>
-          {{ data.category.name }}
-        </router-link>
-      </div>
-      <div
-          class="flex justify-center items-end gap-2 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
-        <router-link v-for="tag in data.tags"
-                     class="link flex justify-center items-center gap-0.5"
-                     :to="'/tags/' + tag.name">
-          <IRegularTag/>
-          {{ tag.name }}
-        </router-link>
-      </div>
-      <div class="bhs-content" v-html="data.content"></div>
-      <CommentContainer v-if="isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
-    </template>
-    <NotFound v-else code="404" title="文章不存在" message="该文章也许被博主吃掉了，可以尝试："/>
+      <NotFound v-else code="404" title="文章不存在" message="该文章也许被博主吃掉了，可以尝试："/>
+    </Content>
+    <CommentContainer v-if="data && isShowComment" :aid="props.aid" :article-uid="data.user.uid"/>
     <GalleryContainer ref="gallery"/>
     <Catalogue v-if="data && store.state.anchors.length > 0"/>
   </div>
@@ -58,6 +58,7 @@ import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
 import CommentContainer from '@/pages/article/CommentContainer.vue'
 import Catalogue from '@/pages/article/Catalogue.vue'
 import NotFound from '@/pages/error/Error.vue'
+import Content from '@/components/ui/skeleton/Content.vue'
 
 // code highlight
 import Prism from 'prismjs'

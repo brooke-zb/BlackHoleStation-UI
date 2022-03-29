@@ -18,10 +18,12 @@
     <!--        <Button type="secondary">click me to article</Button>-->
     <!--      </router-link>-->
     <!--    </div>-->
-    <div v-if="data" class="flex flex-col items-center">
-      <ArticleList :data="data" @change="getArticleList"/>
-    </div>
-    <Skeleton v-else type="list"/>
+    <Content>
+      <div v-if="data" class="flex flex-col items-center">
+        <ArticleList :data="data" @change="getArticleList"/>
+      </div>
+      <Skeleton v-else type="list"/>
+    </Content>
   </div>
 </template>
 
@@ -36,6 +38,7 @@ import store from '@/utils/store'
 import Button from '@/components/ui/button/Button.vue'
 import ArticleList from '@/components/ui/articlelist/ArticleList.vue'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
+import Content from '@/components/ui/skeleton/Content.vue'
 
 store.state.title = '主页'
 const toast = useToast()

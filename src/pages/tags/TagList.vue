@@ -1,8 +1,12 @@
 <template>
-  <div v-if="data" class="flex flex-col items-center">
-    <ArticleList :data="data" @change="getArticleList"/>
+  <div>
+    <Content>
+      <div v-if="data" class="flex flex-col items-center">
+        <ArticleList :data="data" @change="getArticleList"/>
+      </div>
+      <Skeleton v-else type="list"/>
+    </Content>
   </div>
-  <Skeleton v-else type="list"/>
 </template>
 
 <script lang="ts">
@@ -15,6 +19,7 @@ export default defineComponent({
 import store from '@/utils/store'
 import ArticleList from '@/components/ui/articlelist/ArticleList.vue'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
+import Content from '@/components/ui/skeleton/Content.vue'
 
 const props = defineProps<{
   name: string
