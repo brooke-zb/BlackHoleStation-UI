@@ -69,13 +69,19 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/admin/Admin.vue'),
     children: [
       {
-        path: '', name: 'admin_index',
-        component: () => import('@/pages/admin/Index.vue'),
-      },
-      {
         path: 'login', name: 'login',
         component: () => import('@/pages/admin/Login.vue'),
-      }
+      },
+      {
+        path: '', name: 'admin_index',
+        component: () => import('@/pages/admin/Index.vue'),
+        children: [
+          {
+            path: 'articles', alias: [''],
+            component: () => import('@/pages/admin/Article.vue'),
+          },
+        ]
+      },
     ],
   },
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="box-center flex justify-center">
+  <div class="box-center flex flex-col items-center p-2">
     <div class="flex flex-col items-center rounded-md bg-light-50/80 dark:bg-dark-700/90
                 w-80 mx-2 px-4 py-8 gap-4 backdrop-blur">
       <div class="text-xl text-light-400 dark:text-dark-300">{{ siteName }}</div>
@@ -27,6 +27,7 @@
         </Button>
       </div>
     </div>
+    <router-link to="/" class="link mt-2">返回主页</router-link>
   </div>
 </template>
 
