@@ -10,7 +10,7 @@ export const _tooltipImpl = {
 const tooltip = {
   install(app: App) {
     app.directive('tooltip', {
-      mounted(el: Element, binding: any) {
+      mounted(el: Element, binding) {
         const tooltip = {
           id: nextTooltipId++,
           el,
@@ -20,6 +20,9 @@ const tooltip = {
           _tooltipImpl.add(tooltip)
         })
         el.addEventListener('pointerleave', () => {
+          _tooltipImpl.remove(tooltip.id)
+        })
+        el.addEventListener('blur', () => {
           _tooltipImpl.remove(tooltip.id)
         })
       },
