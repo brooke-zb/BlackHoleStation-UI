@@ -2,95 +2,70 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import store from '@/utils/store'
 
 const routes: RouteRecordRaw[] = [
-  // 主页
+  // 前台展示
   {
-    path: '/index.html', redirect: '/',
-  },
-  {
-    path: '/', name: 'index',
-    component: () => import('@/pages/index/Index.vue'),
+    path: '/', name: 'home',
+    component: () => import('@/pages/Layout.vue'),
+    children: [
+      // 主页
+      {
+        path: 'index.html', redirect: '/',
+      },
+      {
+        path: '', name: 'index',
+        component: () => import('@/pages/index/Index.vue'),
+      },
+
+      // 归档
+      {
+        path: 'archive', name: 'archive',
+        component: () => import('@/pages/archive/Archive.vue')
+      },
+
+      // 分类
+      {
+        path: 'categories', name: 'categories',
+        component: () => import('@/pages/categories/Categories.vue')
+      },
+      {
+        path: 'categories/:cid(\\d+)', name: 'category_list',
+        component: () => import('@/pages/categories/CategoryList.vue'),
+        props: route => ({
+          cid: Number(route.params.cid),
+        }),
+      },
+
+      // 标签
+      {
+        path: 'tags', name: 'tags',
+        component: () => import('@/pages/tags/Tags.vue')
+      },
+      {
+        path: 'tags/:name', name: 'tag_list',
+        component: () => import('@/pages/tags/TagList.vue'),
+        props: true
+      },
+
+      // 友链
+      {
+        path: 'friends', name: 'friends',
+        component: () => import('@/pages/friends/Friends.vue')
+      },
+
+      // 文章页面
+      {
+        path: 'articles/:aid(\\d+)', name: 'article',
+        component: () => import('@/pages/article/Article.vue'),
+        props: route => ({
+          aid: Number(route.params.aid),
+        }),
+      },
+    ]
   },
 
-  // 归档
+  // 后台管理
   {
-    path: '/archive', name: 'archive',
-    component: () => import('@/pages/archive/Archive.vue')
-  },
-
-  // 分类
-  {
-    path: '/categories', name: 'categories',
-    component: () => import('@/pages/categories/Categories.vue')
-  },
-  {
-    path: '/categories/:cid(\\d+)', name: 'category_list',
-    component: () => import('@/pages/categories/CategoryList.vue'),
-    props: route => ({
-      cid: Number(route.params.cid),
-    }),
-  },
-
-  // 标签
-  {
-    path: '/tags', name: 'tags',
-    component: () => import('@/pages/tags/Tags.vue')
-  },
-  {
-    path: '/tags/:name', name: 'tag_list',
-    component: () => import('@/pages/tags/TagList.vue'),
-    props: true
-  },
-
-  // 友链
-  {
-    path: '/friends', name: 'friends',
-    component: () => import('@/pages/friends/Friends.vue')
-  },
-
-  // {
-  //   path: '/test', name: 'test',
-  //   component: () => import('@/pages/test/Test.vue'),
-  //   children: [
-  //     // 按钮测试页面
-  //     {
-  //       path: 'btn', name: 'btn',
-  //       component: () => import('@/pages/test/BtnTest.vue'),
-  //     },
-  //     // 通知测试页面
-  //     {
-  //       path: 'toast', name: 'toast',
-  //       component: () => import('@/pages/test/ToastTest.vue'),
-  //     },
-  //     // 分页测试页面
-  //     {
-  //       path: 'page', name: 'page',
-  //       component: () => import('@/pages/test/PageTest.vue'),
-  //     },
-  //   ],
-  // },
-
-  // 文章页面
-  {
-    path: '/articles/:aid(\\d+)', name: 'article',
-    component: () => import('@/pages/article/Article.vue'),
-    props: route => ({
-      aid: Number(route.params.aid),
-    }),
-  },
-
-  // 404页面
-  {
-    path: '/:pathMatch(.*)*', name: '404',
-    component: () => import('@/pages/error/Error.vue'),
-    props: {
-      code: '404',
-      title: '页面丢失了',
-    }
-  },
-
-  // 管理员登录
-  {
-    path: '/admin',
+    path: '/admin', name: 'admin',
     component: () => import('@/pages/admin/Admin.vue'),
     children: [
       {
@@ -102,6 +77,17 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/admin/Login.vue'),
       }
     ],
+  },
+
+
+  // 404页面
+  {
+    path: '/:pathMatch(.*)*', name: '404',
+    component: () => import('@/pages/error/Error.vue'),
+    props: {
+      code: '404',
+      title: '页面丢失了',
+    }
   },
 ]
 
