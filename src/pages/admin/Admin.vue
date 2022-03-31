@@ -17,7 +17,7 @@ const router = useRouter()
 
 onMounted(() => {
   store.state.isShowBgImage = false
-  checkUser()
+  checkRedirect()
 })
 
 onUnmounted(() => {
@@ -25,21 +25,10 @@ onUnmounted(() => {
 })
 
 onBeforeUpdate(function() {
-  checkUser()
+  checkRedirect()
 })
 
-function checkUser(this: any) {
-  if (store.state.userLoading) {
-    let unwatch = watch(() => store.state.userLoading, () => {
-      redirect()
-      unwatch()
-    })
-  } else {
-    redirect()
-  }
-}
-
-function redirect() {
+function checkRedirect() {
   // 未登录重定向
   if (!store.state.user && route.name !== 'login') {
     useToast().add({

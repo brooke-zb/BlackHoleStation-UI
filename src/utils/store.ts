@@ -7,7 +7,7 @@ const state = reactive({
   isShowBgImage: true,
 
   user: undefined,
-  userLoading: false,
+  isUserLoaded: false,
 
   anchors: [],
   anchorIndex: 0,
@@ -20,23 +20,21 @@ const state = reactive({
   isShowBgImage: boolean,
 
   user?: BhsUser,
-  userLoading: boolean,
+  isUserLoaded: boolean,
 
   anchors: Anchor[],
   anchorIndex: number,
 }
 
 const methods = {
-  getLoginUser() {
-    state.userLoading = true
-    accountApi.getInfo().then(res => {
-      if (res.success) {
-        state.user = res.data
-      } else {
-        state.user = undefined
-      }
-      state.userLoading = false
-    })
+  async getLoginUser() {
+    let res = await accountApi.getInfo()
+    if (res.success) {
+      state.user = res.data
+    } else {
+      state.user = undefined
+    }
+    state.isUserLoaded = true
   },
   toggleSideMenu() {
     state.isSideMenuOpen = !state.isSideMenuOpen

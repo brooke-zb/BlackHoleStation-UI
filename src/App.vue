@@ -13,9 +13,6 @@ import ToastContainer from '@/components/ui/toast/ToastContainer.vue'
 import TooltipContainer from '@/components/ui/tooltip/TooltipContainer.vue'
 import store from '@/utils/store'
 
-// 获取用户信息
-store.getLoginUser()
-
 // 颜色主题
 const isPreferredDark = usePreferredDark()
 
