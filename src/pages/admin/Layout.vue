@@ -1,6 +1,8 @@
 <template>
   <AdminNavbar/>
-  <router-view/>
+  <div class="my-2 container">
+    <router-view/>
+  </div>
 </template>
 
 <script lang="ts">

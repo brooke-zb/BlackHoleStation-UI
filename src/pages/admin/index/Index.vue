@@ -1,5 +1,8 @@
 <template>
-  <div>欢迎来到后台管理页面</div>
+  <div>
+    欢迎来到后台管理页面，您可以
+    <router-link to="/" class="link">回到网站</router-link>
+  </div>
 </template>
 
 <script lang="ts">
