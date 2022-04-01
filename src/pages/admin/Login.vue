@@ -43,9 +43,12 @@ import Input from '@/components/ui/form/Input.vue'
 import Button from '@/components/ui/button/Button.vue'
 
 const router = useRouter()
+const route = useRoute()
 const toast = useToast()
 store.state.title = '管理员登录'
 const siteName = import.meta.env.BHS_SITE_NAME
+
+console.log(route.query)
 
 const data = reactive({
   username: {
@@ -79,7 +82,7 @@ function login() {
             duration: 5000,
           })
           store.state.isUserLoaded = false // 以触发路由更新
-          router.push('/admin')
+          router.push((route.query.redirect as string) || '/admin')
         } else {
           toast.add({
             type: 'danger',

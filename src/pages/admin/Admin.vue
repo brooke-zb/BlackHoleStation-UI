@@ -24,9 +24,7 @@ onUnmounted(() => {
   store.state.isShowBgImage = true
 })
 
-onBeforeUpdate(function() {
-  checkRedirect()
-})
+onBeforeUpdate(checkRedirect)
 
 function checkRedirect() {
   // 未登录重定向
@@ -36,7 +34,7 @@ function checkRedirect() {
       message: '您必须登录才能访问此页面',
       duration: 5000,
     })
-    router.push('/admin/login')
+    router.push({ path: '/admin/login', query: { redirect: route.fullPath } })
   }
   // 已登录重定向
   if (store.state.user && route.name === 'login') {

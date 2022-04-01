@@ -101,7 +101,7 @@ router.beforeEach((to, from, next) => {
     next()
   } else {
     store.getLoginUser().then(() => {
-      next({ path: to.fullPath, replace: true })
+      next({ path: to.path, query: to.query, replace: true })
     })
   }
 })
