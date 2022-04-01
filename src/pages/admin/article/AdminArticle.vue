@@ -9,5 +9,7 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
+import store from '@/utils/store'
 
+store.state.title = '文章管理'
 </script>

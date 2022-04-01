@@ -11,5 +11,5 @@ export default defineComponent({
 <script lang="ts" setup>
 import store from '@/utils/store'
 
-store.state.title = '后台管理'
+store.state.title = '概要'
 </script>

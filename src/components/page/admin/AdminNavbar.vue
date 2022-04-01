@@ -152,9 +152,8 @@ function logout() {
         message: '退出登录成功',
         duration: 3000,
       })
-      store.getLoginUser().then(() => {
-        router.push('/admin/login')
-      })
+      store.state.isUserLoaded = false
+      router.push('/admin/login')
     } else {
       toast.add({
         type: 'danger',
