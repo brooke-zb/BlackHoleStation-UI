@@ -23,6 +23,10 @@ body {
     @apply bg-secondary-500/30 dark:bg-info-400/50;
 }
 
+a {
+    @apply text-light-800 fill-light-600 dark:text-light-100 dark:fill-light-200;
+}
+
 a.link {
     @apply relative after:absolute after:h-0.5 after:-bottom-1 after:left-0 after:w-full after:scale-x-0 hover:after:scale-x-100;
     @apply text-secondary-600 fill-secondary-600 dark:text-info-300 dark:fill-info-300 after:bg-secondary-500 dark:after:bg-info-400;
