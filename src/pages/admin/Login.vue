@@ -38,9 +38,9 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
+import store from '@/utils/store'
 import Input from '@/components/ui/form/Input.vue'
 import Button from '@/components/ui/button/Button.vue'
-import store from '@/utils/store'
 
 const router = useRouter()
 const toast = useToast()
@@ -78,7 +78,7 @@ function login() {
             message: resp.msg,
             duration: 5000,
           })
-          store.getLoginUser()
+          store.state.isUserLoaded = false // 以触发路由更新
           router.push('/admin')
         } else {
           toast.add({

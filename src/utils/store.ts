@@ -1,3 +1,5 @@
+import { parseRouter } from '@/utils/router'
+
 const state = reactive({
   isPageLoading: false,
   isSideMenuOpen: false,
@@ -28,12 +30,14 @@ const state = reactive({
 
 const methods = {
   async getLoginUser() {
+    state.isUserLoaded = false
     let res = await accountApi.getInfo()
     if (res.success) {
       state.user = res.data
     } else {
       state.user = undefined
     }
+    parseRouter(res.data?.role.permissions || []) // 更新路由
     state.isUserLoaded = true
   },
   toggleSideMenu() {

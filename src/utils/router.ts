@@ -96,12 +96,11 @@ router.beforeEach((to, from, next) => {
   store.state.isPageLoading = true
   store.state.isSideMenuOpen = false
 
-  // 动态添加路由
+  // 动态路由
   if (store.state.isUserLoaded) {
     next()
   } else {
     store.getLoginUser().then(() => {
-      parseRouter(store.state.user?.role.permissions || [])
       next({ path: to.fullPath, replace: true })
     })
   }
@@ -112,18 +111,20 @@ router.beforeResolve(() => {
 })
 
 // 根据用户权限添加管理路由
-function parseRouter(permissions: string[]) {
+export function parseRouter(permissions: string[]) {
   // 添加公共路由
-  router.addRoute('admin', {
-    path: '', name: 'admin_layout',
-    component: () => import('@/pages/admin/Layout.vue'),
-    children: [
-      {
-        path: '', name: 'admin_index',
-        component: () => import('@/pages/admin/index/Index.vue'),
-      },
-    ],
-  })
+  if (!router.hasRoute('admin_layout')) {
+    router.addRoute('admin', {
+      path: '', name: 'admin_layout',
+      component: () => import('@/pages/admin/Layout.vue'),
+      children: [
+        {
+          path: '', name: 'admin_index',
+          component: () => import('@/pages/admin/index/Index.vue'),
+        },
+      ],
+    })
+  }
 
   // 权限判定，添加管理路由
   let pages: Record<string, RouteRecordRaw> = {}
@@ -131,40 +132,40 @@ function parseRouter(permissions: string[]) {
     switch (permission) {
       case 'ARTICLE:READONLY':
       case 'ARTICLE:FULLACCESS':
-        pages.article = {
+        pages.admin_article = {
           path: 'articles', name: 'admin_article',
           component: () => import('@/pages/admin/article/AdminArticle.vue'),
         }
         break
       case 'CATEGORY:FULLACCESS':
-        pages.category = {
+        pages.admin_category = {
           path: 'categories', name: 'admin_category',
           component: () => import('@/pages/admin/category/AdminCategory.vue'),
         }
         break
       case 'COMMENT:READONLY':
       case 'COMMENT:FULLACCESS':
-        pages.comment = {
+        pages.admin_comment = {
           path: 'comments', name: 'admin_comment',
           component: () => import('@/pages/admin/comment/AdminComment.vue'),
         }
         break
       case 'ROLE:READONLY':
       case 'ROLE:FULLACCESS':
-        pages.role = {
+        pages.admin_role = {
           path: 'roles', name: 'admin_role',
           component: () => import('@/pages/admin/role/AdminRole.vue'),
         }
         break
       case 'TAG:FULLACCESS':
-        pages.tag = {
+        pages.admin_tag = {
           path: 'tags', name: 'admin_tag',
           component: () => import('@/pages/admin/tag/AdminTag.vue'),
         }
         break
       case 'USER:READONLY':
       case 'USER:FULLACCESS':
-        pages.user = {
+        pages.admin_user = {
           path: 'users', name: 'admin_user',
           component: () => import('@/pages/admin/user/AdminUser.vue'),
         }
@@ -172,20 +173,26 @@ function parseRouter(permissions: string[]) {
     }
   })
 
-  // 添加路由
-  for (const key in pages) {
-    if (pages[key]) {
+  // 增删路由
+  const map = ['admin_article', 'admin_category', 'admin_comment', 'admin_role', 'admin_tag', 'admin_user']
+  map.forEach(key => {
+    if (pages[key] && !router.hasRoute(key)) {
       router.addRoute('admin_layout', pages[key])
     }
-  }
+    if (!pages[key] && router.hasRoute(key)) {
+      router.removeRoute(key)
+    }
+  })
 
   // 添加404路由
-  router.addRoute('admin_layout', {
-    path: ':pathMatch(.*)+', name: 'admin_404',
-    component: () => import('@/pages/error/Error.vue'),
-    props: {
-      code: '404',
-      title: '页面丢失了',
-    },
-  })
+  if (!router.hasRoute('admin_404')) {
+    router.addRoute('admin', {
+      path: ':pathMatch(.*)+', name: 'admin_404',
+      component: () => import('@/pages/error/Error.vue'),
+      props: {
+        code: '404',
+        title: '页面丢失了',
+      },
+    })
+  }
 }
