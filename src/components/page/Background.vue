@@ -14,7 +14,7 @@ import darkImage from '@/assets/img/blackhole.png?url'
 import lightImage from '@/assets/img/planet.png'
 import store from '@/utils/store'
 
-const bg = ref()
+const bg = ref<HTMLCanvasElement>()
 
 const setting: BackgroundSetting = {
   parallax: [20, 80],
@@ -30,8 +30,6 @@ const setting: BackgroundSetting = {
 }
 
 const holder: BackgroundHolder = {
-  element: bg.value,
-  ctx: bg.value,
   light: [],
   mousePos: [0, 0],
   parallax: [0, 0],
@@ -50,8 +48,8 @@ addEventListener('mousemove', mousemoveHandler)
 
 // 初始化
 onMounted(() => {
-  holder.element = bg.value
-  holder.ctx = holder.element.getContext('2d', { alpha: false }) as CanvasRenderingContext2D
+  holder.element = bg.value!
+  holder.ctx = holder.element.getContext('2d', { alpha: false })!
   initLight()
   initSize()
   initImage()
@@ -59,8 +57,8 @@ onMounted(() => {
 })
 
 const initSize = throttle(() => {
-  holder.element.height = window.innerHeight
-  holder.element.width = window.innerWidth
+  holder.element!.height = window.innerHeight
+  holder.element!.width = window.innerWidth
 }, 50)
 addEventListener('resize', initSize)
 
@@ -94,7 +92,7 @@ function initImage() {
   let darkCanvas = document.createElement('canvas')
   darkCanvas.width = setting.imageSize
   darkCanvas.height = setting.imageSize
-  let darkCtx = darkCanvas.getContext('2d') as CanvasRenderingContext2D
+  let darkCtx = darkCanvas.getContext('2d')!
   let darkImg = new Image()
   darkImg.onload = () => {
     darkCtx.drawImage(darkImg, 0, 0, setting.imageSize, setting.imageSize)
@@ -106,7 +104,7 @@ function initImage() {
   let lightCanvas = document.createElement('canvas')
   lightCanvas.width = setting.imageSize
   lightCanvas.height = setting.imageSize
-  let lightCtx = lightCanvas.getContext('2d') as CanvasRenderingContext2D
+  let lightCtx = lightCanvas.getContext('2d')!
   let lightImg = new Image()
   lightImg.onload = () => {
     lightCtx.drawImage(lightImg, 0, 0, setting.imageSize, setting.imageSize)
@@ -117,40 +115,40 @@ function initImage() {
 
 // 渲染
 function render() {
-  holder.ctx.save()
+  holder.ctx!.save()
   let bgColor = store.state.isDarkMode ? setting.bgColor.dark : setting.bgColor.light
 
   // background
-  holder.ctx.fillStyle = bgColor
-  holder.ctx.fillRect(0, 0, holder.element.width, holder.element.height)
+  holder.ctx!.fillStyle = bgColor
+  holder.ctx!.fillRect(0, 0, holder.element!.width, holder.element!.height)
 
   // light
-  holder.ctx.scale(setting.scale.x, setting.scale.y)
+  holder.ctx!.scale(setting.scale.x, setting.scale.y)
   holder.light.forEach((light) => {
-    holder.ctx.beginPath()
-    let radius = Math.round((holder.element.height + holder.element.width) / 2)
-    let x = holder.element.width * light.pos[0] < radius ? holder.element.width * light.pos[0] : radius
-    let y = holder.element.height * light.pos[1] < radius ? holder.element.height * light.pos[1] : radius
-    let grd = holder.ctx.createRadialGradient(x, y, 50, x, y, radius)
+    holder.ctx!.beginPath()
+    let radius = Math.round((holder.element!.height + holder.element!.width) / 2)
+    let x = holder.element!.width * light.pos[0] < radius ? holder.element!.width * light.pos[0] : radius
+    let y = holder.element!.height * light.pos[1] < radius ? holder.element!.height * light.pos[1] : radius
+    let grd = holder.ctx!.createRadialGradient(x, y, 50, x, y, radius)
     grd.addColorStop(0, store.state.isDarkMode ? light.color['dark'] : light.color['light'])
     grd.addColorStop(1, `${ bgColor }01`)
-    holder.ctx.fillStyle = grd
-    holder.ctx.fillRect(
+    holder.ctx!.fillStyle = grd
+    holder.ctx!.fillRect(
         x - radius,
         y - radius,
         radius * 2,
         radius * 2,
     )
   })
-  holder.ctx.restore()
+  holder.ctx!.restore()
 
   // image
   let img = store.state.isDarkMode ? holder.image.dark : holder.image.light
   if (store.state.isShowBgImage && img) {
-    holder.ctx.drawImage(
+    holder.ctx!.drawImage(
         img,
-        holder.element.width / 2 - setting.imageSize / 2 + holder.parallax[0],
-        holder.element.height / 2 - setting.imageSize / 2 + holder.parallax[1],
+        holder.element!.width / 2 - setting.imageSize / 2 + holder.parallax[0],
+        holder.element!.height / 2 - setting.imageSize / 2 + holder.parallax[1],
         setting.imageSize,
         setting.imageSize,
     )
