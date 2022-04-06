@@ -21,8 +21,8 @@ declare interface Light {
 }
 
 declare interface BackgroundHolder {
-  element: HTMLCanvasElement,
-  ctx: CanvasRenderingContext2D,
+  element?: HTMLCanvasElement,
+  ctx?: CanvasRenderingContext2D,
   light: Light[],
   mousePos: [number, number],
   parallax: [number, number],

@@ -48,8 +48,6 @@ const toast = useToast()
 store.state.title = '管理员登录'
 const siteName = import.meta.env.BHS_SITE_NAME
 
-console.log(route.query)
-
 const data = reactive({
   username: {
     value: '',

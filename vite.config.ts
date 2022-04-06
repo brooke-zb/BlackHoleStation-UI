@@ -68,6 +68,9 @@ export default defineConfig({
           '@/api/friend': [
             ['default', 'friendApi'],
           ],
+          '@/api/admin/article': [
+            ['default', 'articleAdminApi'],
+          ],
         },
       ],
     }),
@@ -94,7 +97,7 @@ export default defineConfig({
       },
     },
   },
-  preview:{
+  preview: {
     port: 3000,
   },
   envDir: './src/env',

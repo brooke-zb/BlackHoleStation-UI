@@ -3,6 +3,7 @@
 declare global {
   const accountApi: typeof import('@/api/account')['default']
   const and: typeof import('@/utils/validation/rules')['and']
+  const articleAdminApi: typeof import('@/api/admin/article')['default']
   const articleApi: typeof import('@/api/article')['default']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
