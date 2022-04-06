@@ -90,12 +90,15 @@ const classAppend = computed(() => {
     'px-5 py-3': props.size === 'xl' && slots.default,
 
     // only icon padding
-    'p-2': slots.icon && !slots.default,
+    'p-1': slots.icon && !slots.default && props.size === 'sm',
+    'p-1.5': slots.icon && !slots.default && props.size === 'md',
+    'p-2': slots.icon && !slots.default && props.size === 'lg',
+    'p-3': slots.icon && !slots.default && props.size === 'xl',
 
     // radius
     'rounded-full after:rounded-full': props.circle,
-    'rounded-lg after:rounded-[0.625rem]': !props.circle && props.size === 'md',
-    'rounded-xl after:rounded-[0.875rem]': !props.circle && props.size !== 'md',
+    'rounded-lg after:rounded-[0.625rem]': !props.circle && (props.size === 'md' || props.size === 'sm'),
+    'rounded-xl after:rounded-[0.875rem]': !props.circle && (props.size === 'lg' || props.size === 'xl'),
 
     // disabled
     'cursor-not-allowed': isDisabled.value,

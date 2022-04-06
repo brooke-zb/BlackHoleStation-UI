@@ -21,10 +21,12 @@ export default defineComponent({
 import Button from '@/components/ui/button/Button.vue'
 
 const props = withDefaults(defineProps<{
-  type?: 'primary' | 'secondary' | 'danger' | 'info' | 'warning' | 'success' | 'dark' | 'light'
+  type?: 'primary' | 'secondary' | 'danger' | 'info' | 'warning' | 'success' | 'dark' | 'light',
+  size?: 'xs' | 'sm' | 'md',
   highlight?: boolean
 }>(), {
   type: 'primary',
+  size: 'md',
 })
 const slots = useSlots()
 
@@ -53,6 +55,8 @@ const classAppend = computed(() => ({
   'hover:text-light-900 hover:fill-light-900': !isDarker.value,
 
   // only icon padding
-  'p-3': slots.icon && !slots.default,
+  'p-3': slots.icon && !slots.default && props.size === 'md',
+  'p-2': slots.icon && !slots.default && props.size === 'sm',
+  'p-1': slots.icon && !slots.default && props.size === 'xs',
 }))
 </script>
