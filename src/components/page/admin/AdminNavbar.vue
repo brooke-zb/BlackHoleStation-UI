@@ -1,21 +1,23 @@
 <template>
-  <nav class="sticky w-full h-14 top-0 z-40 flex justify-between items-center
+  <nav class="sticky w-full h-12 top-0 z-40 flex justify-between items-center
        shadow-sm dark:shadow-light-300/20 bg-light-100/70 dark:bg-dark-800/70">
     <div>
       <router-link to="/admin">
-        <MenuButton v-tooltip="'概要'" :type="store.state.isDarkMode ? 'info' : 'secondary'">
+        <MenuButton v-tooltip="'概要'" :type="store.state.isDarkMode ? 'info' : 'secondary'" size="sm">
           <template #icon>
             <IRegularHouse/>
           </template>
         </MenuButton>
       </router-link>
-      <MenuButton v-tooltip="'撰写文章'" :type="store.state.isDarkMode ? 'info' : 'secondary'">
-        <template #icon>
-          <IRegularPen/>
-        </template>
-      </MenuButton>
-      <MenuButton v-tooltip="'管理'" @click="toggleNavMenu"
-                  :type="store.state.isDarkMode ? 'info' : 'secondary'">
+      <router-link to="/admin/articles/write">
+        <MenuButton v-tooltip="'撰写文章'" :type="store.state.isDarkMode ? 'info' : 'secondary'" size="sm">
+          <template #icon>
+            <IRegularPen/>
+          </template>
+        </MenuButton>
+      </router-link>
+      <MenuButton v-tooltip="'管理'" :type="store.state.isDarkMode ? 'info' : 'secondary'"
+                  size="sm" @click="toggleNavMenu">
         <template #icon>
           <IRegularWrench/>
         </template>
@@ -23,15 +25,17 @@
       <Menu ref="navMenu" :items="navMenuItem"/>
     </div>
     <div>
-      <MenuButton v-tooltip="'主题'" ref="themeBtn" @click="toggleThemeMenu"
+      <MenuButton v-tooltip="'主题'" ref="themeBtn" @click="toggleThemeMenu" size="sm"
                   :type="store.state.isDarkMode ? 'info' : 'secondary'" :highlight="store.state.theme !== 'system'">
         <template #icon>
-          <IRegularMoonStars v-if="store.state.theme === 'dark' || (store.state.theme === 'system' && store.state.isDarkMode)"/>
-          <IRegularSunBright v-if="store.state.theme === 'light' || (store.state.theme === 'system' && !store.state.isDarkMode)"/>
+          <IRegularMoonStars
+              v-if="store.state.theme === 'dark' || (store.state.theme === 'system' && store.state.isDarkMode)"/>
+          <IRegularSunBright
+              v-if="store.state.theme === 'light' || (store.state.theme === 'system' && !store.state.isDarkMode)"/>
         </template>
       </MenuButton>
       <Menu ref="themeMenu" :items="themeMenuItem"/>
-      <MenuButton v-tooltip="'退出登录'" type="danger" @click="logout">
+      <MenuButton v-tooltip="'退出登录'" type="danger" size="sm" @click="logout">
         <template #icon>
           <IRegularRightFromBracket/>
         </template>
