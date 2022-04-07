@@ -7,11 +7,11 @@
 </template>
 
 <script lang="ts" setup>
+import store from '@/utils/store'
 import Background from '@/components/page/Background.vue'
 import Loading from '@/components/page/Loading.vue'
 import ToastContainer from '@/components/ui/toast/ToastContainer.vue'
 import TooltipContainer from '@/components/ui/tooltip/TooltipContainer.vue'
-import store from '@/utils/store'
 
 // 颜色主题
 const isPreferredDark = usePreferredDark()
