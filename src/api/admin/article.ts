@@ -11,4 +11,7 @@ export default {
       },
     })
   },
+  delete(aid: string | number) {
+    return request.delete<null>(`/admin/article/${ aid }`)
+  },
 }

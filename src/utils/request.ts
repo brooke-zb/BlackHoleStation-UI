@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios'
 
 const instance = axios.create({
   baseURL: import.meta.env.BHS_BASE_URL,
-  timeout: 10000,
+  timeout: 5000,
   withCredentials: true,
 })
 
@@ -32,6 +32,14 @@ instance.interceptors.request.use(
     let token = Cookies.get('Authorization')
     if (token && config.headers) {
       config.headers.Authorization = token
+    }
+
+    // 设置CSRF token
+    if (['post', 'delete', 'put', 'patch', 'options'].includes(config.method?.toLowerCase() || 'get')) {
+      const csrfToken = Cookies.get('X-CSRF-TOKEN')
+      if (csrfToken && config.headers) {
+        config.headers['X-CSRF-TOKEN'] = csrfToken
+      }
     }
 
     return config
