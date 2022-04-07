@@ -131,10 +131,22 @@ export function parseRouter(permissions: string[]) {
   permissions.forEach(permission => {
     switch (permission) {
       case 'ARTICLE:READONLY':
+        pages.admin_article = {
+          path: 'articles', name: 'admin_article',
+          component: () => import('@/pages/admin/article/AdminArticle.vue'),
+        }
+        break
       case 'ARTICLE:FULLACCESS':
         pages.admin_article = {
           path: 'articles', name: 'admin_article',
           component: () => import('@/pages/admin/article/AdminArticle.vue'),
+        }
+        pages.admin_article_write = {
+          path: 'articles/write', name: 'admin_article_write',
+          component: () => import('@/pages/admin/article/AdminArticleWrite.vue'),
+          props: route => ({
+            aid: Number(route.query.aid),
+          }),
         }
         break
       case 'CATEGORY:FULLACCESS':
@@ -174,7 +186,7 @@ export function parseRouter(permissions: string[]) {
   })
 
   // 增删路由
-  const map = ['admin_article', 'admin_category', 'admin_comment', 'admin_role', 'admin_tag', 'admin_user']
+  const map = ['admin_article', 'admin_article_write', 'admin_category', 'admin_comment', 'admin_role', 'admin_tag', 'admin_user']
   map.forEach(key => {
     if (pages[key] && !router.hasRoute(key)) {
       router.addRoute('admin_layout', pages[key])
