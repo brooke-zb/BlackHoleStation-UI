@@ -2,13 +2,13 @@
   <Teleport to="body">
     <transition @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave">
       <div v-show="isOpen" @click="onCancel" class="fixed top-0 left-0 w-full h-full
-           flex justify-center items-center z-50 overflow-hidden bg-black">
+           flex justify-center items-end sm:items-center z-50 overflow-hidden bg-black">
         <div @click.stop="" ref="modal" class="m-2 p-4 bg-light-100 dark:bg-dark-600 rounded-lg w-full max-w-sm">
           <div class="mb-2 text-lg">{{ props.title }}</div>
           <div class="text-light-600 dark:text-light-300">{{ props.content }}</div>
           <div class="flex justify-end gap-2">
-            <Button :type="store.state.isDarkMode ? 'light' : 'dark'" @click="onCancel">取消</Button>
-            <Button :type="confirmType" @click="onConfirm">确认</Button>
+            <Button :type="store.state.isDarkMode ? 'light' : 'dark'" @click="onCancel">取 消</Button>
+            <Button :type="confirmType" @click="onConfirm">确 定</Button>
           </div>
         </div>
       </div>
