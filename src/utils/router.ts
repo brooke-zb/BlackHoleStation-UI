@@ -142,10 +142,10 @@ export function parseRouter(permissions: string[]) {
           component: () => import('@/pages/admin/article/AdminArticle.vue'),
         }
         pages.admin_article_write = {
-          path: 'articles/write', name: 'admin_article_write',
+          path: 'articles/write/:aid(\\d+)?', name: 'admin_article_write',
           component: () => import('@/pages/admin/article/AdminArticleWrite.vue'),
           props: route => ({
-            aid: Number(route.query.aid),
+            aid: Number(route.params.aid || NaN),
           }),
         }
         break
