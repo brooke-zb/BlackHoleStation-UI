@@ -26,11 +26,13 @@ declare type BhsComment = {
   content: string,
   created: string,
   parent: number | null,
-  status: 'PUBLISHED' | 'PENDING' | 'INVISIBLE'
+  status: BhsCommentStatus,
   reply: number | null,
   replyname: string | null,
   children: BhsComment[],
 }
+
+declare type BhsCommentStatus = 'PUBLISHED' | 'PENDING' | 'INVISIBLE'
 
 declare type BhsCategory = {
   cid: number,
@@ -63,9 +65,11 @@ declare type BhsArticle = {
   appreciatabled: boolean,
   created: string,
   modified: string,
-  status: 'PUBLISHED' | 'DRAFT' | 'INVISIBLE',
+  status: BhsArticleStatus,
   views: number,
 }
+
+declare type BhsArticleStatus = 'PUBLISHED' | 'DRAFT' | 'INVISIBLE'
 
 declare type BhsTimeline = {
   aid: number,
