@@ -13,10 +13,7 @@
             {{ child.name }}
           </router-link>
         </div>
-        <div v-if="data.length === 0" class="text-center">
-          <div>¯\_(ツ)_/¯</div>
-          <div>空空如也~</div>
-        </div>
+        <Empty v-if="data.length === 0"/>
       </div>
       <Skeleton v-else type="category"/>
     </Content>
@@ -33,6 +30,7 @@ export default defineComponent({
 import store from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import Content from '@/components/ui/skeleton/Content.vue'
+import Empty from '@/components/ui/empty/Empty.vue'
 
 const toast = useToast()
 store.state.title = '分类'

@@ -14,10 +14,7 @@
     </router-link>
   </div>
   <!--空状态-->
-  <div v-else>
-    <div>¯\_(ツ)_/¯</div>
-    <div>空空如也~</div>
-  </div>
+  <Empty v-else/>
   <!--分页-->
   <div v-if="data.pages > 1" class="flex justify-center pt-4">
     <Paginator :current-page="data.pageNum" :total-pages="data.pages" @change="change"/>
@@ -32,6 +29,7 @@ export default defineComponent({
 
 <script lang="ts" setup>
 import Paginator from '@/components/ui/paginator/Paginator.vue'
+import Empty from '@/components/ui/empty/Empty.vue'
 
 const props = defineProps<{
   data: Page<BhsArticle>

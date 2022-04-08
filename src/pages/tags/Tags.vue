@@ -6,10 +6,7 @@
         <router-link v-for="tag in tags" :to="'/tags/' + tag.name" class="m-2" :class="[tag.color, tag.size]">
           {{ tag.name }}
         </router-link>
-        <div v-if="tags.length === 0" class="text-center">
-          <div>¯\_(ツ)_/¯</div>
-          <div>空空如也~</div>
-        </div>
+        <Empty v-if="tags.length === 0"/>
       </div>
       <Skeleton v-else type="tag"/>
     </Content>
@@ -26,6 +23,7 @@ export default defineComponent({
 import store from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import Content from '@/components/ui/skeleton/Content.vue'
+import Empty from '@/components/ui/empty/Empty.vue'
 
 store.state.title = '标签'
 const toast = useToast()

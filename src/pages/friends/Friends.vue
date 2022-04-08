@@ -13,10 +13,7 @@
             </div>
           </a>
         </div>
-        <div v-else class="text-center">
-          <div>¯\_(ツ)_/¯</div>
-          <div>空空如也~</div>
-        </div>
+        <Empty v-else/>
       </template>
       <Skeleton v-else type="friend"/>
     </Content>
@@ -33,6 +30,7 @@ export default defineComponent({
 import store from '@/utils/store'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import Content from '@/components/ui/skeleton/Content.vue'
+import Empty from '@/components/ui/empty/Empty.vue'
 
 const toast = useToast()
 store.state.title = '友情链接'
