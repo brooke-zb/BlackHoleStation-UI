@@ -3,9 +3,26 @@
     <h2 class="text-xl">文章管理</h2>
     <router-link to="/admin/articles/write" class="link">新增</router-link>
   </div>
+  <div class="flex mt-2 gap-2">
+    <div class="flex items-center gap-2">
+      <select v-model="status">
+        <option value="PUBLISHED">已发布</option>
+        <option value="DRAFT">草稿</option>
+        <option value="INVISIBLE">隐藏</option>
+      </select>
+      <select v-model="cid">
+        <option :value="undefined" selected>所有分类</option>
+        <template v-for="category in categories">
+          <option :value="category.cid">{{ category.name }}</option>
+          <option v-for="child in category.children" :value="child.cid">&nbsp;&nbsp;{{ child.name }}</option>
+        </template>
+      </select>
+    </div>
+    <Button size="sm" :type="store.state.isDarkMode ? 'info' : 'secondary'" @click="loadArticles()">筛选</Button>
+  </div>
   <template v-if="data">
     <template v-if="data.list.length > 0">
-      <table class="table-auto w-full mt-4">
+      <table class="table-auto w-full mt-2">
         <thead>
         <tr>
           <th class="py-2 text-left">标题</th>
@@ -22,11 +39,11 @@
           </td>
           <td class="hidden lg:table-cell">{{ article.user.name }}</td>
           <td class="hidden sm:table-cell">
-            <router-link to="/" class="link">{{ article.category.name }}</router-link>
+            <a @click="applyCategory(article.category.cid)" class="link cursor-pointer">{{ article.category.name }}</a>
           </td>
           <td class="hidden md:table-cell">{{ article.created.split(' ')[0] }}</td>
           <td>
-            <router-link :to="{ name: 'admin_article_write', query: { aid: article.aid } }">
+            <router-link :to="{ name: 'admin_article_write', params: { aid: article.aid } }">
               <Button :type="store.state.isDarkMode ? 'info' : 'secondary'" v-tooltip="'编辑'">
                 <template #icon>
                   <IRegularPen class="w-4 h-4"/>
@@ -49,10 +66,7 @@
                    @change="loadArticles"/>
       </div>
     </template>
-    <div v-else class="flex flex-col items-center">
-      <div>¯\_(ツ)_/¯</div>
-      <div>空空如也~</div>
-    </div>
+    <Empty v-else/>
   </template>
   <Modal ref="deleteModal" title="删除确认" :content="`确定删除 ${ deleteTitle }？`" @confirm="deleteArticle"/>
 </template>
@@ -68,16 +82,23 @@ import store from '@/utils/store'
 import Button from '@/components/ui/button/Button.vue'
 import Paginator from '@/components/ui/paginator/Paginator.vue'
 import Modal from '@/components/ui/modal/Modal.vue'
+import Empty from '@/components/ui/empty/Empty.vue'
 
 store.state.title = '文章管理'
 const toast = useToast()
 
+const status = ref<BhsArticleStatus>('PUBLISHED')
+const uid = ref<number>()
+const cid = ref<number>()
 const data = ref<Page<BhsArticle>>()
 
-onMounted(loadArticles)
+onMounted(() => {
+  loadCategories()
+  loadArticles()
+})
 
 function loadArticles(page?: number) {
-  articleAdminApi.getList(page).then(res => {
+  articleAdminApi.getList(page, status.value, cid.value, uid.value).then(res => {
     if (res.success) {
       data.value = res.data
     } else {
@@ -88,6 +109,27 @@ function loadArticles(page?: number) {
       })
     }
   })
+}
+
+const categories = ref<BhsCategory[]>([])
+
+function loadCategories() {
+  categoryApi.getList().then(res => {
+    if (res.success) {
+      categories.value = res.data
+    } else {
+      toast.add({
+        type: 'danger',
+        message: res.msg,
+        duration: 5000,
+      })
+    }
+  })
+}
+
+function applyCategory(_cid: number) {
+  cid.value = _cid
+  loadArticles()
 }
 
 const deleteModal = ref()
