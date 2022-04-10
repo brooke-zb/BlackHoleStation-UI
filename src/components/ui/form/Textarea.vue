@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full p-1 relative">
+  <div class="w-full relative">
     <textarea ref="el" class="p-2 rounded-md outline-0 bg-transparent border-2 block w-full resize-none
               border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500 transition-bg outline-0"
               @input="onInput" :rows="props.minRows" :class="classAppend" :value="props.modelValue" :placeholder="props.placeholder" @resize="onInput"/>

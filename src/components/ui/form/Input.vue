@@ -1,5 +1,5 @@
 <template>
-  <div class="flex p-1 relative w-full">
+  <div class="flex relative w-full">
     <div v-if="$slots.left" class="absolute w-5 h-5 left-3 top-0 bottom-0 m-auto" :class="slotClassAppend">
       <slot name="left"></slot>
     </div>
