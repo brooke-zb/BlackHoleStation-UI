@@ -1,7 +1,9 @@
 <template>
   <AdminNavbar/>
-  <div class="my-2 container">
-    <router-view/>
+  <div class="my-2 w-full max-w-screen-xl mx-auto px-2">
+    <router-view v-slot="{ Component }">
+      <Component :key="$route.path" :is="Component"/>
+    </router-view>
   </div>
 </template>
 
