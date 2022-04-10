@@ -29,6 +29,7 @@ declare module 'vue' {
     IRegularTag: typeof import('~icons/regular/tag')['default']
     IRegularUser: typeof import('~icons/regular/user')['default']
     IRegularWrench: typeof import('~icons/regular/wrench')['default']
+    IRegularXmark: typeof import('~icons/regular/xmark')['default']
     ISolidBars: typeof import('~icons/solid/bars')['default']
     ISolidFolder: typeof import('~icons/solid/folder')['default']
     ISolidFolderBlank: typeof import('~icons/solid/folder-blank')['default']
