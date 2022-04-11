@@ -2,7 +2,7 @@
 // We suggest you to commit this file into source control
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
-declare module 'vue' {
+declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     IBrandsBilibili: typeof import('~icons/brands/bilibili')['default']
     IBrandsGithub: typeof import('~icons/brands/github')['default']
@@ -34,6 +34,8 @@ declare module 'vue' {
     ISolidFolder: typeof import('~icons/solid/folder')['default']
     ISolidFolderBlank: typeof import('~icons/solid/folder-blank')['default']
     ISolidXmark: typeof import('~icons/solid/xmark')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }
 
