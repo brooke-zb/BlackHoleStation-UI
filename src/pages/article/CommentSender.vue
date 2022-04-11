@@ -1,7 +1,7 @@
 <template>
   <Teleport :to="teleportSelector">
     <div class="my-2 border-dashed border-secondary-300 rounded-md">
-      <div class="flex flex-col sm:flex-row">
+      <div class="flex flex-col sm:flex-row gap-2 mb-2">
         <Input placeholder="昵称" v-model="data.nickname.value" :invalid="data.nickname.invalid">
           <template #left>
             <IRegularUser/>
