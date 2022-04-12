@@ -17,8 +17,8 @@ export default {
   delete(aid: string | number) {
     return request.delete<null>(`/admin/article/${ aid }`)
   },
-  update(aid: string | number, article: BhsArticle) {
-    return request.put<null>(`/admin/article/${ aid }`, {
+  update(article: BhsArticle) {
+    return request.put<null>(`/admin/article`, {
       data: article,
     })
   },

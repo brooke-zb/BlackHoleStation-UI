@@ -4,13 +4,18 @@
     <div class="md:grow">
       <Input v-model="data.title" placeholder="标题"/>
       <div class="flex justify-end">
-        <Button size="sm" :type="store.state.isDarkMode ? 'info' : 'secondary'">预览</Button>
+        <Button size="sm" :type="store.state.isDarkMode ? 'info' : 'secondary'" @click="togglePreview">
+          {{ isPreview ? '取消预览' : '预览' }}
+        </Button>
       </div>
-      <Textarea v-model="data.content" placeholder="内容"/>
+      <Textarea v-show="!isPreview" v-model="data.content" placeholder="内容"/>
+      <div v-show="isPreview" class="border-2 border-dashed p-2 rounded
+           border-secondary-400 dark:border-info-600" v-html="previewContent"></div>
       <div class="flex justify-end">
         <Button @click="postArticle" :type="store.state.isDarkMode ? 'info' : 'secondary'">发布文章</Button>
       </div>
     </div>
+
     <div class="md:w-60">
       <h3 class="mb-2">发布时间</h3>
       <input class="mb-2 appearance-none bg-secondary-50 dark:bg-dark-700 p-0.5
@@ -44,6 +49,7 @@
       </div>
     </div>
   </div>
+  <GalleryContainer ref="gallery"/>
 </template>
 
 <script lang="ts">
@@ -58,6 +64,7 @@ import Input from '@/components/ui/form/Input.vue'
 import Textarea from '@/components/ui/form/Textarea.vue'
 import Button from '@/components/ui/button/Button.vue'
 import Chips from '@/components/ui/form/Chips.vue'
+import GalleryContainer from '@/components/ui/gallery/GalleryContainer.vue'
 
 store.state.title = '撰写新文章'
 const props = defineProps<{
@@ -72,6 +79,10 @@ onMounted(() => {
     articleAdminApi.getByAid(props.aid).then(res => {
       if (res.success) {
         title.value = res.data.title
+        created.value = res.data.created.replace(' ', 'T').substring(0, res.data.created.length - 3)
+        res.data.tags.forEach(tag => {
+          tags.value.push(tag.name)
+        })
         store.state.title = `编辑${ res.data.title }`
         data.value = res.data
       } else {
@@ -120,7 +131,7 @@ function postArticle() {
   parseDate()
   parseTags()
   if (props.aid) {
-    articleAdminApi.update(props.aid, data.value).then(res => {
+    articleAdminApi.update(data.value).then(res => {
       if (res.success) {
         toast.add({
           type: 'success',
@@ -168,4 +179,23 @@ function parseDate() {
     data.value.created = created.value.replace('T', ' ') + ':00'
   }
 }
+
+// 预览功能
+const gallery = ref()
+const isPreview = ref(false)
+const previewContent = ref('')
+
+function togglePreview() {
+  isPreview.value = !isPreview.value
+  if (isPreview.value) {
+    previewContent.value = marked(data.value.content)
+    nextTick(() => {
+      gallery.value.init('[data-gallery]')
+    })
+  }
+}
+
+onUnmounted(() => {
+  store.clearAnchors()
+})
 </script>
