@@ -8,17 +8,16 @@
       </div>
       <Textarea v-model="data.content" placeholder="内容"/>
       <div class="flex justify-end">
-        <Button :type="store.state.isDarkMode ? 'info' : 'secondary'">发布文章</Button>
+        <Button @click="postArticle" :type="store.state.isDarkMode ? 'info' : 'secondary'">发布文章</Button>
       </div>
     </div>
     <div class="md:w-60">
       <h3 class="mb-2">发布时间</h3>
       <input class="mb-2 appearance-none bg-secondary-50 dark:bg-dark-700 p-0.5
              rounded border border-secondary-400 dark:border-info-600 outline-0"
-             type="datetime-local" v-model="data.created"/>
+             type="datetime-local" v-model="created"/>
       <h3 class="mb-2">分类</h3>
       <select class="mb-2" v-model="data.category.cid">
-        <option :value="null" selected>所有分类</option>
         <template v-for="category in categories">
           <option :value="category.cid">{{ category.name }}</option>
           <option v-for="child in category.children" :value="child.cid">&nbsp;&nbsp;{{ child.name }}</option>
@@ -35,12 +34,12 @@
       <h3 class="mb-2">其他选项</h3>
       <div>
         <div>
-          <input type="checkbox" v-model="data.commentabled"/>
-          允许评论
+          <input id="commentabled" type="checkbox" v-model="data.commentabled"/>
+          <label for="commentabled">允许评论</label>
         </div>
         <div>
-          <input type="checkbox" v-model="data.appreciatabled"/>
-          显示打赏
+          <input id="appreciatabled" type="checkbox" v-model="data.appreciatabled"/>
+          <label for="appreciatabled">显示打赏</label>
         </div>
       </div>
     </div>
@@ -87,6 +86,7 @@ onMounted(() => {
 })
 
 const title = ref<string>()
+const created = ref<string>()
 const tags = ref<string[]>([])
 const data = ref<BhsArticle | any>({
   category: {
@@ -114,5 +114,58 @@ function loadCategories() {
       })
     }
   })
+}
+
+function postArticle() {
+  parseDate()
+  parseTags()
+  if (props.aid) {
+    articleAdminApi.update(props.aid, data.value).then(res => {
+      if (res.success) {
+        toast.add({
+          type: 'success',
+          message: '更新成功',
+          duration: 5000,
+        })
+      } else {
+        toast.add({
+          type: 'danger',
+          message: res.msg,
+          duration: 5000,
+        })
+      }
+    })
+  } else {
+    articleAdminApi.insert(data.value).then(res => {
+      if (res.success) {
+        toast.add({
+          type: 'success',
+          message: '发布成功',
+          duration: 5000,
+        })
+      } else {
+        toast.add({
+          type: 'danger',
+          message: res.msg,
+          duration: 5000,
+        })
+      }
+    })
+  }
+}
+
+function parseTags() {
+  data.value.tags = []
+  tags.value.forEach(tag => {
+    data.value.tags.push({
+      name: tag,
+    })
+  })
+}
+
+function parseDate() {
+  if (created.value) {
+    data.value.created = created.value.replace('T', ' ') + ':00'
+  }
 }
 </script>

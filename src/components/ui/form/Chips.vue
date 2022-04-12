@@ -35,7 +35,7 @@ const classAppend = computed(() => ({
 }))
 
 function onCommit() {
-  if (tag.value.length > 0) {
+  if (tag.value.length > 0 && tag.value.trim().length > 0) {
     data.value.push(tag.value)
     tag.value = ''
     emits('update:modelValue', data.value)
