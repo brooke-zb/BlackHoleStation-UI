@@ -1,7 +1,7 @@
 <template>
   <div class="rounded-md outline-0 bg-transparent px-2 py-1.5 w-full border-2 placeholder:text-sm
        transition-bg outline-0 flex flex-col gap-1" :class="classAppend">
-    <div v-for="(item, index) in data" class="flex rounded justify-between flex-wrap bg-secondary-200 dark:bg-info-600 px-1">
+    <div v-for="(item, index) in props.modelValue" class="flex rounded justify-between flex-wrap bg-secondary-200 dark:bg-info-600 px-1">
       <div>{{ item }}</div>
       <button @click="removeTag(index)"><IRegularXmark/></button>
     </div>
@@ -27,7 +27,7 @@ const emits = defineEmits<{
 
 const onFocus = ref(false)
 const tag = ref('')
-const data = ref<string[]>([])
+const data = ref<string[]>(props.modelValue)
 
 const classAppend = computed(() => ({
   'border-secondary-500 dark:border-info-500': onFocus.value,
