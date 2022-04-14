@@ -71,6 +71,9 @@ export default defineConfig({
           '@/api/admin/article': [
             ['default', 'articleAdminApi'],
           ],
+          '@/api/admin/category': [
+            ['default', 'categoryAdminApi'],
+          ],
         },
       ],
     }),

@@ -1,12 +1,12 @@
 import request from '@/utils/request'
 
 export default {
-  insert(category: BhsCategory) {
+  insert(category: BhsCategory | any) {
     return request.post<null>('/admin/category', {
       data: category,
     })
   },
-  update(category: BhsCategory) {
+  update(category: BhsCategory | any) {
     return request.put<null>('/admin/category', {
       data: category,
     })
