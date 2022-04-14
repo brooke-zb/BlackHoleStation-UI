@@ -42,7 +42,7 @@
         </Button>
       </td>
     </tr>
-    <tr v-if="isAdding">
+    <tr v-if="isAdding" class="border-t border-secondary-300 dark:border-dark-600">
       <td>
         <Input v-model="newName" placeholder="分类名称" @keydown.enter="addCategory" @keydown.esc="isAdding = false" focus/>
       </td>
@@ -87,7 +87,7 @@
           </Button>
         </td>
       </tr>
-      <tr v-if="isAdding">
+      <tr v-if="isAdding" class="border-t border-secondary-300 dark:border-dark-600">
         <td>
           <Input v-model="newName" placeholder="分类名称" @keydown.enter="addCategory" @keydown.esc="isAdding = false" focus/>
         </td>
