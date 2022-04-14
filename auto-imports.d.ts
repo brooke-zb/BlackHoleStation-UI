@@ -10,6 +10,7 @@ declare global {
   const betweenLength: typeof import('@/utils/validation/rules')['betweenLength']
   const categoryAdminApi: typeof import('@/api/admin/category')['default']
   const categoryApi: typeof import('@/api/category')['default']
+  const commentAdminApi: typeof import('@/api/admin/comment')['default']
   const commentApi: typeof import('@/api/comment')['default']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
