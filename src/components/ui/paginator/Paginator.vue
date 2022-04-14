@@ -60,7 +60,7 @@ const emits = defineEmits<{
   (e: 'change', event: number): void,
 }>()
 
-watch(() => props.currentPage, () => {
+watch(props, () => {
   pageInfo.currentPage = props.currentPage
   getPages(props.currentPage)
 }, {
