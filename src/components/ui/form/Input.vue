@@ -5,7 +5,7 @@
     </div>
     <input class="rounded-md outline-0 bg-transparent px-2 py-1.5 w-full border-2 placeholder:text-sm
            border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500 transition-bg outline-0"
-           :class="classAppend" :type="props.type" :placeholder="props.placeholder" :value="props.modelValue" @input="onInput"/>
+           :class="classAppend" :type="props.type" :placeholder="props.placeholder" :value="props.modelValue" @input="onInput" ref="input"/>
     <div v-if="$slots.right" class="absolute w-5 h-5 right-3 top-0 bottom-0 m-auto
     fill-light-400 dark:fill-dark-500" :class="slotClassAppend">
       <slot name="right"></slot>
@@ -25,6 +25,7 @@ const props = withDefaults(defineProps<{
   placeholder?: string,
   invalid?: boolean,
   modelValue: string,
+  focus?: boolean,
 }>(), {
   type: 'text',
   placeholder: '',
@@ -50,4 +51,12 @@ const slotClassAppend = computed(() => ({
 function onInput(e: Event) {
   emits('update:modelValue', (e.target as HTMLInputElement).value)
 }
+
+const input = ref()
+
+onMounted(() => {
+  if (props.focus) {
+    input.value.focus()
+  }
+})
 </script>
