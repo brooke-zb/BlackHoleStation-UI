@@ -17,8 +17,8 @@ const request = {
   put: <D>(url: string, config: AxiosRequestConfig) => {
     return instance.put(url, config.data, config) as Promise<BhsResponse<D>>
   },
-  patch: <D>(url: string, config: AxiosRequestConfig) => {
-    return instance.patch(url, config.data, config) as Promise<BhsResponse<D>>
+  patch: <D>(url: string, config?: AxiosRequestConfig) => {
+    return instance.patch(url, config?.data, config) as Promise<BhsResponse<D>>
   },
   delete: <D>(url: string, config?: AxiosRequestConfig) => {
     return instance.delete(url, config) as Promise<BhsResponse<D>>

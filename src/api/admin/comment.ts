@@ -9,7 +9,7 @@ export default {
       params: {
         page,
         status,
-      }
+      },
     })
   },
   delete(coid: string | number) {
@@ -17,7 +17,10 @@ export default {
   },
   update(comment: BhsComment | any) {
     return request.put<null>(`/admin/comment`, {
-      data: comment
+      data: comment,
     })
+  },
+  updateStatus(coid: string | number, status: BhsCommentStatus) {
+    return request.patch<null>(`/admin/comment/${ coid }/status/${ status }`)
   },
 }
