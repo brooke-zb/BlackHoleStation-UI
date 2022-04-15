@@ -55,9 +55,15 @@ const props = defineProps<{
 
 const isSending = ref(false)
 
+const userCache = useStorage('bhs.user.cache', {
+  nickname: '',
+  email: '',
+  site: ''
+})
+
 const data = reactive({
   nickname: {
-    value: '',
+    value: userCache.value.nickname,
     rule: betweenLength(2, 32, {
       min: '昵称不能少于2个字',
       max: '昵称不能超过32字',
@@ -65,12 +71,12 @@ const data = reactive({
     invalid: false,
   },
   email: {
-    value: '',
+    value: userCache.value.email,
     rule: or(email('邮箱格式不正确'), isEmpty('')),
     invalid: false,
   },
   site: {
-    value: '',
+    value: userCache.value.site,
   },
   content: {
     value: '',
@@ -110,6 +116,11 @@ function sendComment() {
             message: res.msg,
             duration: 5000,
           })
+
+          // 缓存用户信息
+          userCache.value.nickname = data.nickname.value
+          userCache.value.email = data.email.value
+          userCache.value.site = data.site.value
         } else {
           toast.add({
             type: 'danger',
