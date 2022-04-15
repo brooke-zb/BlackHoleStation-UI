@@ -95,7 +95,7 @@ function toAnchor(id: number | string | null) {
   const anchor = document.getElementById('co' + id)
   if (anchor) {
     window.scrollTo({
-      top: anchor.offsetTop,
+      top: anchor.offsetTop - 14 * 4, // 减去导航栏的高度
       behavior: 'smooth',
     })
     gsap.fromTo(anchor, {

@@ -76,7 +76,7 @@ function toAnchor(id: string) {
   let anchor = document.getElementById(id)
   if (anchor) {
     window.scrollTo({
-      top: anchor.offsetTop,
+      top: anchor.offsetTop - 14 * 4, // 减去导航栏的高度
       behavior: 'smooth',
     })
   }
