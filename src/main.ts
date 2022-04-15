@@ -1,7 +1,9 @@
 import { router } from '@/utils/router'
 import store from '@/utils/store'
-import renderer from '@/utils/renderer'
 import tooltip from '@/utils/tooltip'
+
+import renderer from '@/utils/marked/renderer'
+import extensions from '@/utils/marked/extensions'
 
 import App from './App.vue'
 import '@/index.css'
@@ -10,8 +12,9 @@ import '@/index.css'
 const siteName = import.meta.env.BHS_SITE_NAME
 useTitle(computed(() => store.state.title ? `${ store.state.title } - ${ siteName }` : siteName))
 
-// 设置marked渲染器
+// 拓展marked
 marked.use({ renderer })
+marked.use(extensions)
 
 createApp(App)
   .use(router)

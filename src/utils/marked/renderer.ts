@@ -68,6 +68,6 @@ const renderer = {
     return `<div class="flex justify-center max-w-4xl mx-auto"><img class="cursor-pointer min-w-0" data-gallery data-src="${ href }" ${ _title } ${ _text }></div>`
   },
   // text: (text: string) => text,
-}
+} as any
 
-export default Object.assign(new marked.Renderer(), renderer)
+export default renderer
