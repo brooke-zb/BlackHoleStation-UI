@@ -18,8 +18,6 @@ export default defineComponent({
 </script>
 
 <script lang="ts" setup>
-import Button from '@/components/ui/button/Button.vue'
-
 const props = withDefaults(defineProps<{
   type?: 'primary' | 'secondary' | 'danger' | 'info' | 'warning' | 'success' | 'dark' | 'light',
   size?: 'xs' | 'sm' | 'md',
