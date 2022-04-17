@@ -1,4 +1,5 @@
 import { parseRouter } from '@/utils/router'
+import { unescape } from 'lodash-es'
 
 const state = reactive({
   isPageLoading: false,
@@ -44,10 +45,10 @@ const methods = {
     state.isSideMenuOpen = !state.isSideMenuOpen
   },
   addAnchor(title: string, level: 1 | 2 | 3 | 4 | 5 | 6) {
-    let id = `ac${ state.anchorIndex++ }-${ title.replaceAll(' ', '-').replaceAll(/[^0-9a-zA-Z-]/g, '') }`
+    let id = `ac${ state.anchorIndex++ }-${ title.replaceAll(' ', '-').replaceAll(/[^\da-zA-Z-\u4e00-\u9fa5]/g, '') }`
     state.anchors.push({
       id,
-      title,
+      title: unescape(title),
       level,
     })
     return id
