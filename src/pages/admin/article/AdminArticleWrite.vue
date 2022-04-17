@@ -46,6 +46,10 @@
           <input id="appreciatabled" type="checkbox" v-model="data.appreciatabled"/>
           <label for="appreciatabled">显示打赏</label>
         </div>
+        <div>
+          <input id="update-modified" type="checkbox" v-model="updateModified"/>
+          <label for="update-modified">更新编辑时间</label>
+        </div>
       </div>
     </div>
   </div>
@@ -76,6 +80,7 @@ const toast = useToast()
 onMounted(() => {
   loadCategories()
   if (props.aid) {
+    updateModified.value = true
     articleAdminApi.getByAid(props.aid).then(res => {
       if (res.success) {
         title.value = res.data.title
@@ -98,6 +103,7 @@ onMounted(() => {
 
 const title = ref<string>()
 const created = ref<string>()
+const updateModified = ref<boolean>(false)
 const tags = ref<string[]>([])
 const data = ref<BhsArticle | any>({
   category: {
@@ -177,6 +183,9 @@ function parseTags() {
 function parseDate() {
   if (created.value) {
     data.value.created = created.value.replace('T', ' ') + ':00'
+  }
+  if (updateModified.value) {
+    data.value.modified = new Date().toLocaleString().replaceAll('/', '-')
   }
 }
 
