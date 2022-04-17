@@ -38,23 +38,23 @@ a.link {
 }
 
 h1.heading {
-    @apply text-3xl py-6;
+    @apply text-3xl pt-4 pb-2;
 }
 
 h2.heading {
-    @apply text-2xl py-4;
+    @apply text-2xl pt-4 pb-2;
 }
 
 h3.heading {
-    @apply text-xl py-3;
+    @apply text-xl pt-3 pb-1.5;
 }
 
 h4.heading {
-    @apply text-lg py-2;
+    @apply text-lg pt-2 pb-1;
 }
 
 h5.heading {
-    @apply text-lg py-1.5;
+    @apply text-lg pt-1.5 pb-1;
 }
 
 h6.heading {
