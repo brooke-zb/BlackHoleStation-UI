@@ -5,12 +5,12 @@
         class="flex justify-center gap-2 mb-2 text-light-500 fill-light-500 dark:text-light-400 dark:fill-light-400">
       <div v-tooltip="'发布时间'">
         <IRegularCalendarLines class="inline align-text-top"/>
-        {{ props.data.created }}
+        {{ props.data.created.substring(0, props.data.created.length - 3) }}
       </div>
       <div v-if="data.modified" v-tooltip="'上次更新'">
         -
         <IRegularCalendarLinesPen class="inline align-text-top"/>
-        {{ props.data.modified }}
+        {{ props.data.modified.substring(0, props.data.modified.length - 3) }}
       </div>
     </div>
     <div
