@@ -8,7 +8,7 @@
           {{ isPreview ? '取消预览' : '预览' }}
         </Button>
       </div>
-      <Textarea v-show="!isPreview" v-model="data.content" placeholder="内容"/>
+      <Textarea v-show="!isPreview" v-model="data.content" placeholder="内容" :min-rows="10"/>
       <div v-show="isPreview" class="border-2 border-dashed p-2 rounded
            border-secondary-400 dark:border-info-600" v-html="previewContent"></div>
       <div class="flex justify-end">
@@ -180,12 +180,14 @@ function parseTags() {
   })
 }
 
+const now = useNow()
+const currentTime = useDateFormat(now, 'YYYY-MM-DD HH:mm:ss')
 function parseDate() {
   if (created.value) {
     data.value.created = created.value.replace('T', ' ') + ':00'
   }
   if (updateModified.value) {
-    data.value.modified = new Date().toLocaleString().replaceAll('/', '-')
+    data.value.modified = currentTime.value
   }
 }
 
