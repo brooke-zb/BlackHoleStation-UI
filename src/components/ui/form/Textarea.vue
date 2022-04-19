@@ -1,9 +1,8 @@
 <template>
-  <div class="w-full relative">
-    <textarea ref="el" class="p-2 rounded-md outline-0 bg-transparent border-2 block w-full resize-none
-              border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500 transition-bg outline-0"
-              @input="onInput" :rows="props.minRows" :class="classAppend" :value="props.modelValue" :placeholder="props.placeholder" @resize="onInput"/>
-  </div>
+  <textarea ref="el" class="p-2 rounded-md outline-0 bg-transparent border-2 block w-full resize-none
+            border-light-300 dark:border-dark-600 focus:border-secondary-500 dark:focus:border-info-500 transition-bg outline-0"
+            @input="onInput" :class="classAppend" :rows="props.minRows" :value="props.modelValue"
+            :placeholder="props.placeholder"/>
 </template>
 
 <script lang="ts">
@@ -32,15 +31,12 @@ const classAppend = computed(() => ({
   'placeholder:text-danger-300 dark:placeholder:text-danger-400': props.invalid,
 }))
 
-const el = ref()
-const minHeight = ref(0)
+const el = ref<HTMLTextAreaElement>()
 
-const observer = new ResizeObserver(() => {
-  onResize()
-})
+const observer = new ResizeObserver(onResize)
 onMounted(() => {
-  minHeight.value = el.value.offsetHeight
-  observer.observe(el.value)
+  onResize()
+  observer.observe(el.value!)
 })
 onUnmounted(() => {
   observer.disconnect()
@@ -52,9 +48,10 @@ function onInput(e: Event) {
 }
 
 function onResize() {
-  el.value.style.height = 'auto'
-  if (el.value.scrollHeight > minHeight.value) {
-    el.value.style.height = `${el.value.scrollHeight + 4}px`
-  }
+  let currentScrollTop = window.scrollY
+  let style =  window.getComputedStyle(el.value!)
+  el.value!.style.height = 'auto'
+  el.value!.style.height = `calc(${ el.value!.scrollHeight }px + ${ style.borderTopWidth } + ${ style.borderBottomWidth })`
+  window.scrollTo(0, currentScrollTop)
 }
 </script>
