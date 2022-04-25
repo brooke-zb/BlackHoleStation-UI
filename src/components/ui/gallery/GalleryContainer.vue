@@ -39,6 +39,7 @@ export default defineComponent({
 <script lang="ts" setup>
 import gsap from 'gsap'
 
+const sourceImage = ref<HTMLImageElement>()
 const isShow = ref(false)
 let InOutRatios = 1
 let InOutTranslateX = 0
@@ -94,7 +95,12 @@ function onLeave(el: Element, done: () => void) {
   gsap.to(el, {
     '--tw-bg-opacity': 0,
     duration: 0.2,
-    onComplete: done,
+    onComplete: () => {
+      // 显示原图片
+      sourceImage.value!.style.visibility = 'visible'
+
+      done()
+    },
   })
 }
 
@@ -131,11 +137,15 @@ function init(selector: string) {
 // 图片灯箱生命周期
 function onGalleryEnter(el: HTMLImageElement, i: number) {
   if (el.complete) {
+    sourceImage.value = el
     currentIndex.value = i + 1
     currentPicture.value = el.src
     currentAlt.value = el.alt
     isShow.value = true
     refImage.value = el
+
+    // 隐藏原图片
+    el.style.visibility = 'hidden'
 
     // 绑定灯箱事件
     document.addEventListener('keyup', preventKeyListener)
@@ -152,6 +162,8 @@ function onGalleryEnter(el: HTMLImageElement, i: number) {
 function onGalleryClose() {
   isShow.value = false
   resetData()
+
+  // 解绑灯箱事件
   document.removeEventListener('keyup', preventKeyListener)
   document.removeEventListener('keydown', preventKeyListener)
   document.removeEventListener('mousedown', onMouseDown)

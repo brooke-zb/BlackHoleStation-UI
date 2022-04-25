@@ -33,7 +33,6 @@ const props = withDefaults(defineProps<{
   type?: 'normal' | 'danger'
 }>(), {
   type: 'normal',
-
 })
 
 const emits = defineEmits<{
