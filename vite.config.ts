@@ -95,6 +95,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    port: 3000,
     proxy: {
       '/api': {
         target: 'http://api.blog.brookezb.com',
@@ -102,9 +103,6 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/, ''),
       },
     },
-  },
-  preview: {
-    port: 3000,
   },
   envDir: './src/env',
   envPrefix: 'BHS_',
