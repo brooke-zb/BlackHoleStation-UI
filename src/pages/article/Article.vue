@@ -39,7 +39,7 @@ onMounted(async () => {
   let res = await articleApi.getByAid(props.aid)
   if (res.success) {
     data.value = res.data
-    data.value.content = marked(data.value.content.replaceAll('<', '&lt;').replaceAll('>', '&gt;'))
+    data.value.content = marked(data.value.content)
     isShowComment.value = true
   } else {
     toast.add({
